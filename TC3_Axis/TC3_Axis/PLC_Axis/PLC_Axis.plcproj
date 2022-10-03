@@ -17,6 +17,9 @@
     <LibraryReferences>{9f19ef90-0a5d-4993-bce5-9b070e2dd1c6}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Component_Axis\FB_TcAxis.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -27,6 +30,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="Component_Axis" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -43,6 +47,11 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="CoDeSys Library Template Interfaces,newest,3S - Smart Software Solutions GmbH">
+      <Namespace>TMP</Namespace>
+    </LibraryReference>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

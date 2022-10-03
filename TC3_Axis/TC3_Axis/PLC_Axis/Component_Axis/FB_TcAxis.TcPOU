@@ -1,0 +1,2242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_TcAxis" Id="{e50bd83f-404e-44dd-b16f-166da0d5a892}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TcAxis IMPLEMENTS TMP.itfAxis
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AccelerationProfile" Id="{f6b21c16-3707-4aa3-b96c-040e6c2ee5e9}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD AccelerationProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	AccelerationScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">10L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="ActualPosition" Id="{ecd6bdfe-f9f4-4082-9637-3eb539377161}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualPosition : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{7306c7d7-4dfa-4eb9-9573-4aecae58097c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualTorque" Id="{b67fdb3e-329b-4c72-b59c-5758ec537ed8}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualTorque : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{fd1f7efd-0c6a-4dd0-a7b0-50ec550870c4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{6837ce3d-e7af-4294-bb1f-a4b665ab22b5}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualVelocity : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{a8f9edfa-63be-4734-8005-39c7b2c3e226}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="AxisWarning" Id="{6d13089a-3a5e-4cdb-9836-719a7aaccd5c}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY AxisWarning : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f7b9b489-21d2-4da0-9098-75ada6ba0411}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="CamIn" Id="{3cdfe206-c8bd-4852-96fe-97b082752548}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD CamIn : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	MasterOffset	: REAL;
+	SlaveOffset	: REAL;
+	MasterScaling	: REAL;
+	SlaveScaling	: REAL;
+	MasterStartDistance	: REAL;
+	MasterSyncPosition	: REAL;
+	StartMode	: MC_StartMode;
+	MasterValueSource	: MC_Source;
+	CamTable	: itfCamTable;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">17L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="CombineAxes" Id="{4979ae12-7f46-4584-b22c-4d34241d2afe}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD CombineAxes : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master1	: itfAxis;
+	Master2	: itfAxis;
+	CombineMode	: MC_COMBINE_MODE;
+	GearRatioNumeratorM1	: INT;
+	GearRatioDenominatorM1	: INT;
+	GearRatioNumeratorM2	: INT;
+	GearRatioDenominatorM2	: INT;
+	MasterValueSourceM1	: MC_SOURCE;
+	MasterValueSourceM2	: MC_SOURCE;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">16L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="CommunicationReady" Id="{3e391435-1804-4ea0-9d7c-15e7767d84b4}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY CommunicationReady : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{61fbf2b1-cd11-4b80-b7d5-23bcb5394b0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Direction" Id="{47b53d58-0cdd-4bc3-bd0e-b3eb036bbd1f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Direction : AXIS_DIRECTION
+]]></Declaration>
+      <Get Name="Get" Id="{ed483b6f-adf8-42f5-b004-0ee38f20fc9b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{7987884e-473c-4375-a624-2a00facbe49c}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ErrorId : WORD
+]]></Declaration>
+      <Get Name="Get" Id="{c3677ff1-8bca-4074-bb05-856eefe5de10}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="GearIn" Id="{77138364-5b83-4cf6-938f-556ab88879a0}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD GearIn : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	Ratio	: REAL;
+	MasterValueSource	: INT;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">13L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="GearInPos" Id="{98d9bc99-ed23-456e-8e02-1d29d431507e}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD GearInPos : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	RatioNumerator	: REAL;
+	RatioDenominator	: REAL;
+	MasterValueSource	: MC_SOURCE;
+	MasterSyncPosition	: REAL;
+	SlaveSyncPosition	: REAL;
+	SyncMode	: MC_SYNC_MODE;
+	MasterStartDistance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">19L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="Halt" Id="{17bd12e5-b884-4250-b10d-ab820cec9cd5}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Halt : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">9L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="HaltSuperimposed" Id="{e5fc3ee3-395b-4a6b-8f2e-4ec3933e6169}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD HaltSuperimposed : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">8L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="Home" Id="{dbcccf17-d9a7-4c76-993f-cc24da88c577}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Home : itfAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	Velocity	: REAL;
+	EndVelocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	HomingMode	: INT;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">15L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="HomeAbsSwitch" Id="{ade4e613-2a00-4f02-95d4-c9ebeb3f9cdf}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY HomeAbsSwitch : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{cec00b34-a232-4783-88d0-9947dd67d5cf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsHomed" Id="{e7acc7dc-26c4-4b18-9268-7f7868d9144b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY IsHomed : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{5291d9c9-6c48-42fb-9e36-4052017b8e21}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchNegative" Id="{6c03c139-23cf-4302-bcc2-8583004e85d2}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY LimitSwitchNegative : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{00ad368a-004b-46d3-8c40-233f2f490b04}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchPositive" Id="{0e32b5ab-8921-45e8-9637-49ccd35da748}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY LimitSwitchPositive : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f37bb154-e4e4-45a4-9011-db305b26f1c2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MotionStatus" Id="{544d0e45-824a-43e0-9377-5ec7e991978a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY MotionStatus : MOTION_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{7260f7c2-bff9-4d6e-9c20-3d2ece5ebcd6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="MoveAbsolute" Id="{4b98fd6b-2a2c-4109-b171-3305ea655a1c}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveAbsolute : itfAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">13L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveAdditive" Id="{dbfab193-37bb-4204-87b0-bc7dd41b8286}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveAdditive : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">12L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveContinuousAbsolute" Id="{f0bb6939-ca1c-4127-9b7c-50d846304a7f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveContinuousAbsolute : itfContinuousAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	EndVelocity	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">14L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveContinuousRelative" Id="{33d63ccc-9f1e-4949-b44a-bc7ca4b1e91a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveContinuousRelative : itfContinuousAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	EndVelocity	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">14L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveRelative" Id="{4d67e2c3-d058-443b-93d4-40721a832207}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveRelative : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">12L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveSuperimposed" Id="{1a0ecad8-21c6-4856-9357-e8dce720c4fe}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveSuperimposed : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	VelocityDiff	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">11L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="MoveVelocity" Id="{eb8c2b0b-48d5-4c6a-842b-bc4ea98f0ec1}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveVelocity : itfContinuousAxisCommand
+VAR_INPUT
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">12L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="PhasingAbsolute" Id="{e774d7c8-f735-4ec2-b020-e0d89355b14d}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PhasingAbsolute : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	PhaseShift	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">13L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="PhasingRelative" Id="{d7c863d5-3346-4201-9cb5-04caba69de00}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PhasingRelative : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	PhaseShift	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">13L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="PositionProfile" Id="{68ed3cf0-2da0-4d1e-9c15-e9aa9435a9df}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PositionProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	PositionScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">10L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="Power" Id="{60823f4d-0ee8-488e-982f-9fc0f8bd340a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Power : itfCommand
+VAR_INPUT
+	Enable	: BOOL;
+	EnablePositive	: BOOL;
+	EnableNegative	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">9L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="PowerOn" Id="{94767465-1b48-4e21-854b-a26ee912ba9a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY PowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{0e526fbd-037e-4144-a5bb-1b08ea5ae751}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ReadBoolParameter" Id="{3c3fb5b3-4f37-4b1c-947f-94333c7487ea}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD ReadBoolParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+END_VAR
+VAR_OUTPUT
+	Value	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">10L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="ReadParameter" Id="{43f1a274-d522-4e9b-bb1f-caeb4e5b71e4}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD ReadParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+END_VAR
+VAR_OUTPUT
+	Value	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">10L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="ReadyForPowerOn" Id="{ac5118df-a906-4356-81a4-68806e984686}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ReadyForPowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{613e18a4-86e5-485b-95a9-1f76c7700b4d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Release" Id="{d2bd2912-14b5-4c68-a0b2-d94b159b3603}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Release : MC_Error
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">4L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{dfbbacc1-ad40-4eca-a134-289ee74c689b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Reset : itfCommand
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">4L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="SetOverride" Id="{3911bbd1-0357-45c5-95c1-65927fcd6cdf}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD SetOverride : MC_Error
+VAR_INPUT
+	VelFactor	: REAL;
+	AccFactor	: REAL;
+	JerkFactor	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">9L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="SetPosition" Id="{8ff2d3c2-fe26-4d9b-9d8d-6dd9a9c2b52f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD SetPosition : itfCommand
+VAR_INPUT
+	Position	: REAL;
+	Relative	: BOOL;
+	ExecutionMode	: MC_ExecutionMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">9L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Property Name="Simulation" Id="{267bbf4c-6c65-43e8-a98d-3fb57e75a654}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Simulation : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1477ca46-bf82-44ad-b6d8-651b3efe62be}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Status" Id="{417e74f3-9857-49fb-95d4-b6c1dc505893}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Status : AXIS_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{cfef9609-1673-4d36-9b20-a8b53f7fe5d7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <NWL>
+            <XmlArchive>
+              <Data>
+                <o xml:space="preserve" t="NWLImplementationObject">
+                  <v n="NetworkListComment">""</v>
+                  <v n="DefaultViewMode">"Fbd"</v>
+                  <l2 n="NetworkList" cet="Network">
+                    <o>
+                      <v n="ILActive">false</v>
+                      <v n="FBDValid">false</v>
+                      <v n="ILValid">false</v>
+                      <l2 n="ILLines" />
+                      <v n="Comment">""</v>
+                      <v n="Title">""</v>
+                      <v n="Label">""</v>
+                      <v n="OutCommented">false</v>
+                      <l2 n="NetworkItems" />
+                      <l2 n="Connectors" />
+                      <v n="Id">2L</v>
+                    </o>
+                  </l2>
+                  <v n="BranchCounter">1</v>
+                  <v n="ValidIds">true</v>
+                </o>
+              </Data>
+              <TypeList>
+                <Type n="Boolean">System.Boolean</Type>
+                <Type n="Int32">System.Int32</Type>
+                <Type n="Int64">System.Int64</Type>
+                <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+                <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+                <Type n="String">System.String</Type>
+              </TypeList>
+            </XmlArchive>
+          </NWL>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Stop" Id="{8c3ae43a-b34c-41a6-9502-511821ff2659}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Stop : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">8L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="TorqueControl" Id="{d39d62cf-7a1d-4e6e-bf7b-e9490c438482}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD TorqueControl : itfAxisCommand
+VAR_INPUT
+	Torque	: REAL;
+	TorqueRamp	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">14L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="VelocityProfile" Id="{f0a1b440-9eef-435d-b92e-ac4119c6c739}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD VelocityProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	VelocityScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">10L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="WriteBoolParameter" Id="{69b3affa-b15f-47a3-bbfb-83d89e922b7b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD WriteBoolParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+	Value	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">8L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+    <Method Name="WriteParameter" Id="{12ac0cdd-e731-47a2-bb23-33c69d694aa0}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD WriteParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+	Value	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <NWL>
+          <XmlArchive>
+            <Data>
+              <o xml:space="preserve" t="NWLImplementationObject">
+                <v n="NetworkListComment">""</v>
+                <v n="DefaultViewMode">"Fbd"</v>
+                <l2 n="NetworkList" cet="Network">
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" />
+                    <l2 n="Connectors" />
+                    <v n="Id">8L</v>
+                  </o>
+                </l2>
+                <v n="BranchCounter">1</v>
+                <v n="ValidIds">true</v>
+              </o>
+            </Data>
+            <TypeList>
+              <Type n="Boolean">System.Boolean</Type>
+              <Type n="Int32">System.Int32</Type>
+              <Type n="Int64">System.Int64</Type>
+              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+              <Type n="String">System.String</Type>
+            </TypeList>
+          </XmlArchive>
+        </NWL>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
