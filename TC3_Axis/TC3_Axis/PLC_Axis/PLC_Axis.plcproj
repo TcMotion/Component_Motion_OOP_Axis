@@ -15,26 +15,52 @@
     <Implicit_KindOfTask>{c9773553-7cc5-4062-b32b-c744b1a68f69}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{2c97a7a9-95a7-4886-a9c1-ed50a9d5f06d}</Implicit_Jitter_Distribution>
     <LibraryReferences>{9f19ef90-0a5d-4993-bce5-9b070e2dd1c6}</LibraryReferences>
+    <Released>false</Released>
+    <DocFormat>reStructuredText</DocFormat>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Component_Axis\FB_TcAxis.TcPOU">
+    <Compile Include="Component_Axis\FB_TcAxis_Codesys.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\LabelingExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\WareHousingExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
     <Folder Include="Component_Axis" />
+    <Folder Include="TwinCAT Library Template" />
+    <Folder Include="TwinCAT Library Template\VendorImplementation" />
+    <Folder Include="TwinCAT Library Template\Part1Definition" />
+    <Folder Include="TwinCAT Library Template\Part1Definition\Interfaces" />
+    <Folder Include="TwinCAT Library Template\Part1Definition\Enums" />
+    <Folder Include="TwinCAT Library Template\Part1Definition\GlobalConstants" />
+    <Folder Include="TwinCAT Library Template\Part1Definition\Structs" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_MC2">
+      <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -56,8 +82,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
@@ -78,13 +104,13 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

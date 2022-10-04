@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="itfAxis" Id="{61cb14c2-e05e-4264-a99b-c2e5bed78828}">
+    <Declaration><![CDATA[INTERFACE itfAxis
+]]></Declaration>
+    <Method Name="AccelerationProfile" Id="{df31f7b2-0556-40dc-b14a-854531e29ed5}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD AccelerationProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	AccelerationScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="ActualPosition" Id="{ef9e43ef-2106-4ff4-8b54-d6a73f5913f2}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualPosition : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{4408eef4-cc1a-4b0b-b811-681e801d7af8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualTorque" Id="{2b661e49-afcc-491e-b1c7-0c13296e7c90}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualTorque : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{cb0b144c-5ef5-4c4d-be6c-23304724dfd8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{e84aa66f-0d6a-41f1-8e61-d6963162630d}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ActualVelocity : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{fcb4a92a-c3b4-4c88-94d2-ac14a3098e62}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="AxisWarning" Id="{d1a1ba79-e96a-425b-a654-e329ba26c187}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY AxisWarning : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4b31a212-2efc-4626-b24d-837a9f312305}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD CamIn : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	MasterOffset	: REAL;
+	SlaveOffset	: REAL;
+	MasterScaling	: REAL;
+	SlaveScaling	: REAL;
+	MasterStartDistance	: REAL;
+	MasterSyncPosition	: REAL;
+	StartMode	: MC_StartMode;
+	MasterValueSource	: MC_Source;
+	CamTable	: itfCamTable;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CombineAxes" Id="{c33a9fa2-effc-4321-ac46-ce9c88fb47c7}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD CombineAxes : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master1	: itfAxis;
+	Master2	: itfAxis;
+	CombineMode	: MC_COMBINE_MODE;
+	GearRatioNumeratorM1	: INT;
+	GearRatioDenominatorM1	: INT;
+	GearRatioNumeratorM2	: INT;
+	GearRatioDenominatorM2	: INT;
+	MasterValueSourceM1	: MC_SOURCE;
+	MasterValueSourceM2	: MC_SOURCE;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="CommunicationReady" Id="{db527b3d-8967-4407-9224-84b327558cc1}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY CommunicationReady : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{00ca901e-d6bb-47d0-bd66-e6d2d82c2aca}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Direction" Id="{3b6184b0-6440-413c-9e0a-5d299ca03442}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Direction : AXIS_DIRECTION
+]]></Declaration>
+      <Get Name="Get" Id="{0df2cdbc-db86-447b-8a76-e8ca7704c856}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{37d26822-cb7c-457f-ac28-bce3c7d600ba}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ErrorId : WORD
+]]></Declaration>
+      <Get Name="Get" Id="{c1831251-bda6-4d83-b90b-a1ff5cc7a2cf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="GearIn" Id="{c95c1128-9524-4448-a3ec-30a5218a30e7}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD GearIn : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	Ratio	: REAL;
+	MasterValueSource	: INT;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD GearInPos : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	RatioNumerator	: REAL;
+	RatioDenominator	: REAL;
+	MasterValueSource	: MC_SOURCE;
+	MasterSyncPosition	: REAL;
+	SlaveSyncPosition	: REAL;
+	SyncMode	: MC_SYNC_MODE;
+	MasterStartDistance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Halt" Id="{05feb609-2f44-4cb4-b018-7e157ba0b718}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Halt : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="HaltSuperimposed" Id="{d68cb379-a128-40e2-beca-7c4e6ddd88e0}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD HaltSuperimposed : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Home" Id="{3de9b24f-f28d-4cb8-a3b7-ee1f976243ad}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Home : itfAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	Velocity	: REAL;
+	EndVelocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	HomingMode	: INT;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="HomeAbsSwitch" Id="{01475c57-20c5-4952-841c-1bc14f17fae3}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY HomeAbsSwitch : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{ba267200-ec64-41f0-89b7-63529568456f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsHomed" Id="{203b60ed-e999-4642-a865-628355ab1127}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY IsHomed : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{cd729280-cdbd-4068-acaf-15209f627765}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchNegative" Id="{17b135cf-f40c-47bc-99fe-7894888dd695}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY LimitSwitchNegative : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{d83785f0-59d3-4802-82fc-bdef3951b18a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchPositive" Id="{0478b642-44c4-4560-a8d1-9d0e046a9fe2}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY LimitSwitchPositive : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{04afa5cd-b1cb-4d45-959a-f5a3620cd165}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MotionStatus" Id="{b4464e8e-73ee-4d7a-a684-48147052fb10}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY MotionStatus : MOTION_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{13252044-7961-4477-9ce3-d4b28f0c2687}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="MoveAbsolute" Id="{2a51a717-b5ae-41b5-a6ab-5883230e3013}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveAbsolute : itfAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveAdditive" Id="{82801e35-f9f5-4d17-9c52-2ad8fb992b71}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveAdditive : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveContinuousAbsolute" Id="{cab2631a-6b16-4d7b-97d2-b3ef1a50638a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveContinuousAbsolute : itfContinuousAxisCommand
+VAR_INPUT
+	Position	: REAL;
+	EndVelocity	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveContinuousRelative" Id="{e243a40a-6895-4c97-9537-990d7389ad60}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveContinuousRelative : itfContinuousAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	EndVelocity	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveRelative" Id="{015842e8-cb9b-4296-80c3-bbcab955723f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveRelative : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveSuperimposed" Id="{e6ebe6d8-b482-4321-acf9-4b22df4a9581}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveSuperimposed : itfAxisCommand
+VAR_INPUT
+	Distance	: REAL;
+	VelocityDiff	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveVelocity" Id="{c83596f0-e4ff-4e70-868b-0808b0dc25dd}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD MoveVelocity : itfContinuousAxisCommand
+VAR_INPUT
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_Direction;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PhasingAbsolute" Id="{83de4694-0ed4-470c-8084-9521fb186863}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PhasingAbsolute : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	PhaseShift	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PhasingRelative" Id="{f386ddd5-736e-4e7c-8a62-1e5046c596d3}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PhasingRelative : itfSynchronizedAxisCommand
+VAR_INPUT
+	Master	: itfAxis;
+	PhaseShift	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PositionProfile" Id="{19b92d91-811d-4e6f-9bbf-f46faa803b76}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD PositionProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	PositionScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Power" Id="{c9828e8c-2044-4cbd-a958-20990c623821}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Power : itfCommand
+VAR_INPUT
+	Enable	: BOOL;
+	EnablePositive	: BOOL;
+	EnableNegative	: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY PowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{fc90beb8-74c7-4e90-a2a6-615166e290ce}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="ReadBoolParameter" Id="{13dfcb7a-9fca-42a9-9019-a3f4052bfe8c}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD ReadBoolParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+END_VAR
+VAR_OUTPUT
+	Value	: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadParameter" Id="{c5b548c4-a9c4-44cb-b222-a03f23b47bcb}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD ReadParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+END_VAR
+VAR_OUTPUT
+	Value	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="ReadyForPowerOn" Id="{e29db299-083f-413f-a629-2bb7708d005f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ReadyForPowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1cfbfd59-e9df-44a9-b69e-b4d7ed1cacd5}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Release" Id="{50052424-1f88-4c87-b31a-991d95e0a89f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Release : MC_Error
+]]></Declaration>
+    </Method>
+    <Method Name="Reset" Id="{9db611ca-2e2e-4cc1-b03c-8b53f588c20b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Reset : itfCommand
+]]></Declaration>
+    </Method>
+    <Method Name="SetOverride" Id="{1c09732f-7e62-4d8f-b8f9-e500a69291f3}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD SetOverride : MC_Error
+VAR_INPUT
+	VelFactor	: REAL;
+	AccFactor	: REAL;
+	JerkFactor	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetPosition" Id="{d4712c9d-b8a6-49dd-83f2-835c34495a18}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD SetPosition : itfCommand
+VAR_INPUT
+	Position	: REAL;
+	Relative	: BOOL;
+	ExecutionMode	: MC_ExecutionMode;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Simulation" Id="{6fdbb59d-a06b-4f2b-bec0-4637d0c94d09}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Simulation : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{28df84cb-3c40-44b9-8dbd-bc2652b3d93c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Status" Id="{14d056dd-c46b-4831-8f46-c76b5fa10182}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Status : AXIS_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{339192d7-b808-4051-93a0-5ad6b05713d7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Stop" Id="{99362226-ff4f-4324-8a8c-a6f6cff349cc}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Stop : itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="TorqueControl" Id="{e40b1b18-f414-42ef-ad98-67224ac9a31a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD TorqueControl : itfAxisCommand
+VAR_INPUT
+	Torque	: REAL;
+	TorqueRamp	: REAL;
+	Velocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+	Direction	: MC_DIRECTION;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="VelocityProfile" Id="{e9f3e391-a484-4147-82be-c9fb21ffd36a}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD VelocityProfile : itfCommand
+VAR_INPUT
+	TimeScale	: REAL;
+	VelocityScale	: REAL;
+	Offset	: REAL;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteBoolParameter" Id="{e455080b-9cbe-445c-98e5-c78faebf683b}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD WriteBoolParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+	Value	: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteParameter" Id="{97fcd37b-6856-4802-a866-95a897e19fed}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD WriteParameter : MC_Error
+VAR_INPUT
+	ParameterNumber	: INT;
+	Value	: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

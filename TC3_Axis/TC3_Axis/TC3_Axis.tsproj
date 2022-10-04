@@ -8,6 +8,9 @@
 				</Task>
 			</Tasks>
 		</System>
+		<Motion>
+			<NC File="NC.xti"/>
+		</Motion>
 		<Plc>
 			<Project File="PLC_Axis.xti"/>
 		</Plc>
