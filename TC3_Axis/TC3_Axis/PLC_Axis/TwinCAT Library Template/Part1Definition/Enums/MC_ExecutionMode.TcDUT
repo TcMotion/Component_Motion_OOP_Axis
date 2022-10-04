@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="MC_ExecutionMode" Id="{f62493a3-11a6-4cb0-8384-4bfcdcb578c9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE MC_ExecutionMode :
+(
+	mcImmediatly := 0,
+	mcQueue := 1
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
