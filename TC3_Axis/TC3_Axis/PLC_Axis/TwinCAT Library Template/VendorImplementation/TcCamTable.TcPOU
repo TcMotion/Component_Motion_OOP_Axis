@@ -12,5 +12,19 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="Select" Id="{02640e26-87dd-44e1-9df6-c10a19b174f6}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Select : itfCommand
+VAR_INPUT
+	Periodic	: BOOL;
+	MasterAbsolute	: BOOL;
+	SlaveAbsolute	: BOOL;
+	CamTable	: MC_CAM_REF;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="CamGearExample" Id="{25fe79e7-b11d-446e-bf4e-fd12438231a1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CamGearExample
+VAR
+	// Hardware definitions
+	MasterDrive 	: TcAxis;
+	CamDrive 		: TcAxis;
+	GearDrive 		: TcAxis;
+	Table 			: TcCamTable;
+	TableData 		: MC_CAM_REF;
+	Velocity 		: REAL := 5;
+	
+	// States
+	MasterState 	: INT := 0;
+	CamState 		: INT := 0;
+	GearState 		: INT := 0;
+	
+	// Control
+	Start 			: BOOL := FALSE;
+	
+	// Commands
+	MasterMove 		: itfCommand;
+	TableSet 		: itfCommand;
+	CamMove 		: itfSynchronizedAxisCommand;
+	GearMove 		: itfSynchronizedAxisCommand;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE MasterState OF
+	0: // Disabled
+		IF Start THEN
+			MasterState := MasterState + 1;
+		END_IF
+		
+	1: // Power On
+		MasterDrive.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		IF MasterDrive.Status = AXIS_STATUS.Standstill THEN
+			MasterState := MasterState + 1;
+		END_IF
+		
+	2: // Wait for other drives 
+		IF CamMove.InSync AND GearMove.InSync THEN
+			MasterMove := MasterDrive.MoveVelocity(Velocity:=Velocity, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=MC_Direction.mcPositiveDirection, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			MasterState := MasterState + 1;
+		END_IF
+		
+	3: // Moving
+		IF NOT Start THEN
+			MasterMove:= MasterDrive.Halt(Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			MasterState := MasterState + 1;
+		END_IF
+		
+	4: // Stopping
+		IF NOT MasterMove.Done THEN
+			MasterState := MasterState + 1;
+		END_IF
+		
+	5: // Power off
+		MasterDrive.Power(Enable:=FALSE, EnablePositive:=FALSE, EnableNegative:=FALSE);
+		IF MasterDrive.Status = AXIS_STATUS.Disabled THEN
+			MasterState := 0;
+		END_IF
+END_CASE
+
+CASE CamState OF
+	0: // Disabled
+		IF Start THEN
+			CamState := CamState + 1;
+		END_IF
+		
+	1: // Power On
+		CamDrive.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		IF CamDrive.Status = AXIS_STATUS.Standstill AND MasterDrive.Status = AXIS_STATUS.Standstill THEN
+			TableSet := Table.Select(CamTable:=TableData, Periodic:=TRUE, MasterAbsolute:=TRUE, SlaveAbsolute:=TRUE);
+			CamState := CamState + 1;
+		END_IF
+		
+	2: // Set CAM Table
+		IF TableSet.Done THEN
+			CamMove := CamDrive.CamIn(Master:=MasterDrive, MasterOffset:=0, SlaveOffset:=0, MasterScaling:=1, SlaveScaling:=1, MasterStartDistance:=0, MasterSyncPosition:=0, 
+				StartMode:=MC_StartMode.mcRelative, MasterValueSource:=MC_Source.mcSetValue,CamTable:=Table, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			CamState := CamState + 1;
+		END_IF
+		
+	3: // Synchronized
+		IF NOT Start THEN
+			CamDrive.Release();
+			CamState := CamState + 1;
+		END_IF
+		
+	4: // Power off
+		CamDrive.Power(Enable:=FALSE, EnablePositive:=FALSE, EnableNegative:=FALSE);
+		IF CamDrive.Status = AXIS_STATUS.Disabled THEN
+			CamState := 0;
+		END_IF
+END_CASE
+
+CASE GearState OF
+	0: // Disabled
+		IF Start THEN
+			GearState := GearState + 1;
+		END_IF
+		
+	1: // Power On
+		GearDrive.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		IF GearDrive.Status = AXIS_STATUS.Standstill AND MasterDrive.Status = AXIS_STATUS.Standstill THEN
+			GearMove := GearDrive.GearIn(Master:=MasterDrive, Ratio:=2, MasterValueSource:=MC_Source.mcSetValue,Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			GearState := GearState + 1;
+		END_IF
+		
+	2: // Synchronized
+		IF NOT Start THEN
+			GearDrive.Release();
+			GearState := GearState + 1;
+		END_IF
+		
+	3: // Power off
+		GearDrive.Power(Enable:=FALSE, EnablePositive:=FALSE, EnableNegative:=FALSE);
+		IF GearDrive.Status = AXIS_STATUS.Disabled THEN
+			GearState := 0;
+		END_IF
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

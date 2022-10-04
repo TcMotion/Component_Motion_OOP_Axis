@@ -3,12 +3,18 @@
   <POU Name="MAIN" Id="{ce97d388-e861-4591-bddd-7771707f573f}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	Axis1 : FB_TcAxis_Codesys;
-	Axis2 : TcAxis;
+//	Axis1 : FB_TcAxis_Codesys;
+//	Axis2 : TcAxis;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[
+
+WareHousingExample();
+
+LabelingExample();
+
+CamGearExample();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

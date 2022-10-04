@@ -3,7 +3,12 @@
   <Itf Name="itfAxis" Id="{61cb14c2-e05e-4264-a99b-c2e5bed78828}">
     <Declaration><![CDATA[INTERFACE itfAxis
 ]]></Declaration>
-    <Method Name="AccelerationProfile" Id="{df31f7b2-0556-40dc-b14a-854531e29ed5}">
+    <Folder Name="ActualValues" Id="{12d21fd6-9367-490a-a5c0-f3d812c9e60d}" />
+    <Folder Name="Control" Id="{7f975a5b-2041-480a-8274-c87ae9d6cf4c}" />
+    <Folder Name="MultiAxesMotion" Id="{c3a2a744-de13-424f-9539-31f81d1d61b6}" />
+    <Folder Name="SingleAxisMotion" Id="{abafcda8-9d6d-45cf-afd2-2c702b3f6ac0}" />
+    <Folder Name="Status" Id="{023fc74a-643f-4641-afcf-b66559b00ebc}" />
+    <Method Name="AccelerationProfile" Id="{df31f7b2-0556-40dc-b14a-854531e29ed5}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD AccelerationProfile : itfCommand
 VAR_INPUT
@@ -14,7 +19,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="ActualPosition" Id="{ef9e43ef-2106-4ff4-8b54-d6a73f5913f2}">
+    <Property Name="ActualPosition" Id="{ef9e43ef-2106-4ff4-8b54-d6a73f5913f2}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY ActualPosition : REAL
 ]]></Declaration>
@@ -22,7 +27,7 @@ PROPERTY ActualPosition : REAL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="ActualTorque" Id="{2b661e49-afcc-491e-b1c7-0c13296e7c90}">
+    <Property Name="ActualTorque" Id="{2b661e49-afcc-491e-b1c7-0c13296e7c90}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY ActualTorque : REAL
 ]]></Declaration>
@@ -30,7 +35,7 @@ PROPERTY ActualTorque : REAL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="ActualVelocity" Id="{e84aa66f-0d6a-41f1-8e61-d6963162630d}">
+    <Property Name="ActualVelocity" Id="{e84aa66f-0d6a-41f1-8e61-d6963162630d}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY ActualVelocity : REAL
 ]]></Declaration>
@@ -38,7 +43,7 @@ PROPERTY ActualVelocity : REAL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="AxisWarning" Id="{d1a1ba79-e96a-425b-a654-e329ba26c187}">
+    <Property Name="AxisWarning" Id="{d1a1ba79-e96a-425b-a654-e329ba26c187}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY AxisWarning : BOOL
 ]]></Declaration>
@@ -46,7 +51,7 @@ PROPERTY AxisWarning : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}">
+    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD CamIn : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -64,7 +69,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="CombineAxes" Id="{c33a9fa2-effc-4321-ac46-ce9c88fb47c7}">
+    <Method Name="CombineAxes" Id="{c33a9fa2-effc-4321-ac46-ce9c88fb47c7}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD CombineAxes : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -81,7 +86,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="CommunicationReady" Id="{db527b3d-8967-4407-9224-84b327558cc1}">
+    <Property Name="CommunicationReady" Id="{db527b3d-8967-4407-9224-84b327558cc1}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY CommunicationReady : BOOL
 ]]></Declaration>
@@ -89,7 +94,7 @@ PROPERTY CommunicationReady : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="Direction" Id="{3b6184b0-6440-413c-9e0a-5d299ca03442}">
+    <Property Name="Direction" Id="{3b6184b0-6440-413c-9e0a-5d299ca03442}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY Direction : AXIS_DIRECTION
 ]]></Declaration>
@@ -97,7 +102,7 @@ PROPERTY Direction : AXIS_DIRECTION
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="ErrorId" Id="{37d26822-cb7c-457f-ac28-bce3c7d600ba}">
+    <Property Name="ErrorId" Id="{37d26822-cb7c-457f-ac28-bce3c7d600ba}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY ErrorId : WORD
 ]]></Declaration>
@@ -105,7 +110,7 @@ PROPERTY ErrorId : WORD
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="GearIn" Id="{c95c1128-9524-4448-a3ec-30a5218a30e7}">
+    <Method Name="GearIn" Id="{c95c1128-9524-4448-a3ec-30a5218a30e7}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD GearIn : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -119,7 +124,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}">
+    <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD GearInPos : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -139,7 +144,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Halt" Id="{05feb609-2f44-4cb4-b018-7e157ba0b718}">
+    <Method Name="Halt" Id="{05feb609-2f44-4cb4-b018-7e157ba0b718}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Halt : itfAxisCommand
 VAR_INPUT
@@ -149,7 +154,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HaltSuperimposed" Id="{d68cb379-a128-40e2-beca-7c4e6ddd88e0}">
+    <Method Name="HaltSuperimposed" Id="{d68cb379-a128-40e2-beca-7c4e6ddd88e0}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD HaltSuperimposed : itfAxisCommand
 VAR_INPUT
@@ -158,7 +163,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Home" Id="{3de9b24f-f28d-4cb8-a3b7-ee1f976243ad}">
+    <Method Name="Home" Id="{3de9b24f-f28d-4cb8-a3b7-ee1f976243ad}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Home : itfAxisCommand
 VAR_INPUT
@@ -174,7 +179,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="HomeAbsSwitch" Id="{01475c57-20c5-4952-841c-1bc14f17fae3}">
+    <Property Name="HomeAbsSwitch" Id="{01475c57-20c5-4952-841c-1bc14f17fae3}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY HomeAbsSwitch : BOOL
 ]]></Declaration>
@@ -182,7 +187,7 @@ PROPERTY HomeAbsSwitch : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="IsHomed" Id="{203b60ed-e999-4642-a865-628355ab1127}">
+    <Property Name="IsHomed" Id="{203b60ed-e999-4642-a865-628355ab1127}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY IsHomed : BOOL
 ]]></Declaration>
@@ -190,7 +195,7 @@ PROPERTY IsHomed : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="LimitSwitchNegative" Id="{17b135cf-f40c-47bc-99fe-7894888dd695}">
+    <Property Name="LimitSwitchNegative" Id="{17b135cf-f40c-47bc-99fe-7894888dd695}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY LimitSwitchNegative : BOOL
 ]]></Declaration>
@@ -198,7 +203,7 @@ PROPERTY LimitSwitchNegative : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="LimitSwitchPositive" Id="{0478b642-44c4-4560-a8d1-9d0e046a9fe2}">
+    <Property Name="LimitSwitchPositive" Id="{0478b642-44c4-4560-a8d1-9d0e046a9fe2}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY LimitSwitchPositive : BOOL
 ]]></Declaration>
@@ -206,7 +211,7 @@ PROPERTY LimitSwitchPositive : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="MotionStatus" Id="{b4464e8e-73ee-4d7a-a684-48147052fb10}">
+    <Property Name="MotionStatus" Id="{b4464e8e-73ee-4d7a-a684-48147052fb10}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY MotionStatus : MOTION_STATUS
 ]]></Declaration>
@@ -214,7 +219,7 @@ PROPERTY MotionStatus : MOTION_STATUS
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="MoveAbsolute" Id="{2a51a717-b5ae-41b5-a6ab-5883230e3013}">
+    <Method Name="MoveAbsolute" Id="{2a51a717-b5ae-41b5-a6ab-5883230e3013}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
@@ -228,7 +233,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveAdditive" Id="{82801e35-f9f5-4d17-9c52-2ad8fb992b71}">
+    <Method Name="MoveAdditive" Id="{82801e35-f9f5-4d17-9c52-2ad8fb992b71}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveAdditive : itfAxisCommand
 VAR_INPUT
@@ -241,7 +246,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveContinuousAbsolute" Id="{cab2631a-6b16-4d7b-97d2-b3ef1a50638a}">
+    <Method Name="MoveContinuousAbsolute" Id="{cab2631a-6b16-4d7b-97d2-b3ef1a50638a}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveContinuousAbsolute : itfContinuousAxisCommand
 VAR_INPUT
@@ -256,7 +261,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveContinuousRelative" Id="{e243a40a-6895-4c97-9537-990d7389ad60}">
+    <Method Name="MoveContinuousRelative" Id="{e243a40a-6895-4c97-9537-990d7389ad60}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveContinuousRelative : itfContinuousAxisCommand
 VAR_INPUT
@@ -271,7 +276,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveRelative" Id="{015842e8-cb9b-4296-80c3-bbcab955723f}">
+    <Method Name="MoveRelative" Id="{015842e8-cb9b-4296-80c3-bbcab955723f}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveRelative : itfAxisCommand
 VAR_INPUT
@@ -284,7 +289,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveSuperimposed" Id="{e6ebe6d8-b482-4321-acf9-4b22df4a9581}">
+    <Method Name="MoveSuperimposed" Id="{e6ebe6d8-b482-4321-acf9-4b22df4a9581}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveSuperimposed : itfAxisCommand
 VAR_INPUT
@@ -296,7 +301,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoveVelocity" Id="{c83596f0-e4ff-4e70-868b-0808b0dc25dd}">
+    <Method Name="MoveVelocity" Id="{c83596f0-e4ff-4e70-868b-0808b0dc25dd}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveVelocity : itfContinuousAxisCommand
 VAR_INPUT
@@ -309,7 +314,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="PhasingAbsolute" Id="{83de4694-0ed4-470c-8084-9521fb186863}">
+    <Method Name="PhasingAbsolute" Id="{83de4694-0ed4-470c-8084-9521fb186863}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD PhasingAbsolute : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -323,7 +328,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="PhasingRelative" Id="{f386ddd5-736e-4e7c-8a62-1e5046c596d3}">
+    <Method Name="PhasingRelative" Id="{f386ddd5-736e-4e7c-8a62-1e5046c596d3}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD PhasingRelative : itfSynchronizedAxisCommand
 VAR_INPUT
@@ -337,7 +342,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="PositionProfile" Id="{19b92d91-811d-4e6f-9bbf-f46faa803b76}">
+    <Method Name="PositionProfile" Id="{19b92d91-811d-4e6f-9bbf-f46faa803b76}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD PositionProfile : itfCommand
 VAR_INPUT
@@ -348,7 +353,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Power" Id="{c9828e8c-2044-4cbd-a958-20990c623821}">
+    <Method Name="Power" Id="{c9828e8c-2044-4cbd-a958-20990c623821}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Power : itfCommand
 VAR_INPUT
@@ -358,7 +363,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}">
+    <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY PowerOn : BOOL
 ]]></Declaration>
@@ -366,7 +371,7 @@ PROPERTY PowerOn : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="ReadBoolParameter" Id="{13dfcb7a-9fca-42a9-9019-a3f4052bfe8c}">
+    <Method Name="ReadBoolParameter" Id="{13dfcb7a-9fca-42a9-9019-a3f4052bfe8c}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD ReadBoolParameter : MC_Error
 VAR_INPUT
@@ -377,7 +382,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="ReadParameter" Id="{c5b548c4-a9c4-44cb-b222-a03f23b47bcb}">
+    <Method Name="ReadParameter" Id="{c5b548c4-a9c4-44cb-b222-a03f23b47bcb}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD ReadParameter : MC_Error
 VAR_INPUT
@@ -388,7 +393,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="ReadyForPowerOn" Id="{e29db299-083f-413f-a629-2bb7708d005f}">
+    <Property Name="ReadyForPowerOn" Id="{e29db299-083f-413f-a629-2bb7708d005f}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY ReadyForPowerOn : BOOL
 ]]></Declaration>
@@ -396,17 +401,17 @@ PROPERTY ReadyForPowerOn : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="Release" Id="{50052424-1f88-4c87-b31a-991d95e0a89f}">
+    <Method Name="Release" Id="{50052424-1f88-4c87-b31a-991d95e0a89f}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Release : MC_Error
 ]]></Declaration>
     </Method>
-    <Method Name="Reset" Id="{9db611ca-2e2e-4cc1-b03c-8b53f588c20b}">
+    <Method Name="Reset" Id="{9db611ca-2e2e-4cc1-b03c-8b53f588c20b}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Reset : itfCommand
 ]]></Declaration>
     </Method>
-    <Method Name="SetOverride" Id="{1c09732f-7e62-4d8f-b8f9-e500a69291f3}">
+    <Method Name="SetOverride" Id="{1c09732f-7e62-4d8f-b8f9-e500a69291f3}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD SetOverride : MC_Error
 VAR_INPUT
@@ -416,7 +421,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SetPosition" Id="{d4712c9d-b8a6-49dd-83f2-835c34495a18}">
+    <Method Name="SetPosition" Id="{d4712c9d-b8a6-49dd-83f2-835c34495a18}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD SetPosition : itfCommand
 VAR_INPUT
@@ -426,7 +431,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="Simulation" Id="{6fdbb59d-a06b-4f2b-bec0-4637d0c94d09}">
+    <Property Name="Simulation" Id="{6fdbb59d-a06b-4f2b-bec0-4637d0c94d09}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY Simulation : BOOL
 ]]></Declaration>
@@ -434,7 +439,7 @@ PROPERTY Simulation : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="Status" Id="{14d056dd-c46b-4831-8f46-c76b5fa10182}">
+    <Property Name="Status" Id="{14d056dd-c46b-4831-8f46-c76b5fa10182}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
 PROPERTY Status : AXIS_STATUS
 ]]></Declaration>
@@ -442,7 +447,7 @@ PROPERTY Status : AXIS_STATUS
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="Stop" Id="{99362226-ff4f-4324-8a8c-a6f6cff349cc}">
+    <Method Name="Stop" Id="{99362226-ff4f-4324-8a8c-a6f6cff349cc}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Stop : itfAxisCommand
 VAR_INPUT
@@ -451,7 +456,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="TorqueControl" Id="{e40b1b18-f414-42ef-ad98-67224ac9a31a}">
+    <Method Name="TorqueControl" Id="{e40b1b18-f414-42ef-ad98-67224ac9a31a}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD TorqueControl : itfAxisCommand
 VAR_INPUT
@@ -466,7 +471,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="VelocityProfile" Id="{e9f3e391-a484-4147-82be-c9fb21ffd36a}">
+    <Method Name="VelocityProfile" Id="{e9f3e391-a484-4147-82be-c9fb21ffd36a}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD VelocityProfile : itfCommand
 VAR_INPUT
@@ -477,7 +482,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="WriteBoolParameter" Id="{e455080b-9cbe-445c-98e5-c78faebf683b}">
+    <Method Name="WriteBoolParameter" Id="{e455080b-9cbe-445c-98e5-c78faebf683b}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD WriteBoolParameter : MC_Error
 VAR_INPUT
@@ -486,7 +491,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="WriteParameter" Id="{97fcd37b-6856-4802-a866-95a897e19fed}">
+    <Method Name="WriteParameter" Id="{97fcd37b-6856-4802-a866-95a897e19fed}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD WriteParameter : MC_Error
 VAR_INPUT

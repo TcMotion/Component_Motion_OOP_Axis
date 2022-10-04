@@ -4,24 +4,24 @@
     <Declaration><![CDATA[PROGRAM LabelingExample
 VAR
 	// Hardware definitions
-	LabelDrive : Axis;
-	Conveyor : Axis;
-	LabelLength : REAL := 100;
-	SensorDistance : REAL := 10;
-	Velocity : REAL := 5;
-	ProductDetection : BOOL := FALSE;
-	DelayTimer : TON;
+	LabelDrive 			: TcAxis;
+	Conveyor 			: TcAxis;
+	LabelLength 		: REAL := 100;
+	SensorDistance 		: REAL := 10;
+	Velocity 			: REAL := 5;
+	ProductDetection 	: BOOL := FALSE;
+	DelayTimer 			: TON;
 	
 	// States
-	ConveyorState : INT := 0;
-	LabelDriveState : INT := 0;
+	ConveyorState 		: INT := 0;
+	LabelDriveState 	: INT := 0;
 	
 	// Control
-	Start : BOOL := FALSE;
+	Start 				: BOOL := FALSE;
 	
 	// Commands
-	ConveyorMove : itfCommand;
-	LabelDriveMove : itfCommand;
+	ConveyorMove 		: itfCommand;
+	LabelDriveMove 		: itfCommand;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -12,5 +12,132 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="Abort" Id="{8bbe2469-3bf0-4d4f-8547-fbb744df4610}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Abort : MC_Error
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Active" Id="{554b4eb6-dfb3-41eb-8872-e356bea5d0ab}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Active : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{a9387f46-3f5f-449d-a0fe-41ff44d3a4e9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Busy" Id="{9df780fd-1d41-4ada-8a07-830123b5d598}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{25550502-7051-489b-af39-634ddf71f2ca}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Command" Id="{b0129ed9-0fdf-42a4-81ed-5b666fdf09a4}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Command : MC_COMMAND_REF
+]]></Declaration>
+      <Get Name="Get" Id="{8711a7b4-4060-4ec0-b914-80563cea7d51}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="CommandAborted" Id="{89a447c2-456c-4db6-824c-fb3826f94369}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY CommandAborted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{61a17dc6-4728-4e7c-962a-7b6e46da3d08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Done" Id="{2d49e061-0d3f-4d79-99de-0293868fc062}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{6292ef73-6733-4ab3-ba2c-e47117a18942}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{d65f4350-5994-4724-b202-b3ddf33745c2}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f14b1d2a-2a8d-4bea-a9c8-0f37d2d2b6bd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{ef9ea747-cb40-49da-af24-9a49c84e9b90}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+PROPERTY ErrorId : MC_Error
+]]></Declaration>
+      <Get Name="Get" Id="{fb02f1bd-4331-4777-b1a3-e4891760ad10}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Update" Id="{0d1a4fff-7089-4186-8730-c136d6df7aa7}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Update : MC_Error
+VAR_INPUT
+	Position	: REAL;
+	Velocity	: REAL;
+	EndVelocity	: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Wait" Id="{4175958d-2e59-495e-8cb7-d2d461c9be1f}">
+      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+METHOD Wait : MC_Error (* This method only makes sense in the IEC 61499 environment*)
+VAR_INPUT
+	Timeout	: TIME;
+	AbortOnTimeout	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

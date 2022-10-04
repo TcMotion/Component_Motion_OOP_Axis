@@ -3,9 +3,20 @@
   <POU Name="WareHousingExample" Id="{0e6956dd-ffba-455e-80e5-cadd31dc7a91}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM WareHousingExample
 VAR
-		Axis_X : itfAxis;
-		Axis_Y : itfAxis;
-		Axis_Z : itfAxis;
+//		Axis_X : itfAxis;
+//		Axis_Y : itfAxis;
+//		Axis_Z : itfAxis;
+//		stateOOP : INT;
+//		lastCommandX : itfCommand;
+//		lastCommandY : itfCommand;
+//		lastCommandZ : itfCommand;
+//		stepOn : BOOL := FALSE;
+//		targetPosX : REAL := 400;
+//		targetPosY : REAL := 600;
+
+		Axis_X : TcAxis;
+		Axis_Y : TcAxis;
+		Axis_Z : TcAxis;
 		stateOOP : INT;
 		lastCommandX : itfCommand;
 		lastCommandY : itfCommand;

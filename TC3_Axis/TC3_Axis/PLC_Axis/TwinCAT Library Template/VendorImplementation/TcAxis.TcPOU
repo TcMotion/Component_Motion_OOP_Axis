@@ -703,15 +703,15 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD Home : itfAxisCommand
 VAR_INPUT
-	Position	: REAL;
-	Velocity	: REAL;
-	EndVelocity	: REAL;
+	Position		: REAL;
+	Velocity		: REAL;
+	EndVelocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	HomingMode	: INT;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	HomingMode		: INT;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -991,13 +991,13 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
-	Position	: REAL;
-	Velocity	: REAL;
+	Position		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -1092,14 +1092,14 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveContinuousAbsolute : itfContinuousAxisCommand
 VAR_INPUT
-	Position	: REAL;
-	EndVelocity	: REAL;
-	Velocity	: REAL;
+	Position		: REAL;
+	EndVelocity		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -1144,14 +1144,14 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveContinuousRelative : itfContinuousAxisCommand
 VAR_INPUT
-	Distance	: REAL;
-	EndVelocity	: REAL;
-	Velocity	: REAL;
+	Distance		: REAL;
+	EndVelocity		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -1295,12 +1295,12 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD MoveVelocity : itfContinuousAxisCommand
 VAR_INPUT
-	Velocity	: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -2050,14 +2050,14 @@ END_VAR
       <Declaration><![CDATA[{warning 'Agregar implementación de método'}
 METHOD TorqueControl : itfAxisCommand
 VAR_INPUT
-	Torque	: REAL;
-	TorqueRamp	: REAL;
-	Velocity	: REAL;
+	Torque			: REAL;
+	TorqueRamp		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: Tc2_MC2.MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>

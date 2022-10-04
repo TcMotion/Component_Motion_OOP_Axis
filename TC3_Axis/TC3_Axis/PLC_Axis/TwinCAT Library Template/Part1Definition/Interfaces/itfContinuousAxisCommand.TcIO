@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="itfContinuousAxisCommand" Id="{b25e20ae-300b-47c7-9ad7-2fd307d32508}">
+    <Declaration><![CDATA[INTERFACE itfContinuousAxisCommand EXTENDS itfAxisCommand
+]]></Declaration>
+    <Property Name="InVelocity" Id="{e0a49328-fff5-44f5-bc83-800a8300e6c9}">
+      <Declaration><![CDATA[PROPERTY InVelocity : BOOL]]></Declaration>
+      <Get Name="Get" Id="{3fcdc4a1-ed9e-49f5-aba8-5b100cb2c880}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

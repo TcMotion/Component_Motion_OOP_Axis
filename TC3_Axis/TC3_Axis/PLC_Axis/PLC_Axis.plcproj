@@ -25,6 +25,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CamGearExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\LabelingExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -67,10 +70,32 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MOTION_STATUS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\GlobalConstants\Constants.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfCamTable.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfContinuousAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfSynchronizedAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\MC_CAM_REF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\MC_COMMAND_REF.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis.TcPOU">
@@ -126,6 +151,11 @@
     <LibraryReference Include="CoDeSys Library Template Interfaces,newest,3S - Smart Software Solutions GmbH">
       <Namespace>TMP</Namespace>
     </LibraryReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC_Axis.tmc">
+      <SubType>Content</SubType>
+    </None>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
