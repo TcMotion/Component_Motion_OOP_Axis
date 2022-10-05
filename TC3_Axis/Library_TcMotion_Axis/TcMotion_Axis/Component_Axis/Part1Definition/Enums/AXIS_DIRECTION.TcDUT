@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="AXIS_DIRECTION" Id="{1651d020-cb9b-412f-bbbc-1fc04036f18d}">
+    <Declaration><![CDATA[{attribute 'qualified_only' := ''}
+{attribute 'strict' := ''}
+TYPE AXIS_DIRECTION :
+(
+	DirectionPositive := 0,
+	DirectionNegative := 1
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

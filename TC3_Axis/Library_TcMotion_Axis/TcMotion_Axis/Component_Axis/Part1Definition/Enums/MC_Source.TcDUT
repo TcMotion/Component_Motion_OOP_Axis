@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="MC_Source" Id="{329c17af-c296-4e90-8a40-ad0b5c103629}">
+    <Declaration><![CDATA[{attribute 'qualified_only' := ''}
+{attribute 'strict' := ''}
+TYPE MC_Source :
+(
+	mcSetValue := 0,
+	mcActualValue := 1
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

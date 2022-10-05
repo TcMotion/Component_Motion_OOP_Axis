@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="MC_StartMode" Id="{ed149f0d-703b-4c9e-a97b-29c6ab639eb6}">
+    <Declaration><![CDATA[{attribute 'qualified_only' := ''}
+{attribute 'strict' := ''}
+TYPE MC_StartMode :
+(
+	mcAbsolute := 0,
+	mcRelative := 1,
+	mcRampIn := 2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
