@@ -36,12 +36,14 @@ CASE ConveyorState OF
 		
 	1: // Power On
 		Conveyor.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+		//IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+	  IF Conveyor.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
 			ConveyorState := ConveyorState + 1;
 		END_IF
 		
 	2: // Wait for LabelDrive 
-		IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		//IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		IF LabelDrive.Status =  Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
 			ConveyorMove := Conveyor.MoveVelocity(Velocity:=Velocity, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=MC_Direction.mcPositiveDirection, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			ConveyorState := ConveyorState + 1;
 		END_IF
@@ -72,15 +74,17 @@ CASE LabelDriveState OF
 		
 	1: // Power On
 		LabelDrive.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		//IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		IF LabelDrive.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
 			LabelDriveState := LabelDriveState + 1;
 		END_IF
 		
 	2: // Wait for Conveyor 
-		IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+		//IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+		IF Conveyor.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
 			LabelDriveState := LabelDriveState + 1;
 		END_IF
-		
+						
 	3: // Wait for product
 		IF NOT Start THEN
 			LabelDriveState := 5;

@@ -4,9 +4,14 @@
     <Declaration><![CDATA[PROGRAM CamGearExample
 VAR
 	// Hardware definitions
-	MasterDrive 	: TcAxis;
-	CamDrive 		: TcAxis;
-	GearDrive 		: TcAxis;
+	TcMasterDrive 	: TcAxis;
+	TcCamDrive 		: TcAxis;
+	TcGearDrive 	: TcAxis;
+	
+	
+	MasterDrive 	: itfAxis;
+	CamDrive 		: itfAxis;
+	GearDrive 		: itfAxis;
 	Table 			: TcCamTable;
 	TableData 		: MC_CAM_REF;
 	Velocity 		: REAL := 5;
@@ -26,7 +31,12 @@ VAR
 	GearMove 		: itfSynchronizedAxisCommand;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CASE MasterState OF
+      <ST><![CDATA[
+MasterDrive:= TcMasterDrive;
+CamDrive := TcCamDrive;
+GearDrive := TcGearDrive;
+
+CASE MasterState OF
 	0: // Disabled
 		IF Start THEN
 			MasterState := MasterState + 1;

@@ -20,7 +20,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="ActualPosition" Id="{ef9e43ef-2106-4ff4-8b54-d6a73f5913f2}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{4408eef4-cc1a-4b0b-b811-681e801d7af8}">
@@ -28,7 +28,7 @@ PROPERTY ActualPosition : REAL
       </Get>
     </Property>
     <Property Name="ActualTorque" Id="{2b661e49-afcc-491e-b1c7-0c13296e7c90}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualTorque : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{cb0b144c-5ef5-4c4d-be6c-23304724dfd8}">
@@ -36,7 +36,7 @@ PROPERTY ActualTorque : REAL
       </Get>
     </Property>
     <Property Name="ActualVelocity" Id="{e84aa66f-0d6a-41f1-8e61-d6963162630d}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualVelocity : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{fcb4a92a-c3b4-4c88-94d2-ac14a3098e62}">
@@ -44,7 +44,7 @@ PROPERTY ActualVelocity : REAL
       </Get>
     </Property>
     <Property Name="AxisWarning" Id="{d1a1ba79-e96a-425b-a654-e329ba26c187}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY AxisWarning : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{4b31a212-2efc-4626-b24d-837a9f312305}">
@@ -87,7 +87,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="CommunicationReady" Id="{db527b3d-8967-4407-9224-84b327558cc1}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommunicationReady : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{00ca901e-d6bb-47d0-bd66-e6d2d82c2aca}">
@@ -95,7 +95,7 @@ PROPERTY CommunicationReady : BOOL
       </Get>
     </Property>
     <Property Name="Direction" Id="{3b6184b0-6440-413c-9e0a-5d299ca03442}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Direction : AXIS_DIRECTION
 ]]></Declaration>
       <Get Name="Get" Id="{0df2cdbc-db86-447b-8a76-e8ca7704c856}">
@@ -103,7 +103,7 @@ PROPERTY Direction : AXIS_DIRECTION
       </Get>
     </Property>
     <Property Name="ErrorId" Id="{37d26822-cb7c-457f-ac28-bce3c7d600ba}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ErrorId : WORD
 ]]></Declaration>
       <Get Name="Get" Id="{c1831251-bda6-4d83-b90b-a1ff5cc7a2cf}">
@@ -180,7 +180,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="HomeAbsSwitch" Id="{01475c57-20c5-4952-841c-1bc14f17fae3}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY HomeAbsSwitch : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ba267200-ec64-41f0-89b7-63529568456f}">
@@ -188,7 +188,7 @@ PROPERTY HomeAbsSwitch : BOOL
       </Get>
     </Property>
     <Property Name="IsHomed" Id="{203b60ed-e999-4642-a865-628355ab1127}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY IsHomed : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{cd729280-cdbd-4068-acaf-15209f627765}">
@@ -196,7 +196,7 @@ PROPERTY IsHomed : BOOL
       </Get>
     </Property>
     <Property Name="LimitSwitchNegative" Id="{17b135cf-f40c-47bc-99fe-7894888dd695}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchNegative : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{d83785f0-59d3-4802-82fc-bdef3951b18a}">
@@ -204,7 +204,7 @@ PROPERTY LimitSwitchNegative : BOOL
       </Get>
     </Property>
     <Property Name="LimitSwitchPositive" Id="{0478b642-44c4-4560-a8d1-9d0e046a9fe2}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchPositive : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{04afa5cd-b1cb-4d45-959a-f5a3620cd165}">
@@ -212,7 +212,7 @@ PROPERTY LimitSwitchPositive : BOOL
       </Get>
     </Property>
     <Property Name="MotionStatus" Id="{b4464e8e-73ee-4d7a-a684-48147052fb10}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY MotionStatus : MOTION_STATUS
 ]]></Declaration>
       <Get Name="Get" Id="{13252044-7961-4477-9ce3-d4b28f0c2687}">
@@ -364,7 +364,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{fc90beb8-74c7-4e90-a2a6-615166e290ce}">
@@ -394,7 +394,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="ReadyForPowerOn" Id="{e29db299-083f-413f-a629-2bb7708d005f}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ReadyForPowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{1cfbfd59-e9df-44a9-b69e-b4d7ed1cacd5}">
@@ -432,7 +432,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="Simulation" Id="{6fdbb59d-a06b-4f2b-bec0-4637d0c94d09}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Simulation : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{28df84cb-3c40-44b9-8dbd-bc2652b3d93c}">
@@ -440,8 +440,8 @@ PROPERTY Simulation : BOOL
       </Get>
     </Property>
     <Property Name="Status" Id="{14d056dd-c46b-4831-8f46-c76b5fa10182}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
-PROPERTY Status : AXIS_STATUS
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Status : Tc2_MC2.MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{339192d7-b808-4051-93a0-5ad6b05713d7}">
         <Declaration><![CDATA[]]></Declaration>

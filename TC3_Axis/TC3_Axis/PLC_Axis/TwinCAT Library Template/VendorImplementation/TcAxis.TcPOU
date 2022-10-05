@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="TcAxis" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis EXTENDS itfAxis
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis IMPLEMENTS itfAxis
+//VAR_INPUT
+//END_VAR
+//VAR_OUTPUT
+//END_VAR
 VAR
 			Axis 			: Tc2_MC2.AXIS_REF();
-			count : INT;
+
+			count_delete : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//count  += 1 ;
-
-//count  := count + 1;]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="ActualValues" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
     <Folder Name="Control" Id="{1f231ae8-3c7d-437f-95f0-04b859b8036f}" />
@@ -32,11 +31,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{263c22f1-18b5-4f5f-aaf7-577af67fd31c}">
@@ -44,12 +43,12 @@ PROPERTY ActualPosition : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[ActualPosition :=]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="ActualTorque" Id="{47f1f1a8-2481-48da-95ea-96476db64d77}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualTorque : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{d6e8535c-3af3-4c34-9d6d-c19c9f0a01f9}">
@@ -57,12 +56,12 @@ PROPERTY ActualTorque : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[ActualTorque := ]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="ActualVelocity" Id="{e88b58fe-48b9-430f-bfde-dfb33c3bd932}" FolderPath="ActualValues\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualVelocity : REAL
 ]]></Declaration>
       <Get Name="Get" Id="{7dc6c552-9454-4328-bbea-4a267ff83920}">
@@ -70,12 +69,12 @@ PROPERTY ActualVelocity : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[ActualVelocity := ]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="AxisWarning" Id="{9681de72-c409-4b72-b04e-79507da56814}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY AxisWarning : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{c6dd67f0-6fed-44ce-93f1-e538fdf76ea4}">
@@ -83,7 +82,7 @@ PROPERTY AxisWarning : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -105,7 +104,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="CombineAxes" Id="{86b3b20f-3c82-4776-952d-655701191d61}" FolderPath="MultiAxesMotion\">
@@ -125,11 +124,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="CommunicationReady" Id="{8590d5ed-42e3-4ce6-b3e6-b01dc7d93a0c}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommunicationReady : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{02038667-914b-4c42-be19-d587813289b9}">
@@ -137,12 +136,12 @@ PROPERTY CommunicationReady : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="Direction" Id="{aa7ab63a-8922-49c4-8310-24f5a4f0c70a}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Direction : AXIS_DIRECTION
 ]]></Declaration>
       <Get Name="Get" Id="{c552097b-2c34-4812-8ba6-f4c7cdf8fa48}">
@@ -150,12 +149,12 @@ PROPERTY Direction : AXIS_DIRECTION
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="ErrorId" Id="{f6537c7d-f19e-43d1-9730-38ba00377bec}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ErrorId : WORD
 ]]></Declaration>
       <Get Name="Get" Id="{3bd1eb7c-f586-4717-bdce-f7ce6a124431}">
@@ -163,7 +162,8 @@ PROPERTY ErrorId : WORD
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[
+count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -181,7 +181,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GearInPos" Id="{46b7aadc-117d-466b-ae3b-6f63b0937d8d}" FolderPath="MultiAxesMotion\">
@@ -204,7 +204,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="SingleAxisMotion\">
@@ -217,7 +217,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="HaltSuperimposed" Id="{8e24962f-1f8b-45e3-9fd9-5cdc51b672a3}" FolderPath="SingleAxisMotion\">
@@ -229,7 +229,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Home" Id="{af023316-0daa-480a-9620-216f87d5a5f0}" FolderPath="SingleAxisMotion\">
@@ -248,11 +248,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="HomeAbsSwitch" Id="{11667e14-831c-4aef-9a5a-39ccba0528ec}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY HomeAbsSwitch : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{832ad001-4747-41e7-a8b4-939cb85c1540}">
@@ -260,12 +260,12 @@ PROPERTY HomeAbsSwitch : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="IsHomed" Id="{c73206de-8ef9-4ef0-a314-f9781e86939a}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY IsHomed : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{7ad0df17-5302-4856-973c-eae74fba749a}">
@@ -273,12 +273,12 @@ PROPERTY IsHomed : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="LimitSwitchNegative" Id="{07b013c4-fa8c-4e4e-b880-b99a700f2294}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchNegative : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{d7d494ad-a8d7-456e-bd2e-97fc8f5da81e}">
@@ -286,12 +286,12 @@ PROPERTY LimitSwitchNegative : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="LimitSwitchPositive" Id="{8f9e18ea-d405-4e05-86dd-8e0e6b996cd8}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchPositive : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ed0f687e-30b9-4b4e-9a95-1745cbb04882}">
@@ -299,12 +299,12 @@ PROPERTY LimitSwitchPositive : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="MotionStatus" Id="{13fa6222-30dd-4861-963e-f23a6aee8455}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY MotionStatus : MOTION_STATUS
 ]]></Declaration>
       <Get Name="Get" Id="{0b5c4fb5-9547-4781-99c0-311b7cf4ea1e}">
@@ -312,7 +312,7 @@ PROPERTY MotionStatus : MOTION_STATUS
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -330,7 +330,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -346,7 +346,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveContinuousAbsolute" Id="{33e3848e-94a8-499f-bd0e-8a5c066a1f3c}" FolderPath="SingleAxisMotion\">
@@ -364,7 +364,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveContinuousRelative" Id="{bcd4836b-509a-4705-81e4-3c0e0c808801}" FolderPath="SingleAxisMotion\">
@@ -382,7 +382,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">
@@ -398,7 +398,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveSuperimposed" Id="{64695090-d2ac-4903-bbe7-a60c98f2edf6}" FolderPath="SingleAxisMotion\">
@@ -413,7 +413,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{c0d6a530-ab89-47b6-a229-25b41e577faa}" FolderPath="SingleAxisMotion\">
@@ -429,7 +429,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PhasingAbsolute" Id="{6636a02f-2e18-4d37-a884-ab23bb4c93d0}" FolderPath="MultiAxesMotion\">
@@ -446,7 +446,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PhasingRelative" Id="{7ec8289a-3b22-4471-a355-5030111af3bc}" FolderPath="MultiAxesMotion\">
@@ -463,7 +463,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PositionProfile" Id="{a2b258ae-89cc-4e69-a9bd-78deefeaefb9}" FolderPath="SingleAxisMotion\">
@@ -477,7 +477,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Control\">
@@ -503,13 +503,18 @@ END_VAR]]></Declaration>
 	Options:= , 
 	Status=> , 
 	Busy=> , 
-	Active=> Power.Active, 
-	Error=>Power.Error , 
-	ErrorID=>Power.ErrorId );]]></ST>
+	Active=> , 
+	Error=> , 
+	ErrorID=>);
+	
+//Power.Active  := fbpower.Active;
+//Power.Error   := fbpower.Error;
+//Power.ErrorId := fbpower.ErrorID;
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="PowerOn" Id="{788c8284-a067-4b73-bd3e-a5329fda0703}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{4debc66c-8c89-4b05-b196-32da99b6b0be}">
@@ -517,7 +522,7 @@ PROPERTY PowerOn : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -532,7 +537,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReadParameter" Id="{cddb6be3-68c2-4b4d-9c14-6a1de51eb2c5}" FolderPath="Control\">
@@ -546,11 +551,11 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="ReadyForPowerOn" Id="{7edfc666-a58e-4cdd-b6d9-ce309d3dbb55}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ReadyForPowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{5d7ca864-08a1-4fb9-b227-2975391c3e77}">
@@ -558,7 +563,7 @@ PROPERTY ReadyForPowerOn : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -567,7 +572,7 @@ END_VAR
 METHOD Release : MC_Error
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Control\">
@@ -575,12 +580,12 @@ METHOD Release : MC_Error
 METHOD Reset : itfCommand
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverride" Id="{159befbb-0e58-4754-96a4-765c9befbe12}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD SetOverride : MC_Error
+METHOD SetOverride 	: MC_Error
 VAR_INPUT
 	VelFactor		: REAL;
 	AccFactor		: REAL;
@@ -588,7 +593,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPosition" Id="{841fdfbb-6ac2-4c9c-b9c9-a0bf821b2be7}" FolderPath="Control\">
@@ -601,11 +606,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Simulation" Id="{8db6e099-f6ba-4ea8-96dc-469ed58bba45}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Simulation : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{8573d2f0-d796-44a5-8d11-4f09bec709b2}">
@@ -613,20 +618,52 @@ PROPERTY Simulation : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Property Name="Status" Id="{899ae5c5-cb0d-4a4d-9f83-26636f1764e2}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
-PROPERTY Status : AXIS_STATUS
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Status : Tc2_MC2.MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{d011a0b2-92b3-4928-b561-f5a955384b13}">
         <Declaration><![CDATA[VAR
+	ReadStatus : Tc2_MC2.MC_ReadStatus;
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count  := count + 1;]]></ST>
+          <ST><![CDATA[
+//update local variables from hardware
+Axis.ReadStatus();
+
+//ReadStatus(
+//	Axis:= Axis, 
+//	Enable:= FALSE);
+
+//ReadStatus(
+//	Axis:= Axis, 
+//	Enable:= TRUE, 
+//	Valid=> , 
+//	Busy=> , 
+//	Error=> , 
+//	ErrorID=> , 
+//	ErrorStop=>, 
+//	Disabled=> , 
+//	Stopping=> , 
+//	StandStill=> , 
+//	DiscreteMotion=> , 
+//	ContinuousMotion=> , 
+//	SynchronizedMotion=> , 
+//	Homing=> , 
+//	ConstantVelocity=> , 
+//	Accelerating=> , 
+//	Decelerating=> , 
+//	Status=> );
+
+//Status := ReadStatus.Status.MotionState;
+Status := Axis.Status.MotionState;
+
+]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -639,7 +676,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TorqueControl" Id="{6e3ef885-3d26-42b8-9949-5a5da1bc6ad2}" FolderPath="SingleAxisMotion\">
@@ -657,7 +694,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="VelocityProfile" Id="{ae47a6cf-f02b-4ff4-9871-0cd776202783}" FolderPath="SingleAxisMotion\">
@@ -671,7 +708,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WriteBoolParameter" Id="{3378c903-7622-4419-977d-9abca44ccb6f}" FolderPath="Control\">
@@ -683,7 +720,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WriteParameter" Id="{45c39499-1570-46c6-aa44-5d04439c023a}" FolderPath="Control\">
@@ -695,7 +732,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count  := count + 1;]]></ST>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
   </POU>

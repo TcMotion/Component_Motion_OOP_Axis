@@ -55,6 +55,9 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_Direction.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ErrorID.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ExecutionMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -148,14 +151,14 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="CoDeSys Library Template Interfaces,newest,3S - Smart Software Solutions GmbH">
-      <Namespace>TMP</Namespace>
-    </LibraryReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="PLC_Axis.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="CoDeSys Library Template Interfaces,newest,3S - Smart Software Solutions GmbH">
+      <Namespace>TMP</Namespace>
+    </LibraryReference>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

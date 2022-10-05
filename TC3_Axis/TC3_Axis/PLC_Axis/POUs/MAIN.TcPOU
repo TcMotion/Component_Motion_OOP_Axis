@@ -14,7 +14,7 @@ WareHousingExample();
 
 LabelingExample();
 
-CamGearExample();]]></ST>
+//CamGearExample();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

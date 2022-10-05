@@ -16,5 +16,16 @@
 		<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
+		<AxisFolder Name="WareHousingExample"/>
+		<AxisFolder Name="LabelingExample"/>
+		<AxisFolder Name="CamGearExample"/>
+		<Axis File="Axis_X.xti" Id="1"/>
+		<Axis File="Axis_Y.xti" Id="2"/>
+		<Axis File="Axis_Z.xti" Id="3"/>
+		<Axis File="LabelDrive.xti" Id="4"/>
+		<Axis File="Conveyor.xti" Id="5"/>
+		<Axis File="MasterDrive.xti" Id="6"/>
+		<Axis File="CamDrive.xti" Id="7"/>
+		<Axis File="GearDrive.xti" Id="8"/>
 	</NC>
 </TcSmItem>

@@ -14,6 +14,11 @@ END_VAR
       <Get Name="Get" Id="{0ce9ab6e-faee-4368-8c97-873a6dbaae1f}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{10446a44-4e66-4a5f-b73c-086a98de1cfb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Busy" Id="{07bd0b04-ae26-4b1c-9339-e87c94820a63}">
       <Declaration><![CDATA[PROPERTY Busy : BOOL]]></Declaration>
@@ -44,12 +49,22 @@ END_VAR
       <Get Name="Get" Id="{cf511c99-7bc4-44e2-9840-4e56131a64c0}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{cbf1e3d5-5914-4fa0-8934-47bbada27e61}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="ErrorId" Id="{20e7a598-13f3-4619-aa13-feb95d88f789}">
-      <Declaration><![CDATA[PROPERTY ErrorId : MC_Error]]></Declaration>
+      <Declaration><![CDATA[PROPERTY ErrorId : MC_ErrorID]]></Declaration>
       <Get Name="Get" Id="{602d2ea6-902d-4220-abad-8c8f61e6666d}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{64e6b776-1382-4ead-bece-cecc7a972323}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Method Name="Wait" Id="{6d8924ab-9a65-4615-99c1-0f1843870fe1}">
       <Declaration><![CDATA[METHOD Wait : MC_Error // This method only makes sense in the IEC 61499 environment
