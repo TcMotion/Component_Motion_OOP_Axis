@@ -231,10 +231,25 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbHalt			: Tc2_MC2.MC_HALT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbHalt(
+	Axis:= Axis, 
+	Execute:= , 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="HaltSuperimposed" Id="{8e24962f-1f8b-45e3-9fd9-5cdc51b672a3}" FolderPath="SingleAxisMotion\">
@@ -266,10 +281,28 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbHome			: Tc2_MC2.MC_HOME;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+
+fbHome(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	HomingMode:= HomingMode, 
+	BufferMode:= ,//BufferMode , 
+	Options:= , 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="HomeAbsSwitch" Id="{11667e14-831c-4aef-9a5a-39ccba0528ec}" FolderPath="Status\">
@@ -351,8 +384,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
-	
+	fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -382,9 +414,9 @@ fbMoveAbsolute(
 //MoveAbsolute.Error          := fbMoveAbsolute.Error;
 //MoveAbsolute.ErrorId        := fbMoveAbsolute.ErrorID;
 
-IF MoveAbsolute <> 0 THEN
-    MoveAbsolute.Done 			:= ?????????;
-END_IF]]></ST>
+//IF MoveAbsolute <> 0 THEN
+//    MoveAbsolute.Done 			:= ?????????;
+//END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -457,10 +489,29 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveRelative(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveSuperimposed" Id="{64695090-d2ac-4903-bbe7-a60c98f2edf6}" FolderPath="SingleAxisMotion\">
@@ -661,14 +712,24 @@ END_VAR
     </Method>
     <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Reset : itfCommand
+METHOD Reset 		: itfCommand
 
 VAR
-	
+	fbReset 		: Tc2_MC2.MC_RESET;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbReset(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverride" Id="{159befbb-0e58-4754-96a4-765c9befbe12}" FolderPath="Control\">
@@ -771,10 +832,24 @@ VAR_INPUT
 	Jerk			: REAL;
 END_VAR
 VAR
-	
+	fbStop			: Tc2_MC2.MC_STOP;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbStop(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TorqueControl" Id="{6e3ef885-3d26-42b8-9949-5a5da1bc6ad2}" FolderPath="SingleAxisMotion\">
