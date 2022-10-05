@@ -24,6 +24,7 @@ VAR
 		stepOn : BOOL := FALSE;
 		targetPosX : REAL := 400;
 		targetPosY : REAL := 600;
+		
 END_VAR
 ]]></Declaration>
     <Implementation>
