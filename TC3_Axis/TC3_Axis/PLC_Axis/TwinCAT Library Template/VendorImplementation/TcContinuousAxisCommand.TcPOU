@@ -13,7 +13,7 @@ END_VAR
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{eb9c2030-8593-410b-9f4d-03e78bde1e4d}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Abort : MC_Error
 ]]></Declaration>
       <Implementation>
@@ -21,7 +21,7 @@ METHOD Abort : MC_Error
       </Implementation>
     </Method>
     <Property Name="Active" Id="{ea546285-08b8-49da-87f4-a0a567956075}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Active : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ae7ea0d0-59ab-4174-a5e5-71e38e1237f3}">
@@ -34,7 +34,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Busy" Id="{a282a2df-6993-4e50-9a95-186563112c04}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{a41b6987-2289-4b55-9f88-c4032e9b28d4}">
@@ -47,7 +47,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Command" Id="{1ad29e7c-7398-4c58-adf2-c6934d2731e0}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Command : MC_COMMAND_REF
 ]]></Declaration>
       <Get Name="Get" Id="{b2dcc134-3311-4d35-b28c-d22d13f1459c}">
@@ -60,7 +60,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="CommandAborted" Id="{a4f5f460-0bdf-4b3d-8efb-860ebad75552}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommandAborted : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{3a0f4361-cc16-454d-9327-14e479dca79a}">
@@ -73,7 +73,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Done" Id="{2b25e5f4-12be-4e3d-a913-b210e3cf2e8a}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{b9316619-08ab-4e4a-859b-c02be6822395}">
@@ -86,7 +86,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{08e4f02c-d77f-4a13-986d-ddacb35c0c2b}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{57035b37-5920-430f-bcd4-cd69c1e9cef0}">
@@ -99,7 +99,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="ErrorId" Id="{11c92b9d-f0af-4b75-95d3-1edf3a844d89}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ErrorId : MC_Error
 ]]></Declaration>
       <Get Name="Get" Id="{c8a044ff-5c73-477c-91c2-6fc3315e722e}">
@@ -112,7 +112,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="InVelocity" Id="{4af934e6-9d23-46ea-8ff6-1d962c96a6ce}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de propiedad'}
+      <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY InVelocity : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{5c3040ff-6574-407f-b2a5-c575aa6ed355}">
@@ -125,15 +125,15 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Update" Id="{2b264c6e-470b-41f7-a1f5-2b2f858d4b99}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
-METHOD Update : MC_Error
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Update 		: MC_Error
 VAR_INPUT
-	Position	: REAL;
-	Velocity	: REAL;
-	EndVelocity	: REAL;
+	Position		: REAL;
+	Velocity		: REAL;
+	EndVelocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
+	Jerk			: REAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -141,10 +141,10 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="Wait" Id="{b22357b1-5ebb-4019-977e-820965915fdd}">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
-METHOD Wait : MC_Error (* This method only makes sense in the IEC 61499 environment*)
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Wait 		: MC_Error (* This method only makes sense in the IEC 61499 environment*)
 VAR_INPUT
-	Timeout	: TIME;
+	Timeout			: TIME;
 	AbortOnTimeout	: BOOL;
 END_VAR
 ]]></Declaration>

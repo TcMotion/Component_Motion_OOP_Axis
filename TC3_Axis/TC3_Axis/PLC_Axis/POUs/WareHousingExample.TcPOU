@@ -13,10 +13,13 @@ VAR
 //		stepOn : BOOL := FALSE;
 //		targetPosX : REAL := 400;
 //		targetPosY : REAL := 600;
+		fbAxis_X : TcAxis;
+		fbAxis_Y : TcAxis;
+		fbAxis_Z : TcAxis;
 
-		Axis_X : TcAxis;
-		Axis_Y : TcAxis;
-		Axis_Z : TcAxis;
+		Axis_X : itfAxis;
+		Axis_Y : itfAxis;
+		Axis_Z : itfAxis;
 		stateOOP : INT;
 		lastCommandX : itfCommand;
 		lastCommandY : itfCommand;
@@ -28,7 +31,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CASE stateOOP OF
+      <ST><![CDATA[
+Axis_X := fbAxis_X;
+Axis_Y := fbAxis_Y;
+Axis_Z := fbAxis_Z;
+
+CASE stateOOP OF
 	0: ;
 	10: 
 	// init
@@ -38,12 +46,17 @@ END_VAR
 	
 		IF stepOn THEN
 			stateOOP := stateOOP + 10;
+			
+			stepOn := FALSE;
 		END_IF
 	20:
 	// start movement in XY
 		lastCommandX := Axis_X.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		
+		IF stepOn THEN
 		stateOOP := stateOOP + 10;
+		END_IF
 	30:
 	// wait till movement is finished to 'forkIn'
 		IF lastCommandX.Done AND lastCommandY.Done THEN

@@ -25,6 +25,11 @@ END_VAR
       <Get Name="Get" Id="{1b11f855-47c2-4294-82c0-b75517bd4d8a}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{4190408c-12e4-4129-af08-1609346e65d2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Command" Id="{613ed526-2fc5-4bcf-8f97-8b8dba8f3f5c}">
       <Declaration><![CDATA[PROPERTY Command : MC_COMMAND_REF]]></Declaration>
@@ -37,12 +42,22 @@ END_VAR
       <Get Name="Get" Id="{085598aa-9a22-4404-9a68-c23969695b20}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{d99ccf96-d80e-40bf-8d3f-e050afd4bbc3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Done" Id="{32454eeb-aaaa-4ab0-b761-d85aed51d1f7}">
       <Declaration><![CDATA[PROPERTY Done : BOOL]]></Declaration>
       <Get Name="Get" Id="{ca9a4bf6-4742-4414-ac68-0b34bcf01142}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{97c9ba7a-5d16-49e1-9f67-f59bbaf778d2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Error" Id="{bbbb4768-0975-443f-84fa-70b2255faee1}">
       <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
@@ -67,10 +82,10 @@ END_VAR
       </Set>
     </Property>
     <Method Name="Wait" Id="{6d8924ab-9a65-4615-99c1-0f1843870fe1}">
-      <Declaration><![CDATA[METHOD Wait : MC_Error // This method only makes sense in the IEC 61499 environment
+      <Declaration><![CDATA[METHOD Wait 		: MC_Error // This method only makes sense in the IEC 61499 environment
 VAR_INPUT
-	Timeout : TIME;
-	AbortOnTimeout : BOOL; 
+	Timeout		 	: TIME;
+	AbortOnTimeout 	: BOOL; 
 END_VAR
 ]]></Declaration>
     </Method>

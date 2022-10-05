@@ -7,8 +7,9 @@
 //VAR_OUTPUT
 //END_VAR
 VAR
-			Axis 			: Tc2_MC2.AXIS_REF();
-
+			Axis 				: Tc2_MC2.AXIS_REF();
+//			StatusCommand      : itfCommand;
+	Done : BOOL;		
 			count_delete : INT;
 END_VAR
 ]]></Declaration>
@@ -29,7 +30,9 @@ VAR_INPUT
 	Offset					: REAL;
 	BufferMode				: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -102,6 +105,10 @@ VAR_INPUT
 	CamTable			: itfCamTable;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
+
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -121,6 +128,9 @@ VAR_INPUT
 	MasterValueSourceM1		: MC_SOURCE;
 	MasterValueSourceM2		: MC_SOURCE;
 	BufferMode				: MC_BUFFER_MODE;
+END_VAR
+VAR
+	
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -179,6 +189,9 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -202,7 +215,9 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -215,7 +230,9 @@ VAR_INPUT
 	Jerk			: REAL;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -227,7 +244,9 @@ VAR_INPUT
 	Deceleration		: REAL;
 	Jerk				: REAL;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -246,7 +265,9 @@ VAR_INPUT
 	HomingMode		: INT;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -328,9 +349,42 @@ VAR_INPUT
 	Direction		: MC_Direction;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
+
+VAR
+	fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+
+fbMoveAbsolute(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+//MoveAbsolute.Done 			:= fbMoveAbsolute.Done;
+//MoveAbsolute.Busy 			:= fbMoveAbsolute.Busy;
+//MoveAbsolute.Active 		:= fbMoveAbsolute.Active;
+//MoveAbsolute.CommandAborted := fbMoveAbsolute.CommandAborted;
+//MoveAbsolute.Error          := fbMoveAbsolute.Error;
+//MoveAbsolute.ErrorId        := fbMoveAbsolute.ErrorID;
+
+IF MoveAbsolute <> 0 THEN
+    MoveAbsolute.Done 			:= ?????????;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -344,7 +398,9 @@ VAR_INPUT
 	Jerk			: REAL;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -362,7 +418,9 @@ VAR_INPUT
 	Direction					: MC_DIRECTION;
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -380,7 +438,9 @@ VAR_INPUT
 	Direction					: MC_DIRECTION;
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -396,7 +456,9 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -411,7 +473,9 @@ VAR_INPUT
 	Deceleration			: REAL;
 	Jerk					: REAL;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -427,7 +491,9 @@ VAR_INPUT
 	Direction			: MC_Direction;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -443,6 +509,9 @@ VAR_INPUT
 	Deceleration		: REAL;
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -461,6 +530,9 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -475,7 +547,9 @@ VAR_INPUT
 	Offset				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -490,7 +564,7 @@ VAR_INPUT
 END_VAR
 VAR
 	fbpower 		: Tc2_MC2.MC_POWER;
-	
+//	Command         : TcCommand;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[fbpower(
@@ -498,16 +572,16 @@ END_VAR]]></Declaration>
 	Enable:= Enable, 
 	Enable_Positive:= EnablePositive, 
 	Enable_Negative:= EnableNegative, 
-	Override:= 0, 
+	Override:= 100, 
 	BufferMode:= , 
 	Options:= , 
 	Status=> , 
-	Busy=> , 
-	Active=> , 
-	Error=> , 
-	ErrorID=>);
+	Busy=> , //Command.Busy
+	Active=> , //Command.Active
+	Error=> ,  //Command.Error
+	ErrorID=>); //Command.ErrorId
 	
-//Power.Active  := fbpower.Active;
+//Power:= Command;
 //Power.Error   := fbpower.Error;
 //Power.ErrorId := fbpower.ErrorID;
 ]]></ST>
@@ -535,6 +609,9 @@ END_VAR
 VAR_OUTPUT
 	Value					: BOOL;
 END_VAR
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -548,6 +625,9 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	Value				: REAL;
+END_VAR
+VAR
+	
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -570,6 +650,10 @@ END_VAR
     <Method Name="Release" Id="{8b47a037-d6fc-4c76-8724-440d9cebf9dd}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Release : MC_Error
+
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -578,6 +662,10 @@ METHOD Release : MC_Error
     <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Reset : itfCommand
+
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -591,6 +679,10 @@ VAR_INPUT
 	AccFactor		: REAL;
 	JerkFactor		: REAL;
 END_VAR
+
+VAR
+	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
@@ -603,6 +695,10 @@ VAR_INPUT
 	Position		: REAL;
 	Relative		: BOOL;
 	ExecutionMode	: MC_ExecutionMode;
+END_VAR
+
+VAR
+	
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -674,7 +770,9 @@ VAR_INPUT
 	Deceleration	: REAL;
 	Jerk			: REAL;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -692,7 +790,9 @@ VAR_INPUT
 	Direction			: MC_DIRECTION;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -706,7 +806,9 @@ VAR_INPUT
 	Offset				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -718,7 +820,10 @@ VAR_INPUT
 	ParameterNumber			: INT;
 	Value					: BOOL;
 END_VAR
-]]></Declaration>
+
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -730,7 +835,10 @@ VAR_INPUT
 	ParameterNumber		: INT;
 	Value				: REAL;
 END_VAR
-]]></Declaration>
+
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>

@@ -4,14 +4,14 @@
     <Declaration><![CDATA[INTERFACE itfAxisCommand EXTENDS itfCommand
 ]]></Declaration>
     <Method Name="update" Id="{5d07d1ac-dc48-4954-b598-c007338ed75a}">
-      <Declaration><![CDATA[METHOD Update : MC_Error
+      <Declaration><![CDATA[METHOD Update 		: MC_Error
 VAR_INPUT
-	Position : REAL;
-	Velocity : REAL;
-	EndVelocity : REAL;
-	Acceleration : REAL;
-	Deceleration : REAL;
-	Jerk : REAL;
+	Position 		: REAL;
+	Velocity 		: REAL;
+	EndVelocity 	: REAL;
+	Acceleration 	: REAL;
+	Deceleration 	: REAL;
+	Jerk 			: REAL;
 END_VAR
 ]]></Declaration>
     </Method>

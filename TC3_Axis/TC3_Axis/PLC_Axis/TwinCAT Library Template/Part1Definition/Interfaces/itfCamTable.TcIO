@@ -4,12 +4,12 @@
     <Declaration><![CDATA[INTERFACE itfCamTable
 ]]></Declaration>
     <Method Name="Select" Id="{2e27d7fb-653b-4b31-ae42-aa9c35dd70aa}">
-      <Declaration><![CDATA[METHOD Select : itfCommand
+      <Declaration><![CDATA[METHOD Select		: itfCommand
 VAR_INPUT
-	Periodic : BOOL;
-	MasterAbsolute : BOOL;
-	SlaveAbsolute : BOOL;
-	CamTable : MC_CAM_REF;
+	Periodic 		: BOOL;
+	MasterAbsolute 	: BOOL;
+	SlaveAbsolute 	: BOOL;
+	CamTable 		: MC_CAM_REF;
 END_VAR
 ]]></Declaration>
     </Method>
