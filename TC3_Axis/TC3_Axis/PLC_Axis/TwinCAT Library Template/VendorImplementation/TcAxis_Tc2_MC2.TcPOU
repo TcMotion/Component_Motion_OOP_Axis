@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="TcAxis" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis IMPLEMENTS itfAxis
+  <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
 //VAR_INPUT
 //END_VAR
 //VAR_OUTPUT
@@ -46,7 +46,12 @@ PROPERTY ActualPosition : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ActualPosition :=]]></ST>
+          <ST><![CDATA[//Actual Position
+IF Axis.Status.OpMode.Modulo THEN
+    ActualPosition := Axis.NcToPlc.ModuloActPos;
+ELSE
+    ActualPosition := Axis.NcToPlc.ActPos;
+END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -59,7 +64,9 @@ PROPERTY ActualTorque : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ActualTorque := ]]></ST>
+          <ST><![CDATA[ActualTorque := Axis.NcToPlc.ActTorque;
+
+count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -72,7 +79,9 @@ PROPERTY ActualVelocity : REAL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ActualVelocity := ]]></ST>
+          <ST><![CDATA[//Actual Velocity
+ActualVelocity := Axis.NcToPlc.ActVelo;
+]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -93,7 +102,9 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD CamIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;	
 	MasterOffset		: REAL;
 	SlaveOffset			: REAL;
 	MasterScaling		: REAL;
@@ -102,16 +113,40 @@ VAR_INPUT
 	MasterSyncPosition	: REAL;
 	StartMode			: MC_StartMode;
 	MasterValueSource	: MC_Source;
-	CamTable			: itfCamTable;
+//	CamTable			: itfCamTable;
+	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 
 VAR
-	
+	fbCamIn			 	: Tc2_MC2_Camming.MC_CamIn;	
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5050 TC3 NC Camming !!!!!!*)
+
+fbCamIn(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	MasterOffset:= MasterOffset, 
+	SlaveOffset:= SlaveOffset, 
+	MasterScaling:= MasterScaling, 
+	SlaveScaling:= SlaveScaling, 
+	StartMode:= StartMode, 
+	CamTableID:= CamTableID, //CamTable, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	InSync=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="CombineAxes" Id="{86b3b20f-3c82-4776-952d-655701191d61}" FolderPath="MultiAxesMotion\">
@@ -134,7 +169,27 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+//fbGearIn(
+//	Master:= , 
+//	Slave:= , 
+//	Execute:= , 
+//	RatioNumerator:= , 
+//	RatioDenominator:= , 
+//	Acceleration:= , 
+//	Deceleration:= , 
+//	Jerk:= , 
+//	BufferMode:= , 
+//	Options:= , 
+//	InGear=> , 
+//	Busy=> , 
+//	Active=> , 
+//	CommandAborted=> , 
+//	Error=> , 
+//	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="CommunicationReady" Id="{8590d5ed-42e3-4ce6-b3e6-b01dc7d93a0c}" FolderPath="Status\">
@@ -173,6 +228,8 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[
+//ErrorId := Axis.Status.ErrorID;
+
 count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
@@ -181,27 +238,54 @@ count_delete  := count_delete + 1;]]></ST>
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
-	Ratio				: REAL;
-	MasterValueSource	: INT;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+//	Ratio				: REAL;
+//	MasterValueSource	: INT;
+	RatioNumerator		: LREAL;
+	RatioDenominator	: UINT;
 	Acceleration		: REAL;
 	Deceleration		: REAL;
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
+//	BufferMode			: Tc2_MC2.MC_BufferMode;
+	Options             : Tc2_MC2.ST_GearInOptions;
 END_VAR
 VAR
-	
+	fbGearIn			: Tc2_MC2.MC_GearIn;	
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbGearIn(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	RatioNumerator:= RatioNumerator, 
+	RatioDenominator:= RatioDenominator, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= BufferMode,//BufferMode, 
+	Options:= Options, 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GearInPos" Id="{46b7aadc-117d-466b-ae3b-6f63b0937d8d}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD GearInPos 		: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
 	RatioNumerator		: REAL;
 	RatioDenominator	: REAL;
 	MasterValueSource	: MC_SOURCE;
@@ -216,10 +300,39 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbGearInPos			: Tc2_MC2_FlyingSaw.MC_GearInPos;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5055 TC3 NC Flying Saw !!!!!!*)
+
+fbGearInPos(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= , 
+	RatioNumerator:= , 
+	RatioDenominator:= , 
+	MasterSyncPosition:= , 
+	SlaveSyncPosition:= , 
+	SyncMode:= , 
+	MasterStartDistance:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	StartSync=> , 
+	InSync=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="SingleAxisMotion\">
@@ -285,7 +398,6 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-
 fbHome(
 	Axis:= Axis, 
 	Execute:= TRUE, 
@@ -300,7 +412,6 @@ fbHome(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
-
 
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -331,6 +442,27 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="Jog" Id="{b217b8a0-5ed3-4962-b3d8-ab876323bb77}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Jog 			: itfAxisCommand
+VAR_INPUT
+    JogForward 		: BOOL;
+    JogBackwards 	: BOOL;
+    Mode     		: Tc2_MC2.E_JogMode;
+    Position        : LREAL;
+    Velocity        : LREAL;
+    Acceleration 	: LREAL;
+    Deceleration 	: LREAL;
+    Jerk     		: LREAL;
+END_VAR
+VAR
+	fbJog			: Tc2_MC2.MC_JOG;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="LimitSwitchNegative" Id="{07b013c4-fa8c-4e4e-b880-b99a700f2294}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchNegative : BOOL
@@ -340,7 +472,10 @@ PROPERTY LimitSwitchNegative : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[
+LimitSwitchNegative := Axis.Status.SoftLimitMinExceeded;
+
+count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -353,7 +488,10 @@ PROPERTY LimitSwitchPositive : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[
+LimitSwitchPositive := Axis.Status.SoftLimitMaxExceeded;
+
+count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -366,7 +504,8 @@ PROPERTY MotionStatus : MOTION_STATUS
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[//update local variables from hardware
+Axis.ReadStatus();]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -553,7 +692,9 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
 	PhaseShift			: REAL;
 	Velocity			: REAL;
 	Acceleration		: REAL;
@@ -562,18 +703,41 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbPhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbPhasingAbsolute(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	ContinuousUpdate:= , 
+	PhaseShift:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	AbsolutePhaseShift=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PhasingRelative" Id="{7ec8289a-3b22-4471-a355-5030111af3bc}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingRelative 	: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
 	PhaseShift			: REAL;
 	Velocity			: REAL;
 	Acceleration		: REAL;
@@ -582,11 +746,33 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbPhasingRelative	: Tc2_MC2.MC_PhasingRelative;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+
+fbPhasingRelative(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= , 
+	ContinuousUpdate:= , 
+	PhaseShift:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	CoveredPhaseShift=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PositionProfile" Id="{a2b258ae-89cc-4e69-a9bd-78deefeaefb9}" FolderPath="SingleAxisMotion\">
@@ -661,11 +847,24 @@ VAR_OUTPUT
 	Value					: BOOL;
 END_VAR
 VAR
-	
+	fbReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbReadBoolParameter(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	ReadMode:= , 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Value=> Value);
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReadParameter" Id="{cddb6be3-68c2-4b4d-9c14-6a1de51eb2c5}" FolderPath="Control\">
@@ -678,11 +877,24 @@ VAR_OUTPUT
 	Value				: REAL;
 END_VAR
 VAR
-	
+	fbReadParameter		: Tc2_MC2.MC_ReadParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbReadParameter(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	ReadMode:= , 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Value=> Value);
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="ReadyForPowerOn" Id="{7edfc666-a58e-4cdd-b6d9-ce309d3dbb55}" FolderPath="Status\">
@@ -742,11 +954,23 @@ VAR_INPUT
 END_VAR
 
 VAR
-	
+	fbSetOverride 	: Tc2_MC2.MC_SetOverride;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbSetOverride(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	VelFactor:= VelFactor, 
+	AccFactor:= AccFactor, 
+	JerkFactor:= JerkFactor, 
+	Enabled=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPosition" Id="{841fdfbb-6ac2-4c9c-b9c9-a0bf821b2be7}" FolderPath="Control\">
@@ -754,16 +978,31 @@ END_VAR
 METHOD SetPosition 	: itfCommand
 VAR_INPUT
 	Position		: REAL;
-	Relative		: BOOL;
-	ExecutionMode	: MC_ExecutionMode;
+	Relative		: BOOL; (* RELATIVE=True, ABSOLUTE=False (Default)*)
+//	ExecutionMode	: MC_ExecutionMode;
+    ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
 END_VAR
 
 VAR
-	
+	fbSetPosition 	: Tc2_MC2.MC_SetPosition;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbSetPosition(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	Mode:= Relative, 
+	Options:= ExecutionMode, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;
+
+ ]]></ST>
       </Implementation>
     </Method>
     <Property Name="Simulation" Id="{8db6e099-f6ba-4ea8-96dc-469ed58bba45}" FolderPath="Status\">
@@ -790,9 +1029,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[
-//update local variables from hardware
-Axis.ReadStatus();
-
 //ReadStatus(
 //	Axis:= Axis, 
 //	Enable:= FALSE);
@@ -806,7 +1042,6 @@ Axis.ReadStatus();
 //	ErrorID=> , 
 //	ErrorStop=>, 
 //	Disabled=> , 
-//	Stopping=> , 
 //	StandStill=> , 
 //	DiscreteMotion=> , 
 //	ContinuousMotion=> , 
@@ -817,7 +1052,6 @@ Axis.ReadStatus();
 //	Decelerating=> , 
 //	Status=> );
 
-//Status := ReadStatus.Status.MotionState;
 Status := Axis.Status.MotionState;
 
 ]]></ST>
@@ -897,10 +1131,21 @@ VAR_INPUT
 END_VAR
 
 VAR
-	
+	fbWriteBoolParameter 	: Tc2_MC2.MC_WriteBoolParameter;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbWriteBoolParameter(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	Value:= Value, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WriteParameter" Id="{45c39499-1570-46c6-aa44-5d04439c023a}" FolderPath="Control\">
@@ -912,10 +1157,21 @@ VAR_INPUT
 END_VAR
 
 VAR
-	
+	fbWriteParameter 	: Tc2_MC2.MC_WriteParameter;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbWriteParameter(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	Value:= Value, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
   </POU>

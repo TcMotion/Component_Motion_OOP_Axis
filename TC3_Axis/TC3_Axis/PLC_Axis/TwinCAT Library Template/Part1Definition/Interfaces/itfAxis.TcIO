@@ -52,10 +52,16 @@ PROPERTY AxisWarning : BOOL
       </Get>
     </Property>
     <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5050 TC3 NC Camming !!!!!!*)
+
+{warning 'add method implementation '}
 METHOD CamIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;	
 	MasterOffset		: REAL;
 	SlaveOffset			: REAL;
 	MasterScaling		: REAL;
@@ -64,7 +70,8 @@ VAR_INPUT
 	MasterSyncPosition	: REAL;
 	StartMode			: MC_StartMode;
 	MasterValueSource	: MC_Source;
-	CamTable			: itfCamTable;
+//	CamTable			: itfCamTable;
+	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
@@ -114,21 +121,32 @@ PROPERTY ErrorId : WORD
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
-	Ratio				: REAL;
-	MasterValueSource	: INT;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+//	Ratio				: REAL;
+//	MasterValueSource	: INT;
+	RatioNumerator		: LREAL;
+	RatioDenominator	: UINT;
 	Acceleration		: REAL;
 	Deceleration		: REAL;
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-]]></Declaration>
+//	BufferMode			: Tc2_MC2.MC_BufferMode;
+	Options             : Tc2_MC2.ST_GearInOptions;
+END_VAR]]></Declaration>
     </Method>
     <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5055 TC3 NC Flying Saw !!!!!!*)
+
+{warning 'add method implementation '}
 METHOD GearInPos 		: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;			
 	RatioNumerator		: REAL;
 	RatioDenominator	: REAL;
 	MasterValueSource	: MC_SOURCE;
@@ -195,6 +213,21 @@ PROPERTY IsHomed : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="Jog" Id="{44685f54-ad2f-4ab1-a4b2-0f8a538e7a33}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Jog 			: itfAxisCommand
+VAR_INPUT
+    JogForward 		: BOOL;
+    JogBackwards 	: BOOL;
+    Mode     		: Tc2_MC2.E_JogMode;
+    Position        : LREAL;
+    Velocity        : LREAL;
+    Acceleration 	: LREAL;
+    Deceleration 	: LREAL;
+    Jerk     		: LREAL;
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="LimitSwitchNegative" Id="{17b135cf-f40c-47bc-99fe-7894888dd695}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY LimitSwitchNegative : BOOL
@@ -318,7 +351,9 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
 	PhaseShift			: REAL;
 	Velocity			: REAL;
 	Acceleration		: REAL;
@@ -332,7 +367,9 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingRelative 	: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master				: itfAxis;
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
 	PhaseShift			: REAL;
 	Velocity			: REAL;
 	Acceleration		: REAL;
@@ -427,7 +464,8 @@ METHOD SetPosition 	: itfCommand
 VAR_INPUT
 	Position		: REAL;
 	Relative		: BOOL;
-	ExecutionMode	: MC_ExecutionMode;
+//	ExecutionMode	: MC_ExecutionMode;
+	ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
 END_VAR
 ]]></Declaration>
     </Method>

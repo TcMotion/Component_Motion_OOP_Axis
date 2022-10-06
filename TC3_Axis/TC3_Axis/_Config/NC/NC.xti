@@ -22,6 +22,7 @@
 		<Axis File="Axis_X.xti" Id="1"/>
 		<Axis File="Axis_Y.xti" Id="2"/>
 		<Axis File="Axis_Z.xti" Id="3"/>
+		<Axis File="Axis_X_Slave.xti" Id="9"/>
 		<Axis File="LabelDrive.xti" Id="4"/>
 		<Axis File="Conveyor.xti" Id="5"/>
 		<Axis File="MasterDrive.xti" Id="6"/>

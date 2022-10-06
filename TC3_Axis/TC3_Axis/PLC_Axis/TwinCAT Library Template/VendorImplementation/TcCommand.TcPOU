@@ -34,15 +34,6 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{9b79df45-6e51-454a-bb9c-ef0d9a2663c7}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Property Name="Busy" Id="{c70f78a5-d31f-4558-8325-7a017493ec48}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -56,15 +47,6 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{b3820909-9abf-477c-9641-921e791e14cd}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Property Name="Command" Id="{1e98e78f-e26d-4d3f-9df5-62d3db7c2351}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -91,15 +73,6 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{89329d25-dbca-4944-955c-92ab50f781c2}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Property Name="Done" Id="{612a916d-4670-4f93-a6db-9618fe011e35}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -126,15 +99,6 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{8a34df8d-8bc5-4e68-b4b5-824c09845a66}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Property Name="ErrorId" Id="{695df361-2c8d-4b04-9259-0517f9e43c3e}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -148,15 +112,6 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{e7fbcd3e-0ed5-4fa6-b777-c7a96d02638f}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Method Name="Wait" Id="{265638f0-0d66-4716-91e3-9998c65eddaf}">
       <Declaration><![CDATA[{warning 'add method implementation '}

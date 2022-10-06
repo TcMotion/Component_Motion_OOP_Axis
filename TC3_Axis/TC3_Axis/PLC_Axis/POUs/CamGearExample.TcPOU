@@ -4,9 +4,9 @@
     <Declaration><![CDATA[PROGRAM CamGearExample
 VAR
 	// Hardware definitions
-	TcMasterDrive 	: TcAxis;
-	TcCamDrive 		: TcAxis;
-	TcGearDrive 	: TcAxis;
+	TcMasterDrive 	: TcAxis_Tc2_MC2;
+	TcCamDrive 		: TcAxis_Tc2_MC2;
+	TcGearDrive 	: TcAxis_Tc2_MC2;
 	
 	
 	MasterDrive 	: itfAxis;

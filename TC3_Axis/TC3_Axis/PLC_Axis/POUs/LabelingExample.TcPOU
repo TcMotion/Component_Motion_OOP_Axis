@@ -4,8 +4,8 @@
     <Declaration><![CDATA[PROGRAM LabelingExample
 VAR
 	// Hardware definitions
-	LabelDrive 			: TcAxis;
-	Conveyor 			: TcAxis;
+	LabelDrive 			: TcAxis_Tc2_MC2;
+	Conveyor 			: TcAxis_Tc2_MC2;
 	LabelLength 		: REAL := 100;
 	SensorDistance 		: REAL := 10;
 	Velocity 			: REAL := 5;
