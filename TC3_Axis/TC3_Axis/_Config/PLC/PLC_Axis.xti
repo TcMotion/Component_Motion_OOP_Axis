@@ -965,7 +965,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="PLC_Axis" PrjFilePath="..\..\PLC_Axis\PLC_Axis.plcproj" TmcFilePath="..\..\PLC_Axis\PLC_Axis.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{84B35198-7845-5472-0984-968E9625B545}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{B8DCC4C7-DB3C-72F5-AF4F-C16E5FB0C557}">
 			<Name>PLC_Axis Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

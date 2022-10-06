@@ -59,6 +59,7 @@ VAR
 //		itfSynchronizedAxisCommand_X_Slave : itfSynchronizedAxisCommand;
 //		fbitfSynchronizedAxisCommand_X_Slave : TcSynchronizedAxisCommand;		
 		
+	Conveyor: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -97,10 +98,17 @@ CASE stateOOP OF
 		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_X_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-	
-		IF stepOn THEN
-			stateOOP := 11;		
-			stepOn := FALSE;
+		
+		IF Axis_X_Slave.Geared THEN			
+			stateOOP := 20;		
+		END_IF		
+		
+		IF Axis_X.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
+			 Axis_Z.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN			
+			IF stepOn THEN
+				stateOOP := 11;		
+				stepOn := FALSE;
+			END_IF
 		END_IF
 		
 	11 : 
@@ -120,7 +128,7 @@ CASE stateOOP OF
 		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		
 		IF stepOn THEN
-		stateOOP := stateOOP + 10;
+			stateOOP := stateOOP + 10;
 		END_IF
 	30:
 	// wait till movement is finished to 'forkIn'
