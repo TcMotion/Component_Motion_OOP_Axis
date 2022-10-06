@@ -133,7 +133,7 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 //	BufferMode			: Tc2_MC2.MC_BufferMode;
-	Options             : Tc2_MC2.ST_GearInOptions;
+//	Options             : Tc2_MC2.ST_GearInOptions;
 END_VAR]]></Declaration>
     </Method>
     <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}" FolderPath="MultiAxesMotion\">

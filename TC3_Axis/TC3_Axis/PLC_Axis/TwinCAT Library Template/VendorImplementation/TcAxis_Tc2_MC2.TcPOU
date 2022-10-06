@@ -3,14 +3,20 @@
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
 //VAR_INPUT
+//	Axis 				: ST_AXIS_REF;
 //END_VAR
 //VAR_OUTPUT
 //END_VAR
+VAR_IN_OUT 
+	Axis 				: Tc2_MC2.AXIS_REF;
+END_VAR
 VAR
-			Axis 				: Tc2_MC2.AXIS_REF();
+//			Axis 				: Tc2_MC2.AXIS_REF();
 //			StatusCommand      : itfCommand;
 	Done : BOOL;		
-			count_delete : INT;
+			
+	fbGearIn			: Tc2_MC2.MC_GearIn;
+count_delete : INT;	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -51,7 +57,9 @@ IF Axis.Status.OpMode.Modulo THEN
     ActualPosition := Axis.NcToPlc.ModuloActPos;
 ELSE
     ActualPosition := Axis.NcToPlc.ActPos;
-END_IF]]></ST>
+END_IF
+
+]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -250,25 +258,30 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 //	BufferMode			: Tc2_MC2.MC_BufferMode;
-	Options             : Tc2_MC2.ST_GearInOptions;
+//	Options             : Tc2_MC2.ST_GearInOptions;
 END_VAR
 VAR
-	fbGearIn			: Tc2_MC2.MC_GearIn;	
+//	fbGearIn			: Tc2_MC2.MC_GearIn;	
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
+//fbGearIn(
+//	Master:= Master, 
+//	Slave:= Slave, 
+//	Execute:= FALSE); 
+	
 fbGearIn(
 	Master:= Master, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
 	RatioNumerator:= RatioNumerator, 
 	RatioDenominator:= RatioDenominator, 
-	Acceleration:= Acceleration, 
-	Deceleration:= Deceleration, 
-	Jerk:= Jerk, 
-	BufferMode:= BufferMode,//BufferMode, 
-	Options:= Options, 
+	Acceleration:= ,//Acceleration, 
+	Deceleration:= ,//Deceleration, 
+	Jerk:= ,//Jerk, 
+	BufferMode:= ,//BufferMode,//BufferMode, 
+	Options:= ,//Options, 
 	InGear=> , 
 	Busy=> , 
 	Active=> , 

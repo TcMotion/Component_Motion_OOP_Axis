@@ -965,60 +965,60 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="PLC_Axis" PrjFilePath="..\..\PLC_Axis\PLC_Axis.plcproj" TmcFilePath="..\..\PLC_Axis\PLC_Axis.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{EE001831-BD73-9FB5-D59B-530B7B495A1F}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{2F6DDDC3-F22C-B657-A814-A3CBDC16896F}">
 			<Name>PLC_Axis Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>WareHousingExample.fbAxis_X.Axis.NcToPlc</Name>
+					<Name>WareHousingExample.AXIS_REF_X.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_Y.Axis.NcToPlc</Name>
+					<Name>WareHousingExample.AXIS_REF_Y.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_Z.Axis.NcToPlc</Name>
+					<Name>WareHousingExample.AXIS_REF_Z.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.LabelDrive.Axis.NcToPlc</Name>
+					<Name>WareHousingExample.AXIS_REF_X_Slave.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.Conveyor.Axis.NcToPlc</Name>
+					<Name>LabelingExample.AXIS_REF_LabelDrive.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_X_Slave.Axis.NcToPlc</Name>
+					<Name>LabelingExample.AXIS_REF_Conveyor.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>WareHousingExample.fbAxis_X.Axis.PlcToNc</Name>
+					<Name>WareHousingExample.AXIS_REF_X.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_Y.Axis.PlcToNc</Name>
+					<Name>WareHousingExample.AXIS_REF_Y.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_Z.Axis.PlcToNc</Name>
+					<Name>WareHousingExample.AXIS_REF_Z.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.LabelDrive.Axis.PlcToNc</Name>
+					<Name>WareHousingExample.AXIS_REF_X_Slave.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.Conveyor.Axis.PlcToNc</Name>
+					<Name>LabelingExample.AXIS_REF_LabelDrive.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.fbAxis_X_Slave.Axis.PlcToNc</Name>
+					<Name>LabelingExample.AXIS_REF_Conveyor.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 			</Vars>
@@ -1065,24 +1065,28 @@ External Setpoint Generation:
 	<Mappings>
 		<OwnerA Name="PLC_Axis Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X">
-				<Link VarA="PlcTask Inputs^WareHousingExample.fbAxis_X.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.fbAxis_X.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X_Slave">
+				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X_Slave.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X_Slave.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Y">
-				<Link VarA="PlcTask Inputs^WareHousingExample.fbAxis_Y.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.fbAxis_Y.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_Y.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_Y.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Z">
-				<Link VarA="PlcTask Inputs^WareHousingExample.fbAxis_Z.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.fbAxis_Z.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_Z.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_Z.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Conveyor">
-				<Link VarA="PlcTask Inputs^LabelingExample.Conveyor.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^LabelingExample.Conveyor.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^LabelingExample.AXIS_REF_Conveyor.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^LabelingExample.AXIS_REF_Conveyor.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^LabelDrive">
-				<Link VarA="PlcTask Inputs^LabelingExample.LabelDrive.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^LabelingExample.LabelDrive.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^LabelingExample.AXIS_REF_LabelDrive.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^LabelingExample.AXIS_REF_LabelDrive.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

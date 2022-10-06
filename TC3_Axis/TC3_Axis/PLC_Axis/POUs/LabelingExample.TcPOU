@@ -3,6 +3,9 @@
   <POU Name="LabelingExample" Id="{0d0eeb3f-d5c8-46a9-93bc-8b3a15166335}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM LabelingExample
 VAR
+	AXIS_REF_LabelDrive			: TC2_MC2.AXIS_REF;
+	AXIS_REF_Conveyor 			: TC2_MC2.AXIS_REF;
+
 	// Hardware definitions
 	LabelDrive 			: TcAxis_Tc2_MC2;
 	Conveyor 			: TcAxis_Tc2_MC2;
@@ -25,7 +28,11 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Run the timer. As it is a classic FB it should be called every cycle
+      <ST><![CDATA[
+LabelDrive(Axis:= AXIS_REF_LabelDrive);
+Conveyor(Axis:= AXIS_REF_Conveyor);
+
+// Run the timer. As it is a classic FB it should be called every cycle
 DelayTimer(IN:=ProductDetection, PT:= INT_TO_TIME(REAL_TO_INT(SensorDistance * 1000 / Velocity)));
 
 CASE ConveyorState OF
