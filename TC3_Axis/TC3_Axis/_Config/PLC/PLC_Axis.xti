@@ -965,11 +965,19 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="PLC_Axis" PrjFilePath="..\..\PLC_Axis\PLC_Axis.plcproj" TmcFilePath="..\..\PLC_Axis\PLC_Axis.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{2F6DDDC3-F22C-B657-A814-A3CBDC16896F}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{84B35198-7845-5472-0984-968E9625B545}">
 			<Name>PLC_Axis Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>LabelingExample.AXIS_REF_LabelDrive.NcToPlc</Name>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>LabelingExample.AXIS_REF_Conveyor.NcToPlc</Name>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
 				<Var>
 					<Name>WareHousingExample.AXIS_REF_X.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
@@ -986,17 +994,17 @@ External Setpoint Generation:
 					<Name>WareHousingExample.AXIS_REF_X_Slave.NcToPlc</Name>
 					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
-				<Var>
-					<Name>LabelingExample.AXIS_REF_LabelDrive.NcToPlc</Name>
-					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>LabelingExample.AXIS_REF_Conveyor.NcToPlc</Name>
-					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>LabelingExample.AXIS_REF_LabelDrive.PlcToNc</Name>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>LabelingExample.AXIS_REF_Conveyor.PlcToNc</Name>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
 				<Var>
 					<Name>WareHousingExample.AXIS_REF_X.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
@@ -1011,14 +1019,6 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>WareHousingExample.AXIS_REF_X_Slave.PlcToNc</Name>
-					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>LabelingExample.AXIS_REF_LabelDrive.PlcToNc</Name>
-					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>LabelingExample.AXIS_REF_Conveyor.PlcToNc</Name>
 					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 			</Vars>
@@ -1043,6 +1043,36 @@ External Setpoint Generation:
 					</OwnerB>
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Z">
 						<Link VarA="WareHousingExample.Axis_Z.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2022-10-06T20:30:14">
+				<OwnerA Name="InputDst" Prefix="TIPC^PLC_Axis^PLC_Axis Instance" Type="1">
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X">
+						<Link VarA="WareHousingExample_1.AXIS_REF_X.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{10036166-C9D3-404B-BDD3-323034AAA7F4}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X_Slave">
+						<Link VarA="WareHousingExample_1.AXIS_REF_X_Slave.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{10036166-C9D3-404B-BDD3-323034AAA7F4}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Y">
+						<Link VarA="WareHousingExample_1.AXIS_REF_Y.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{10036166-C9D3-404B-BDD3-323034AAA7F4}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Z">
+						<Link VarA="WareHousingExample_1.AXIS_REF_Z.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{10036166-C9D3-404B-BDD3-323034AAA7F4}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+				<OwnerA Name="OutputSrc" Prefix="TIPC^PLC_Axis^PLC_Axis Instance" Type="2">
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X">
+						<Link VarA="WareHousingExample_1.AXIS_REF_X.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X_Slave">
+						<Link VarA="WareHousingExample_1.AXIS_REF_X_Slave.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Y">
+						<Link VarA="WareHousingExample_1.AXIS_REF_Y.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Z">
+						<Link VarA="WareHousingExample_1.AXIS_REF_Z.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>

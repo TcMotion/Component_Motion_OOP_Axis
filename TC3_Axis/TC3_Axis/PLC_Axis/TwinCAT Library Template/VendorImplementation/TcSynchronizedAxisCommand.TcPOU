@@ -120,7 +120,7 @@ PROPERTY InSync : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[Insync:= Geared;]]></ST>
         </Implementation>
       </Get>
     </Property>

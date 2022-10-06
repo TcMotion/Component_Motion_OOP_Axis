@@ -117,13 +117,19 @@ PROPERTY ErrorId : WORD
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="Geared" Id="{c8ab79e2-22f2-4c0b-ab80-2b08fcd8d983}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
+      <Get Name="Get" Id="{23cf5cc3-0a54-486a-9302-6865f9e9426d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="GearIn" Id="{c95c1128-9524-4448-a3ec-30a5218a30e7}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;		
+//	Master				: Tc2_MC2.AXIS_REF;
+//	Slave				: Tc2_MC2.AXIS_REF;		
 //	Ratio				: REAL;
 //	MasterValueSource	: INT;
 	RatioNumerator		: LREAL;
@@ -134,6 +140,10 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 //	BufferMode			: Tc2_MC2.MC_BufferMode;
 //	Options             : Tc2_MC2.ST_GearInOptions;
+END_VAR
+
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
 END_VAR]]></Declaration>
     </Method>
     <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}" FolderPath="MultiAxesMotion\">

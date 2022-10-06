@@ -14,13 +14,18 @@ VAR
 //			Axis 				: Tc2_MC2.AXIS_REF();
 //			StatusCommand      : itfCommand;
 	Done : BOOL;		
-			
-	fbGearIn			: Tc2_MC2.MC_GearIn;
+
+
+//fbTcSynchronizedAxisCommand:	TcSynchronizedAxisCommand;		
+
 count_delete : INT;	
+
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[ ACT_Cyclic_Update();
+ ]]></ST>
     </Implementation>
     <Folder Name="ActualValues" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
     <Folder Name="Control" Id="{1f231ae8-3c7d-437f-95f0-04b859b8036f}" />
@@ -43,6 +48,12 @@ END_VAR]]></Declaration>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Action Name="ACT_Cyclic_Update" Id="{5de5cd23-c71a-4817-8d0e-2b699f35e45d}">
+      <Implementation>
+        <ST><![CDATA[//update local variables from hardware
+Axis.ReadStatus();]]></ST>
+      </Implementation>
+    </Action>
     <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
@@ -242,13 +253,26 @@ count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
+    <Property Name="Geared" Id="{cad8364b-d06c-481a-9940-549f97d5ccbb}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a3b3f0fb-2772-49f7-8dbb-75c9f3fa0511}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Geared :=  Axis.Status.Coupled;
+//Axis.NcToPlc.CoupleState
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="GearIn" Id="{6cbcc261-b3fb-4547-98ae-75e372afb64e}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;		
+//	Master				: Tc2_MC2.AXIS_REF;
+//	Slave				: Tc2_MC2.AXIS_REF;		
 //	Ratio				: REAL;
 //	MasterValueSource	: INT;
 	RatioNumerator		: LREAL;
@@ -260,9 +284,13 @@ VAR_INPUT
 //	BufferMode			: Tc2_MC2.MC_BufferMode;
 //	Options             : Tc2_MC2.ST_GearInOptions;
 END_VAR
-VAR
-//	fbGearIn			: Tc2_MC2.MC_GearIn;	
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
 END_VAR
+VAR
+	fbGearIn			: Tc2_MC2.MC_GearIn;	
+END_VAR
+
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
@@ -272,7 +300,7 @@ END_VAR
 //	Execute:= FALSE); 
 	
 fbGearIn(
-	Master:= Master, 
+	Master:= Axis, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
 	RatioNumerator:= RatioNumerator, 
@@ -282,7 +310,7 @@ fbGearIn(
 	Jerk:= ,//Jerk, 
 	BufferMode:= ,//BufferMode,//BufferMode, 
 	Options:= ,//Options, 
-	InGear=> , 
+	InGear=> ,//Geared , 
 	Busy=> , 
 	Active=> , 
 	CommandAborted=> , 
@@ -488,7 +516,9 @@ END_VAR
           <ST><![CDATA[
 LimitSwitchNegative := Axis.Status.SoftLimitMinExceeded;
 
-count_delete  := count_delete + 1;]]></ST>
+count_delete  := count_delete + 1;
+
+]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -517,8 +547,7 @@ PROPERTY MotionStatus : MOTION_STATUS
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[//update local variables from hardware
-Axis.ReadStatus();]]></ST>
+          <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
     </Property>

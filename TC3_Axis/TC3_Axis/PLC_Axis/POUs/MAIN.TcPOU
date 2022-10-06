@@ -11,6 +11,7 @@ END_VAR
       <ST><![CDATA[
 
 WareHousingExample();
+//WareHousingExample_1();
 
 LabelingExample();
 
