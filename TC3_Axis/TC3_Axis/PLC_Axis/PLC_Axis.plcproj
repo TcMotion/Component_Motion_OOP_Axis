@@ -58,7 +58,7 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_Direction.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ErrorID.TcDUT">
+    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ErrorIdUint.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ExecutionMode.TcDUT">
@@ -74,6 +74,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MOTION_STATUS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\ST_Command.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\GlobalConstants\Constants.TcGVL">

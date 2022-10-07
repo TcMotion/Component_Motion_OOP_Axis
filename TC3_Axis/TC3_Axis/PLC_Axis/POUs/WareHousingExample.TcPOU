@@ -51,6 +51,8 @@ VAR
 		ActualTorque_Z 			: REAL;
 		ActualTorque_X2_Slave 	: REAL;
 		ActualTorque_X3_Slave 	: REAL;
+		
+		Active_X1_Power         :  BOOL;
 				
 END_VAR
 ]]></Declaration>
@@ -94,7 +96,7 @@ CASE stateOOP OF
 		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_X2_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Active_X1_Power := Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE).Active;
 				
 		IF Axis_X1.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
 			 Axis_Z.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X2_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X3_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN			
