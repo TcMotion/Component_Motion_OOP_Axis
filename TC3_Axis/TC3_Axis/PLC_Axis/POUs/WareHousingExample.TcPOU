@@ -3,108 +3,101 @@
   <POU Name="WareHousingExample" Id="{0e6956dd-ffba-455e-80e5-cadd31dc7a91}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM WareHousingExample
 VAR
-//		Axis_X : itfAxis;
-//		Axis_Y : itfAxis;
-//		Axis_Z : itfAxis;
-//		stateOOP : INT;
-//		lastCommandX : itfCommand;
-//		lastCommandY : itfCommand;
-//		lastCommandZ : itfCommand;
-//		stepOn : BOOL := FALSE;
-//		targetPosX : REAL := 400;
-//		targetPosY : REAL := 600;
-		stateOOP : INT;
-		stepOn : BOOL := FALSE;
+		stateOOP 			: INT;
+		stepOn 				: BOOL := FALSE;
 
-		AXIS_REF_X 			: Tc2_MC2.AXIS_REF;
+		AXIS_REF_X1 		: Tc2_MC2.AXIS_REF;
 		AXIS_REF_Y 			: Tc2_MC2.AXIS_REF;
 		AXIS_REF_Z 			: Tc2_MC2.AXIS_REF;
-		AXIS_REF_X_Slave 	: Tc2_MC2.AXIS_REF;
+		AXIS_REF_X2_Slave 	: Tc2_MC2.AXIS_REF;
+		AXIS_REF_X3_Slave 	: Tc2_MC2.AXIS_REF;
 		
-		fbAxis_X : TcAxis_Tc2_MC2;
-		fbAxis_Y : TcAxis_Tc2_MC2;
-		fbAxis_Z : TcAxis_Tc2_MC2;
-		fbAxis_X_Slave : TcAxis_Tc2_MC2;
+		fbAxis_X1 			: TcAxis_Tc2_MC2;
+		fbAxis_Y 			: TcAxis_Tc2_MC2;
+		fbAxis_Z 			: TcAxis_Tc2_MC2;
+		fbAxis_X2_Slave 	: TcAxis_Tc2_MC2;
+		fbAxis_X3_Slave 	: TcAxis_Tc2_MC2;
 
-		Axis_X : itfAxis;
-		Axis_Y : itfAxis;
-		Axis_Z : itfAxis;
-		Axis_X_Slave : itfAxis;
+
+		Axis_X1 			: itfAxis;
+		Axis_Y 				: itfAxis;
+		Axis_Z 				: itfAxis;
+		Axis_X2_Slave 		: itfAxis;
+		Axis_X3_Slave 		: itfAxis;
 		
-		lastCommandX : itfCommand;
-		lastCommandY : itfCommand;
-		lastCommandZ : itfCommand;
-		lastCommandX_slave : itfCommand;
+		lastCommandX1 		: itfCommand;
+		lastCommandY 		: itfCommand;
+		lastCommandZ 		: itfCommand;
+		lastCommandX2_slave : itfCommand;
+		lastCommandX3_slave : itfCommand;
 		
-		targetPosX : REAL := 400;
-		targetPosY : REAL := 600;
+		targetPosX 			: REAL := 400;
+		targetPosY 			: REAL := 600;
 		
-		ActualPosition_X 		: REAL;
+		ActualPosition_X1 		: REAL;
 		ActualPosition_Y 		: REAL;
 		ActualPosition_Z 		: REAL;
-		ActualPosition_X_Slave 	: REAL;
+		ActualPosition_X2_Slave : REAL;
+		ActualPosition_X3_Slave : REAL;
 		
-		ActualVelocity_X 		: REAL;
+		ActualVelocity_X1 		: REAL;
 		ActualVelocity_Y 		: REAL;
 		ActualVelocity_Z 		: REAL;
-		ActualVelocity_X_Slave 	: REAL;
+		ActualVelocity_X2_Slave : REAL;
+		ActualVelocity_X3_Slave : REAL;
 		
-		ActualTorque_X 			: REAL;
+		ActualTorque_X1 		: REAL;
 		ActualTorque_Y 			: REAL;
 		ActualTorque_Z 			: REAL;
-		ActualTorque_X_Slave 	: REAL;
+		ActualTorque_X2_Slave 	: REAL;
+		ActualTorque_X3_Slave 	: REAL;
 				
-//		fbGear_X_Slave : Tc2_MC2.MC_GearIn;
-		
-//		itfSynchronizedAxisCommand_X_Slave : itfSynchronizedAxisCommand;
-//		fbitfSynchronizedAxisCommand_X_Slave : TcSynchronizedAxisCommand;		
-		
-	Conveyor: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-fbAxis_X(Axis:=AXIS_REF_X);
+      <ST><![CDATA[fbAxis_X1(Axis:=AXIS_REF_X1);
 fbAxis_Y(Axis:=AXIS_REF_Y);
 fbAxis_Z(Axis:=AXIS_REF_Z);
-fbAxis_X_Slave(Axis:=AXIS_REF_X_Slave);
+fbAxis_X2_Slave(Axis:=AXIS_REF_X2_Slave);
+fbAxis_X3_Slave(Axis:=AXIS_REF_X3_Slave);
 
 
-Axis_X := fbAxis_X;
+Axis_X1 := fbAxis_X1;
 Axis_Y := fbAxis_Y;
 Axis_Z := fbAxis_Z;
-Axis_X_Slave := fbAxis_X_Slave;
+Axis_X2_Slave := fbAxis_X2_Slave;
+Axis_X3_Slave := fbAxis_X3_Slave;
 
-ActualPosition_X 		:= Axis_X.ActualPosition;
+ActualPosition_X1 		:= Axis_X1.ActualPosition;
 ActualPosition_Y 		:= Axis_Y.ActualPosition;
 ActualPosition_Z 		:= Axis_Z.ActualPosition;
-ActualPosition_X_Slave 	:= Axis_X_Slave.ActualPosition;
+ActualPosition_X2_Slave := Axis_X2_Slave.ActualPosition;
+ActualPosition_X3_Slave := Axis_X3_Slave.ActualPosition;
 
-ActualVelocity_X 		:= Axis_X.ActualVelocity;
+ActualVelocity_X1 		:= Axis_X1.ActualVelocity;
 ActualVelocity_Y 		:= Axis_Y.ActualVelocity;
 ActualVelocity_Z 		:= Axis_Z.ActualVelocity;
-ActualVelocity_X_Slave 	:= Axis_X_Slave.ActualVelocity;
+ActualVelocity_X2_Slave := Axis_X2_Slave.ActualVelocity;
+ActualVelocity_X3_Slave := Axis_X3_Slave.ActualVelocity;
 
-ActualTorque_X 			:= Axis_X.ActualTorque;
+ActualTorque_X1 		:= Axis_X1.ActualTorque;
 ActualTorque_Y 			:= Axis_Y.ActualTorque;
 ActualTorque_Z 			:= Axis_Z.ActualTorque;
-ActualTorque_X_Slave 	:= Axis_X_Slave.ActualTorque;
+ActualTorque_X2_Slave 	:= Axis_X2_Slave.ActualTorque;
+ActualTorque_X3_Slave 	:= Axis_X3_Slave.ActualTorque;
 
 CASE stateOOP OF
 	0: ;
 	10: 
 	// init
-		Axis_X.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		
-		IF Axis_X_Slave.Geared THEN			
-			stateOOP := 20;		
-		END_IF		
-		
-		IF Axis_X.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
-			 Axis_Z.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN			
+		Axis_X2_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+				
+		IF Axis_X1.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
+			 Axis_Z.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X2_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X3_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN			
 			IF stepOn THEN
 				stateOOP := 11;		
 				stepOn := FALSE;
@@ -113,18 +106,19 @@ CASE stateOOP OF
 		
 	11 : 
 	//GearIn
-		lastCommandX_slave:= Axis_X.GearIn(Slave:= AXIS_REF_X_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
+		Axis_X1.GearIn(Slave:= AXIS_REF_X2_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
+		Axis_X1.GearIn(Slave:= AXIS_REF_X3_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
 		stateOOP := 12;						
 			
 	12:
 	// Geared
-	    IF Axis_X_Slave.Geared THEN			
+	    IF Axis_X2_Slave.Geared AND Axis_X3_Slave.Geared THEN			
 			stateOOP := 20;		
 		END_IF			
 
 	20:
 	// start movement in XY
-		lastCommandX := Axis_X.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		
 		IF stepOn THEN
@@ -132,7 +126,7 @@ CASE stateOOP OF
 		END_IF
 	30:
 	// wait till movement is finished to 'forkIn'
-		IF lastCommandX.Done AND lastCommandY.Done THEN
+		IF lastCommandX1.Done AND lastCommandY.Done THEN
 			lastCommandZ := Axis_Z.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			stateOOP := stateOOP + 10;
 		END_IF
@@ -151,13 +145,13 @@ CASE stateOOP OF
 	60:
 	// move to delivery if fork out is done
 		IF lastCommandZ.Done THEN
-			lastCommandX := Axis_X.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			lastCommandX1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			lastCommandY := Axis_Y.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			stateOOP := stateOOP + 10;
 		END_IF
 	70:
 	// wait till finished
-		IF lastCommandX.Done AND lastCommandY.Done THEN
+		IF lastCommandX1.Done AND lastCommandY.Done THEN
 			stateOOP := stateOOP + 10;
 		END_IF
 	80: 

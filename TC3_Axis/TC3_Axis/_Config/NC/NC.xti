@@ -19,10 +19,11 @@
 		<AxisFolder Name="WareHousingExample"/>
 		<AxisFolder Name="LabelingExample"/>
 		<AxisFolder Name="CamGearExample"/>
-		<Axis File="Axis_X.xti" Id="1"/>
+		<Axis File="Axis_X1.xti" Id="1"/>
 		<Axis File="Axis_Y.xti" Id="2"/>
 		<Axis File="Axis_Z.xti" Id="3"/>
-		<Axis File="Axis_X_Slave.xti" Id="9"/>
+		<Axis File="Axis_X2_Slave.xti" Id="9"/>
+		<Axis File="Axis_X3_Slave.xti" Id="10"/>
 		<Axis File="LabelDrive.xti" Id="4"/>
 		<Axis File="Conveyor.xti" Id="5"/>
 		<Axis File="MasterDrive.xti" Id="6"/>
