@@ -10,11 +10,13 @@ VAR_IN_OUT
 	Axis 				: Tc2_MC2.AXIS_REF;
 END_VAR
 VAR	
-	_itfCommand      	: itfCommand;
+
 	_fbCommand       	: TcCommand;
 	
-	_itfAxisCommand  	: itfAxisCommand;
+
 	_fbAxisCommand   	: TcAxisCommand;
+	
+	 _PowerOn  : BOOL;
 
 count_delete : INT;	
 
@@ -561,11 +563,12 @@ END_VAR
 
 VAR
 	fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
+	itfAxisCommand  : itfAxisCommand;
 	Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_itfCommand := _fbCommand;
+        <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
 
 fbMoveAbsolute(
 	Axis:= Axis, 
@@ -582,16 +585,18 @@ fbMoveAbsolute(
 	Active=> Command.Active, 
 	CommandAborted=> Command.CommandAborted, 
 	Error=> Command.Error, 
-	ErrorID=> Command.ErrorIdUint);
+	ErrorID=> Command.ErrorID_Udint);
 
-_itfCommand.Done  				:=	Command.Done;	
-_itfCommand.Busy   				:=	Command.Busy;
-_itfCommand.Active 				:=	Command.Active;
-_itfCommand.CommandAborted		:=	Command.CommandAborted;
-_itfCommand.Error 				:=	Command.Error;
-_itfCommand.ErrorIdUint 		:=	Command.ErrorIdUint;
+itfAxisCommand.Done  				:=	Command.Done;	
+itfAxisCommand.Busy   				:=	Command.Busy;
+itfAxisCommand.Active 				:=	Command.Active;
+itfAxisCommand.CommandAborted		:=	Command.CommandAborted;
+itfAxisCommand.Error 				:=	Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	Command.ErrorID_Udint;
 
-MoveAbsolute := _itfCommand;]]></ST>
+MoveAbsolute := itfAxisCommand;
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -837,11 +842,12 @@ VAR_INPUT
 END_VAR
 VAR
 	fbpower 		: Tc2_MC2.MC_POWER;
+	itfCommand      : itfCommand;
 	Command         : ST_Command;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-_itfCommand := _fbCommand;
+itfCommand := _fbCommand;
 
 fbpower(
 	Axis:= Axis, 
@@ -855,16 +861,18 @@ fbpower(
 	Busy=> Command.Busy,
 	Active=> Command.Active,
 	Error=> Command.Error,
-	ErrorID=> Command.ErrorIdUint);
+	ErrorID=> Command.ErrorID_Udint);
 		
-_itfCommand.Busy   		:=	Command.Busy;
-_itfCommand.Active 		:=	Command.Active;
-_itfCommand.Error 		:=	Command.Error;
-_itfCommand.ErrorIdUint :=	Command.ErrorIdUint;
+itfCommand.Busy   		:=	Command.Busy;
+itfCommand.Active 		:=	Command.Active;
+itfCommand.Error 		:=	Command.Error;
+itfCommand.ErrorID_Udint :=	Command.ErrorID_Udint;
 	
-Power := _itfCommand;
+Power := itfCommand;
 
-count_delete  := count_delete + 1;
+_PowerOn:= fbpower.Enable;
+
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -877,7 +885,9 @@ PROPERTY PowerOn : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[PowerOn := _PowerOn;
+
+count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>

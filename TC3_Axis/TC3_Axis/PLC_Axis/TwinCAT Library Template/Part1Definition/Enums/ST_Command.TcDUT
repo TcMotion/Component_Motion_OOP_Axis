@@ -10,7 +10,7 @@ STRUCT
 	Done           	: BOOL;
 	Error    		: BOOL;
 	ErrorId        	: MC_Error;
-	ErrorIdUint		: MC_ErrorIdUint;
+	ErrorID_Udint	: MC_ErrorID_Udint;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

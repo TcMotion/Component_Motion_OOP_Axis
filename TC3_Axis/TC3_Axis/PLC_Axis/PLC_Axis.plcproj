@@ -58,7 +58,7 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_Direction.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ErrorIdUint.TcDUT">
+    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ErrorID_Udint.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_ExecutionMode.TcDUT">

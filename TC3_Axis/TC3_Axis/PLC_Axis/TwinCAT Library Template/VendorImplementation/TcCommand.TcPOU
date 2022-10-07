@@ -7,7 +7,7 @@
 //VAR_OUTPUT
 //END_VAR
 VAR
-    _Command        : ST_Command;	
+	_Command        : ST_Command;	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -79,6 +79,15 @@ END_VAR
           <ST><![CDATA[Command := _Command.Command;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{8c572b14-e4a4-4892-92bc-7bfb6fccf1a4}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ _Command.Command :=  Command;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="CommandAborted" Id="{64fc8e8b-1fca-4237-b95d-a22ade7daee5}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -92,6 +101,15 @@ END_VAR
           <ST><![CDATA[CommandAborted := _Command.CommandAborted;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{fa72ceb7-81cf-4104-8e08-990f919ec723}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ _Command.CommandAborted := CommandAborted;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="Done" Id="{612a916d-4670-4f93-a6db-9618fe011e35}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -105,6 +123,15 @@ END_VAR
           <ST><![CDATA[Done := _Command.Done;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{27a7b96b-ffe3-40bd-b916-c07758186070}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.Done := Done;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="Error" Id="{1a6ee7c5-9948-479d-8097-45d267cf7820}">
       <Declaration><![CDATA[{warning 'add property implementation'}
@@ -151,14 +178,14 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="ErrorIdUint" Id="{0b4a8509-d39f-448d-9a5c-d564f1c9dff4}">
-      <Declaration><![CDATA[PROPERTY ErrorIdUint : UDINT]]></Declaration>
+    <Property Name="ErrorID_Udint" Id="{0b4a8509-d39f-448d-9a5c-d564f1c9dff4}">
+      <Declaration><![CDATA[PROPERTY ErrorID_Udint : UDINT]]></Declaration>
       <Get Name="Get" Id="{aadc048e-1c35-429c-ba68-27b3e12591ea}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ErrorIdUint := _Command.ErrorIdUint;]]></ST>
+          <ST><![CDATA[ErrorID_Udint := _Command.ErrorID_Udint;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{28310b40-fca3-4bf7-8f8e-249432b561d6}">
@@ -166,7 +193,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_Command.ErrorIdUint := ErrorIdUint;]]></ST>
+          <ST><![CDATA[_Command.ErrorID_Udint := ErrorID_Udint;]]></ST>
         </Implementation>
       </Set>
     </Property>

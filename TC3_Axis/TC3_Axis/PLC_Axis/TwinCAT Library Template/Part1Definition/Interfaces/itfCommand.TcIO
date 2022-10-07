@@ -36,18 +36,33 @@ END_VAR
       <Get Name="Get" Id="{eef50f13-0f9a-4e3e-a7ed-af5e33b9d6f1}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{b1d87a9c-5718-4563-95aa-e404be989a01}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="CommandAborted" Id="{8b585279-c8af-4948-b7e6-a73c5ba6d655}">
       <Declaration><![CDATA[PROPERTY CommandAborted : BOOL]]></Declaration>
       <Get Name="Get" Id="{085598aa-9a22-4404-9a68-c23969695b20}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{d07d5132-2041-4a7d-88cd-028e2b106d35}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Done" Id="{32454eeb-aaaa-4ab0-b761-d85aed51d1f7}">
       <Declaration><![CDATA[PROPERTY Done : BOOL]]></Declaration>
       <Get Name="Get" Id="{ca9a4bf6-4742-4414-ac68-0b34bcf01142}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{2cc75574-2468-418b-bf11-553f5c967ded}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="Error" Id="{bbbb4768-0975-443f-84fa-70b2255faee1}">
       <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
@@ -71,8 +86,8 @@ END_VAR
 ]]></Declaration>
       </Set>
     </Property>
-    <Property Name="ErrorIdUint" Id="{e9103c94-daac-4dc0-a702-4eec4267d376}">
-      <Declaration><![CDATA[PROPERTY ErrorIdUint : MC_ErrorIdUint]]></Declaration>
+    <Property Name="ErrorID_Udint" Id="{e9103c94-daac-4dc0-a702-4eec4267d376}">
+      <Declaration><![CDATA[PROPERTY ErrorID_Udint : MC_ErrorID_Udint]]></Declaration>
       <Get Name="Get" Id="{49171e37-7f88-4b76-88ef-706332e921aa}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <DUT Name="MC_ErrorIdUint" Id="{1b5eb986-6af6-4f73-969d-305461db15b0}">
-    <Declaration><![CDATA[TYPE MC_ErrorIdUint : UDINT; END_TYPE
+  <DUT Name="MC_ErrorID_Udint" Id="{1b5eb986-6af6-4f73-969d-305461db15b0}">
+    <Declaration><![CDATA[TYPE MC_ErrorID_Udint : UDINT; END_TYPE
 ]]></Declaration>
   </DUT>
 </TcPlcObject>
