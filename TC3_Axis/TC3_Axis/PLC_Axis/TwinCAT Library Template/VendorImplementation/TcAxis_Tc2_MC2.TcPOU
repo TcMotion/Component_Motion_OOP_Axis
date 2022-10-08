@@ -239,6 +239,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="Error" Id="{73f39bd4-ba95-46df-a05d-3fbd114dc241}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{10691733-5fe1-4205-8dc2-ea19fc1c63cd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error :=  Axis.Status.Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="ErrorId" Id="{f6537c7d-f19e-43d1-9730-38ba00377bec}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ErrorId : WORD
@@ -252,6 +263,17 @@ END_VAR
 //ErrorId := Axis.Status.ErrorID;
 
 count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId_Udint_Status" Id="{d1af9492-b775-4c4c-9c2e-e16f7984c79e}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorId_Udint_Status : UDINT]]></Declaration>
+      <Get Name="Get" Id="{b143cfd2-79d5-493b-8a6d-901da710f66c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId_Udint_Status := Axis.Status.ErrorID;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -468,7 +490,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="IsHomed" Id="{c73206de-8ef9-4ef0-a314-f9781e86939a}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
+      <Declaration><![CDATA[
 PROPERTY IsHomed : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{7ad0df17-5302-4856-973c-eae74fba749a}">
@@ -476,7 +498,8 @@ PROPERTY IsHomed : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[
+IsHomed := Axis.Status.Homed;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -596,7 +619,7 @@ itfAxisCommand.ErrorID_Udint 		:=	Command.ErrorID_Udint;
 
 MoveAbsolute := itfAxisCommand;
 
-]]></ST>
+//MoveAbsolute := THIS^;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -611,10 +634,31 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbMoveAdditive 	: Tc2_MC2.MC_MoveAdditive;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveAdditive(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveContinuousAbsolute" Id="{33e3848e-94a8-499f-bd0e-8a5c066a1f3c}" FolderPath="SingleAxisMotion\">
@@ -631,10 +675,30 @@ VAR_INPUT
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbMoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveContinuousAbsolute(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	Velocity:= Velocity, 
+	EndVelocity:= EndVelocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	InEndVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveContinuousRelative" Id="{bcd4836b-509a-4705-81e4-3c0e0c808801}" FolderPath="SingleAxisMotion\">
@@ -651,10 +715,31 @@ VAR_INPUT
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbMoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveContinuousRelative(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	EndVelocity:= EndVelocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	InEndVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">
@@ -705,10 +790,37 @@ VAR_INPUT
 	Jerk					: REAL;
 END_VAR
 VAR
-	
+	fbMoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveSuperimposed(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Mode:= , 
+	Distance:= , 
+	VelocityDiff:= VelocityDiff, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	VelocityProcess:= , 
+	Length:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	Warning=> , 
+	WarningId=> , 
+	ActualVelocityDiff=> , 
+	ActualDistance=> , 
+	ActualLength=> , 
+	ActualAcceleration=> , 
+	ActualDeceleration=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{c0d6a530-ab89-47b6-a229-25b41e577faa}" FolderPath="SingleAxisMotion\">
@@ -723,10 +835,28 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbMoveVelocity	 	: Tc2_MC2.MC_MoveVelocity;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbMoveVelocity(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Direction:= Direction, 
+	BufferMode:= , //BufferMode
+	Options:= , 
+	InVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="PhasingAbsolute" Id="{6636a02f-2e18-4d37-a884-ab23bb4c93d0}" FolderPath="MultiAxesMotion\">
@@ -826,10 +956,16 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+//	fbPositionProfile	 	: Tc2_MC2.;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+
+
+
+
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Control\">
@@ -1106,9 +1242,7 @@ END_VAR
 //	Decelerating=> , 
 //	Status=> );
 
-Status := Axis.Status.MotionState;
-
-]]></ST>
+Status := Axis.Status.MotionState;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -1154,10 +1288,29 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	
+	fbTorqueControl		: Tc2_MC2.MC_TorqueControl;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        <ST><![CDATA[
+fbTorqueControl(
+	Axis:= Axis, 
+	Execute:= , 
+	ContinuousUpdate:= , 
+	Relative:= , 
+	Torque:= Torque, 
+	TorqueRamp:= TorqueRamp, 
+	VelocityLimitHigh:= , 
+	VelocityLimitLow:= , 
+	BufferMode:= , 
+	Options:= , 
+	InTorque=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorId=> );
+
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="VelocityProfile" Id="{ae47a6cf-f02b-4ff4-9871-0cd776202783}" FolderPath="SingleAxisMotion\">

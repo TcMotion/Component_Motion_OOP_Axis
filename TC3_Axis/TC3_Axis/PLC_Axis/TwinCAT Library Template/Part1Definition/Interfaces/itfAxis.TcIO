@@ -109,11 +109,23 @@ PROPERTY Direction : AXIS_DIRECTION
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="Error" Id="{59e322a1-3b76-43ce-a645-79c51b3d6416}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{018802ae-b38e-4442-8de9-870846c54f5b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="ErrorId" Id="{37d26822-cb7c-457f-ac28-bce3c7d600ba}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ErrorId : WORD
 ]]></Declaration>
       <Get Name="Get" Id="{c1831251-bda6-4d83-b90b-a1ff5cc7a2cf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ErrorId_Udint_Status" Id="{d9a7fa1e-a162-4895-af21-fb6c52ebaf7a}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorId_Udint_Status : UDINT]]></Declaration>
+      <Get Name="Get" Id="{cdbea7b6-2c2b-4171-b2be-c535cce6c1c0}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
@@ -216,7 +228,7 @@ PROPERTY HomeAbsSwitch : BOOL
       </Get>
     </Property>
     <Property Name="IsHomed" Id="{203b60ed-e999-4642-a865-628355ab1127}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
+      <Declaration><![CDATA[
 PROPERTY IsHomed : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{cd729280-cdbd-4068-acaf-15209f627765}">
