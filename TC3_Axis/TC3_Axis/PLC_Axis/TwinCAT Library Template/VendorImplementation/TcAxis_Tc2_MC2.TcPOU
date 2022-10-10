@@ -15,7 +15,7 @@ VAR
 
 //	_fbCommand       	: TcCommand;
 	
-//	_fbAxisCommand   	: TcAxisCommand;
+	_fbAxisCommand   	: TcAxisCommand;
 
 //itfAxisCommand  : itfAxisCommand;
 //Command         : ST_Command;
@@ -596,9 +596,9 @@ END_VAR
 
 VAR
 //fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
-_fbAxisCommand   	: TcAxisCommand;
-	itfAxisCommand  : itfAxisCommand;
-    Command         : ST_Command;
+//_fbAxisCommand   	: TcAxisCommand;
+//	itfAxisCommand  : itfAxisCommand;
+//    Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -607,7 +607,7 @@ END_VAR
 //fbMoveAbsolute(
 //	Axis:= Axis, 
 //	Execute:= FALSE);
-Command.Done := FALSE;
+//Command.Done := FALSE;
 
 fbMoveAbsolute(
 	Axis:= Axis, 
@@ -775,9 +775,9 @@ VAR_INPUT
 END_VAR
 VAR
 //	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
-	_fbAxisCommand   	: TcAxisCommand;
-	itfAxisCommand  : itfAxisCommand;
-	Command         : ST_Command;
+//	_fbAxisCommand   	: TcAxisCommand;
+//	itfAxisCommand  : itfAxisCommand;
+//	Command         : ST_Command;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
