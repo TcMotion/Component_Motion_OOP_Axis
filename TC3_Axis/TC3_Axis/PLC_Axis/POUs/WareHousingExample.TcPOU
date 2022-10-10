@@ -99,11 +99,11 @@ CASE stateOOP OF
 		stateOOP := stateOOP + 10;	
 	10: 
 	// init
-		Axis_X1.Power(Enable:=Enable_Axis, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_Y.Power(Enable:=Enable_Axis, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_Z.Power(Enable:=Enable_Axis, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X2_Slave.Power(Enable:=Enable_Axis, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X3_Slave.Power(Enable:=Enable_Axis, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X2_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 			
        IF Axis_X1.PowerOn AND Axis_Y.PowerOn AND Axis_Z.PowerOn AND Axis_X2_Slave.PowerOn AND Axis_X3_Slave.PowerOn THEN  	
 			IF Axis_X1.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
@@ -128,51 +128,69 @@ CASE stateOOP OF
 
 	20:
 	// start movement in XY
-//		lastCommandX1 := 
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		
 //		Done_X1 := lastCommandX1.Done;
-		Done_X1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
-		Done_Y  := lastCommandY.Done;
+//		Done_X1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+//		Done_Y  := lastCommandY.Done;
 		
-		IF stepOn THEN	
-		stateOOP := stateOOP + 10;
-		stepOn := FALSE;
+		IF lastCommandX1.Done AND lastCommandY.Done THEN
+			stateOOP := stateOOP + 10;
+//		stepOn := FALSE;
 		END_IF		
 
 	30:
 	// wait till movement is finished to 'forkIn'
-
-		IF lastCommandX1.Done AND lastCommandY.Done THEN
-			IF stepOn THEN
+//		IF lastCommandX1.Done AND lastCommandY.Done THEN
+//			IF stepOn THEN
 			lastCommandZ := Axis_Z.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			stateOOP := stateOOP + 10;
+			IF lastCommandZ.Done THEN
+				stateOOP := stateOOP + 10;
 			END_IF
-		END_IF
+//		END_IF
 	40:
 	// lift pallet if forked in
-		IF lastCommandZ.Done THEN
+//		IF lastCommandZ.Done THEN
 			lastCommandY := Axis_Y.MoveRelative(Distance:=100, Velocity:=10, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			stateOOP := stateOOP + 10;
-		END_IF
+			IF lastCommandY.Done THEN
+				stateOOP := stateOOP + 10;
+			END_IF
+//		END_IF
 	50:
 	// fork out with pallet if forked in is done
-		IF lastCommandY.Done THEN
+//		IF lastCommandY.Done THEN
 			lastCommandZ := Axis_Z.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			stateOOP := stateOOP + 10;
-		END_IF
+			IF lastCommandZ.Done THEN
+				stateOOP := stateOOP + 10;
+				stepOn := FALSE;
+			END_IF
+//		END_IF
 	60:
 	// move to delivery if fork out is done
-		IF lastCommandZ.Done THEN
+//		IF lastCommandZ.Done THEN
 			lastCommandX1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+//			lastCommandX1 := Axis_X1.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+//			Axis_X1.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			lastCommandY := Axis_Y.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			stateOOP := stateOOP + 10;
-		END_IF
+//			Axis_Y.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);		
+//			lastCommandY := Axis_Y.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);			
+			IF stepOn THEN			
+				IF lastCommandX1.Done AND lastCommandY.Done THEN			
+					stateOOP := stateOOP + 10;
+				END_IF
+			END_IF
 	70:
 	// wait till finished
-		IF lastCommandX1.Done AND lastCommandY.Done THEN
-			stateOOP := stateOOP + 10;
-		END_IF
+//		IF lastCommandX1.Done AND lastCommandY.Done THEN
+//		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+//		lastCommandY := Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		
+//		Done_X1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+//		Done_Y  := Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+//		IF lastCommandX1.Done AND lastCommandY.Done THEN
+//			stateOOP := stateOOP + 10;
+//		END_IF
 	80: 
 	// ready
 	;

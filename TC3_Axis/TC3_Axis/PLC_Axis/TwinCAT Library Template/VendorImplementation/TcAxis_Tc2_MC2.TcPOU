@@ -3,6 +3,7 @@
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
 //VAR_INPUT
+//	Axis 				: Tc2_MC2.AXIS_REF;
 //END_VAR
 //VAR_OUTPUT
 //END_VAR
@@ -10,15 +11,24 @@ VAR_IN_OUT
 	Axis 				: Tc2_MC2.AXIS_REF;
 END_VAR
 VAR	
+//	itfCommand      : itfCommand;
 
-	_fbCommand       	: TcCommand;
+//	_fbCommand       	: TcCommand;
 	
+//	_fbAxisCommand   	: TcAxisCommand;
 
-	_fbAxisCommand   	: TcAxisCommand;
+//itfAxisCommand  : itfAxisCommand;
+//Command         : ST_Command;
 	
 	 _PowerOn  : BOOL;
 
 count_delete : INT;	
+count_MC_Absolute : INT;
+
+fbpower 		: Tc2_MC2.MC_POWER;
+fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
+fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
+
 
 
 END_VAR
@@ -585,13 +595,19 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
+//fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
+_fbAxisCommand   	: TcAxisCommand;
 	itfAxisCommand  : itfAxisCommand;
-	Command         : ST_Command;
+    Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
+
+//fbMoveAbsolute(
+//	Axis:= Axis, 
+//	Execute:= FALSE);
+Command.Done := FALSE;
 
 fbMoveAbsolute(
 	Axis:= Axis, 
@@ -601,7 +617,7 @@ fbMoveAbsolute(
 	Acceleration:= Acceleration, 
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
-	BufferMode:= ,//BufferMode, 
+	BufferMode:= BufferMode,//BufferMode, 
 	Options:= , 
 	Done=> Command.Done, 
 	Busy=> Command.Busy, 
@@ -617,9 +633,13 @@ itfAxisCommand.CommandAborted		:=	Command.CommandAborted;
 itfAxisCommand.Error 				:=	Command.Error;
 itfAxisCommand.ErrorID_Udint 		:=	Command.ErrorID_Udint;
 
+//IF Command.Done THEN
+//	count_MC_Absolute := count_MC_Absolute + 1;
+//END_IF
+
 MoveAbsolute := itfAxisCommand;
 
-//MoveAbsolute := THIS^;]]></ST>
+count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -754,10 +774,14 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
+//	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
+	_fbAxisCommand   	: TcAxisCommand;
+	itfAxisCommand  : itfAxisCommand;
+	Command         : ST_Command;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
+        <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
+
 fbMoveRelative(
 	Axis:= Axis, 
 	Execute:= TRUE, 
@@ -768,13 +792,25 @@ fbMoveRelative(
 	Jerk:= Jerk, 
 	BufferMode:= ,//BufferMode, 
 	Options:= , 
-	Done=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
+	Done=> Command.Done, 
+	Busy=> Command.Busy, 
+	Active=> Command.Active, 
+	CommandAborted=> Command.CommandAborted, 
+	Error=> Command.Error, 
+	ErrorID=> Command.ErrorID_Udint);
 
+itfAxisCommand.Done  				:=	Command.Done;	
+itfAxisCommand.Busy   				:=	Command.Busy;
+itfAxisCommand.Active 				:=	Command.Active;
+itfAxisCommand.CommandAborted		:=	Command.CommandAborted;
+itfAxisCommand.Error 				:=	Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	Command.ErrorID_Udint;
+
+//IF Command.Done THEN
+//	count_MC_Absolute := count_MC_Absolute + 1;
+//END_IF
+
+MoveRelative := itfAxisCommand;
 
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -977,7 +1013,7 @@ VAR_INPUT
 	EnableNegative	: BOOL;
 END_VAR
 VAR
-	fbpower 		: Tc2_MC2.MC_POWER;
+	_fbCommand       	: TcCommand;
 	itfCommand      : itfCommand;
 	Command         : ST_Command;
 END_VAR]]></Declaration>

@@ -114,7 +114,7 @@ PROPERTY Done : BOOL
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Command.Done;]]></ST>
+          <ST><![CDATA[//Done := _Command.Done;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{881fcb83-d5c8-49f6-8663-53b559b03418}">
@@ -122,7 +122,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_Command.Done := Done;]]></ST>
+          <ST><![CDATA[//_Command.Done := Done;]]></ST>
         </Implementation>
       </Set>
     </Property>
