@@ -594,25 +594,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-
-//fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
-//_fbAxisCommand   	: TcAxisCommand;
 	itfAxisCommand  : itfAxisCommand;
     _Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
-
-//fbMoveAbsolute(
-//	Axis:= Axis, 
-//	Execute:= FALSE);
-//bExecute S= NOT Command.Done AND NOT Command.Busy;
-//bExecute S= NOT _Command.Done;
-
-//fbMoveAbsolute(
-//	Axis:= Axis, 
-//	Execute:= FALSE);	
 	
 fbMoveAbsolute(
 	Axis:= Axis, 
@@ -634,23 +621,6 @@ fbMoveAbsolute(
 fbMoveAbsolute(
 	Axis:= Axis, 
 	Execute:= FALSE);	
-	
-//bExecute R= _Command.Done;
-
-//bExecute R= _Command.Done;
-
-//itfAxisCommand.Done                 :=  Command.Done;
-//itfAxisCommand.Done                 :=  Command.Done AND NOT Command.Busy AND NOT Command.CommandAborted AND NOT Command.Error;	
-
-//_Command.Done 						:= Command.Done;
-//_Command.Done 						S= Command.Done;
-//_Command.Done 						R= Command.Busy OR Command.CommandAborted OR Command.Error;	
-
-//_Command.Busy   					:=	Command.Busy;
-//_Command.Active 					:=	Command.Active;
-//_Command.CommandAborted				:=	Command.CommandAborted;
-//_Command.Error 						:=	Command.Error;
-//_Command.ErrorID_Udint 				:=	Command.ErrorID_Udint;
 
 itfAxisCommand.Done 				:=  _Command.Done AND ActualPosition = Position;             
 itfAxisCommand.Busy   				:=	_Command.Busy;
@@ -659,13 +629,7 @@ itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
 itfAxisCommand.Error 				:=	_Command.Error;
 itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
 
-//IF Command.Done THEN
-//	count_MC_Absolute := count_MC_Absolute + 1;
-//END_IF
-
-MoveAbsolute := itfAxisCommand;
-
-count_delete  := count_delete + 1;]]></ST>
+MoveAbsolute := itfAxisCommand;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
@@ -800,8 +764,6 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-//	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
-//	_fbAxisCommand   	: TcAxisCommand;
 	itfAxisCommand  : itfAxisCommand;
 	_Command         : ST_Command;
 END_VAR]]></Declaration>
@@ -829,32 +791,15 @@ fbMoveRelative(
 	Axis:= Axis, 
 	Execute:= FALSE);
 	
-//itfAxisCommand.Done                 :=  Command.Done;
-//itfAxisCommand.Done                 :=  Command.Done AND NOT Command.Busy AND NOT Command.CommandAborted AND NOT Command.Error;	
-
-//_Command.Done 						S= Command.Done;
-//_Command.Done 						R= Command.Busy OR Command.CommandAborted OR Command.Error;	
-
-//_Command.Busy   					:=	Command.Busy;
-//_Command.Active 					:=	Command.Active;
-//_Command.CommandAborted				:=	Command.CommandAborted;
-//_Command.Error 						:=	Command.Error;
-//_Command.ErrorID_Udint 				:=	Command.ErrorID_Udint;
-
-itfAxisCommand.Done 				:=  _Command.Done; //AND ActualPosition = Distance;             
+itfAxisCommand.Done 				:=  _Command.Done ; //AND ActualPosition = ActualPosition + Distance;             
 itfAxisCommand.Busy   				:=	_Command.Busy;
 itfAxisCommand.Active 				:=	_Command.Active;
 itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
 itfAxisCommand.Error 				:=	_Command.Error;
 itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
 
-//IF Command.Done THEN
-//	count_MC_Absolute := count_MC_Absolute + 1;
-//END_IF
-
 MoveRelative := itfAxisCommand;
-
-count_delete  := count_delete + 1;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveSuperimposed" Id="{64695090-d2ac-4903-bbe7-a60c98f2edf6}" FolderPath="SingleAxisMotion\">
