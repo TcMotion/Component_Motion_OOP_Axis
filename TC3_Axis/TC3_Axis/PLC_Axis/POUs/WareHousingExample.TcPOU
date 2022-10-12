@@ -129,19 +129,18 @@ CASE stateOOP OF
 
 	20:
 	// start movement in XY
-//		IF stepOn THEN	
-			lastCommandX1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 			
-	//		Done_X1 := lastCommandX1.Done;
-	//		Done_X1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
-	//		Done_Y  := lastCommandY.Done;
+		Done_X1 S= lastCommandX1.Done;
+		Done_Y  S= lastCommandY.Done;
 			
-			IF lastCommandX1.Done AND lastCommandY.Done THEN
-				stateOOP := stateOOP + 10;
-	//		stepOn := FALSE;
-			END_IF		
-//		END_IF	
+		IF Done_X1 AND Done_Y THEN
+			stateOOP := stateOOP + 10;					
+	  		Done_X1  := FALSE;
+			Done_Y   := FALSE;
+		END_IF		
+
 	30:
 	// wait till movement is finished to 'forkIn'
 //		IF lastCommandX1.Done AND lastCommandY.Done THEN
@@ -174,12 +173,17 @@ CASE stateOOP OF
 			lastCommandX1 := Axis_X1.MoveAbsolute(Position:=20, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 //			lastCommandX1 := Axis_X1.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 //			Axis_X1.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			lastCommandY := Axis_Y.MoveAbsolute(Position:=20, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			lastCommandY := Axis_Y.MoveAbsolute(Position:=20, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 //			Axis_Y.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);		
 //			lastCommandY := Axis_Y.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);			
-//			IF stepOn THEN			
-				IF lastCommandX1.Done AND lastCommandY.Done THEN			
+//			IF stepOn THEN
+			Done_X1	S= lastCommandX1.Done;
+			Done_Y  S= lastCommandY.Done;
+			
+				IF Done_X1 AND Done_Y THEN			
 					stateOOP := stateOOP + 10;
+					Done_X1 := FALSE;	
+	                Done_Y  := FALSE;
 				END_IF
 //			END_IF
 	70:
@@ -188,10 +192,12 @@ CASE stateOOP OF
 //		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 //		lastCommandY := Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
 		
-		Done_X1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
-		Done_Y  := Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		Done_X1 S= Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		Done_Y  S= Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
 		IF Done_X1 AND Done_Y THEN
-			stateOOP := stateOOP + 10;
+			stateOOP := stateOOP + 10;	
+			Done_X1 := FALSE;
+			Done_Y  := FALSE;
 		END_IF
 	80: 
 	// ready

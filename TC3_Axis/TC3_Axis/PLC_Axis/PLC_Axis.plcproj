@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
+    <Folder Include="GVLs" />
     <Folder Include="TwinCAT Library Template" />
     <Folder Include="TwinCAT Library Template\VendorImplementation" />
     <Folder Include="TwinCAT Library Template\Part1Definition" />
