@@ -52,22 +52,20 @@ VAR
 		ActualTorque_X2_Slave 	: REAL;
 		ActualTorque_X3_Slave 	: REAL;
 					
-		Enable_Axis             : BOOL;
 		Done_X1                 : BOOL;
 		Done_Y                  : BOOL;	
+		Done_Z                  : BOOL;	
 		
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
 fbAxis_X1(Axis:=AXIS_REF_X1);
 fbAxis_Y(Axis:=AXIS_REF_Y);
 fbAxis_Z(Axis:=AXIS_REF_Z);
 fbAxis_X2_Slave(Axis:=AXIS_REF_X2_Slave);
 fbAxis_X3_Slave(Axis:=AXIS_REF_X3_Slave);
-
 
 Axis_X1 := fbAxis_X1;
 Axis_Y := fbAxis_Y;
@@ -92,7 +90,6 @@ ActualTorque_Y 			:= Axis_Y.ActualTorque;
 ActualTorque_Z 			:= Axis_Z.ActualTorque;
 ActualTorque_X2_Slave 	:= Axis_X2_Slave.ActualTorque;
 ActualTorque_X3_Slave 	:= Axis_X3_Slave.ActualTorque;
-
 
 CASE stateOOP OF
 	0: ;
@@ -143,55 +140,50 @@ CASE stateOOP OF
 
 	30:
 	// wait till movement is finished to 'forkIn'
-//		IF lastCommandX1.Done AND lastCommandY.Done THEN
-//			IF stepOn THEN
-			lastCommandZ := Axis_Z.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			IF lastCommandZ.Done THEN
-				stateOOP := stateOOP + 10;
-			END_IF
-//		END_IF
+		Done_Z S= Axis_Z.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		IF Done_Z THEN
+			stateOOP := stateOOP + 10;
+			Done_Z := FALSE;
+		END_IF
+		
 	40:
 	// lift pallet if forked in
-//		IF lastCommandZ.Done THEN
-			lastCommandY := Axis_Y.MoveRelative(Distance:=100, Velocity:=10, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			IF lastCommandY.Done THEN
-				stateOOP := stateOOP + 10;
-			END_IF
-//		END_IF
+	    IF NOT Done_X1 THEN
+			Done_X1 S= Axis_X1.MoveRelative(Distance:=100, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		END_IF
+		IF NOT Done_Y THEN
+			Done_Y  S= Axis_Y.MoveRelative(Distance:=100, Velocity:=10, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		END_IF
+		IF Done_X1 AND Done_Y THEN
+			stateOOP := stateOOP + 10;
+			Done_X1 := FALSE;
+			Done_Y  := FALSE;
+		END_IF
+		
 	50:
 	// fork out with pallet if forked in is done
-//		IF lastCommandY.Done THEN
-			lastCommandZ := Axis_Z.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			IF lastCommandZ.Done THEN
-				stateOOP := stateOOP + 10;
-				stepOn := FALSE;
-			END_IF
-//		END_IF
+		lastCommandZ := Axis_Z.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		IF lastCommandZ.Done THEN
+			stateOOP := stateOOP + 10;
+			stepOn := FALSE;
+		END_IF
+
 	60:
 	// move to delivery if fork out is done
-//		IF lastCommandZ.Done THEN
-			lastCommandX1 := Axis_X1.MoveAbsolute(Position:=20, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-//			lastCommandX1 := Axis_X1.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-//			Axis_X1.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-			lastCommandY := Axis_Y.MoveAbsolute(Position:=20, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-//			Axis_Y.MoveAbsolute(Position:=0, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);		
-//			lastCommandY := Axis_Y.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);			
-//			IF stepOn THEN
-			Done_X1	S= lastCommandX1.Done;
-			Done_Y  S= lastCommandY.Done;
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=20, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+		lastCommandY := Axis_Y.MoveAbsolute(Position:=20, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+
+		Done_X1	S= lastCommandX1.Done;
+		Done_Y  S= lastCommandY.Done;
 			
-				IF Done_X1 AND Done_Y THEN			
-					stateOOP := stateOOP + 10;
-					Done_X1 := FALSE;	
-	                Done_Y  := FALSE;
-				END_IF
-//			END_IF
+		IF Done_X1 AND Done_Y THEN			
+			stateOOP := stateOOP + 10;
+			Done_X1 := FALSE;	
+	        Done_Y  := FALSE;
+		END_IF
+
 	70:
-	// wait till finished
-//		IF lastCommandX1.Done AND lastCommandY.Done THEN
-//		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-//		lastCommandY := Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
-		
+	// wait till finished	
 		Done_X1 S= Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
 		Done_Y  S= Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
 		IF Done_X1 AND Done_Y THEN
