@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <Itf Name="itfAxis" Id="{61cb14c2-e05e-4264-a99b-c2e5bed78828}">
     <Declaration><![CDATA[INTERFACE itfAxis
 ]]></Declaration>
@@ -423,8 +423,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY PowerOn : BOOL
+      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{fc90beb8-74c7-4e90-a2a6-615166e290ce}">
         <Declaration><![CDATA[]]></Declaration>

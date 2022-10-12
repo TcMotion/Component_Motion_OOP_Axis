@@ -19,13 +19,10 @@ VAR
 	_fbAxisCommand   	: TcAxisCommand;
 
 //itfAxisCommand  : itfAxisCommand;
-_Command         : ST_Command;
+//_Command         : ST_Command;
 	
 
-fbpower 		: Tc2_MC2.MC_POWER;
-fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
-fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
-
+MC : ST_MC;	
 
 count_delete : INT;	
 END_VAR
@@ -592,16 +589,14 @@ VAR_INPUT
 END_VAR
 
 VAR
-	itfAxisCommand  : itfAxisCommand;
+	itfAxisCommand   : itfAxisCommand;
     _Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
-
-//_Command.Done := FALSE;
 	
-fbMoveAbsolute(
+MC.MoveAbsolute(
 	Axis:= Axis, 
 	Execute:= TRUE ,
 	Position:= Position, 
@@ -618,7 +613,7 @@ fbMoveAbsolute(
 	Error=> _Command.Error, 
 	ErrorID=> _Command.ErrorID_Udint);
 	
-fbMoveAbsolute(
+MC.MoveAbsolute(
 	Axis:= Axis, 
 	Execute:= FALSE);	
 
@@ -764,15 +759,13 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	itfAxisCommand  : itfAxisCommand;
+	itfAxisCommand   : itfAxisCommand;
 	_Command         : ST_Command;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
 
-//_Command.Done := FALSE;
-
-fbMoveRelative(
+MC.MoveRelative(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -789,7 +782,7 @@ fbMoveRelative(
 	Error=> _Command.Error, 
 	ErrorID=> _Command.ErrorID_Udint);
 	
-fbMoveRelative(
+MC.MoveRelative(
 	Axis:= Axis, 
 	Execute:= FALSE);		
 	
@@ -1010,7 +1003,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[
 itfCommand := _fbCommand;
 
-fbpower(
+MC.Power(
 	Axis:= Axis, 
 	Enable:= Enable, 
 	Enable_Positive:= EnablePositive, 
@@ -1031,24 +1024,21 @@ itfCommand.ErrorID_Udint :=	Command.ErrorID_Udint;
 	
 Power := itfCommand;
 
-_PowerOn:= fbpower.Enable;
+_PowerOn := MC.Power.Enable;
 
 
 ]]></ST>
       </Implementation>
     </Method>
     <Property Name="PowerOn" Id="{788c8284-a067-4b73-bd3e-a5329fda0703}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY PowerOn : BOOL
+      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{4debc66c-8c89-4b05-b196-32da99b6b0be}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[PowerOn := _PowerOn;
-
-count_delete  := count_delete + 1;]]></ST>
+          <ST><![CDATA[PowerOn := _PowerOn;]]></ST>
         </Implementation>
       </Get>
     </Property>

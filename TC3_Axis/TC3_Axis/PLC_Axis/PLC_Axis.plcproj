@@ -76,9 +76,6 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MOTION_STATUS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\ST_Command.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\GlobalConstants\Constants.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -105,6 +102,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Structs\MC_COMMAND_REF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_Command.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_MC.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_DMC_Tc3_Direct_Motion_Control.TcPOU">
