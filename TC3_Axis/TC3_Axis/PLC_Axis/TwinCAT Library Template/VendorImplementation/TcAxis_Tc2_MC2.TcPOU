@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
 //VAR_INPUT
@@ -29,7 +29,7 @@ fbpower 		: Tc2_MC2.MC_POWER;
 fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
 fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
 
-
+_bMoveAbsolute : BOOL;
 
 END_VAR
 ]]></Declaration>
@@ -597,8 +597,8 @@ END_VAR
 VAR
 //fbMoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;
 //_fbAxisCommand   	: TcAxisCommand;
-//	itfAxisCommand  : itfAxisCommand;
-//    Command         : ST_Command;
+	itfAxisCommand  : itfAxisCommand;
+    Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -607,11 +607,10 @@ END_VAR
 //fbMoveAbsolute(
 //	Axis:= Axis, 
 //	Execute:= FALSE);
-//Command.Done := FALSE;
 
 fbMoveAbsolute(
 	Axis:= Axis, 
-	Execute:= TRUE, 
+	Execute:= NOT Command.Done AND NOT Command.Busy , //TRUE,  //_bMoveAbsolute
 	Position:= Position, 
 	Velocity:= Velocity, 
 	Acceleration:= Acceleration, 
@@ -626,7 +625,9 @@ fbMoveAbsolute(
 	Error=> Command.Error, 
 	ErrorID=> Command.ErrorID_Udint);
 
-itfAxisCommand.Done  				:=	Command.Done;	
+itfAxisCommand.Done                 S=	Command.Done;
+itfAxisCommand.Done                 R=	Command.Busy OR Command.CommandAborted OR Command.Error;	
+//itfAxisCommand.Done                 :=  Command.Done;
 itfAxisCommand.Busy   				:=	Command.Busy;
 itfAxisCommand.Active 				:=	Command.Active;
 itfAxisCommand.CommandAborted		:=	Command.CommandAborted;
@@ -776,15 +777,15 @@ END_VAR
 VAR
 //	fbMoveRelative 	: Tc2_MC2.MC_MoveRelative;	
 //	_fbAxisCommand   	: TcAxisCommand;
-//	itfAxisCommand  : itfAxisCommand;
-//	Command         : ST_Command;
+	itfAxisCommand  : itfAxisCommand;
+	Command         : ST_Command;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
 
 fbMoveRelative(
 	Axis:= Axis, 
-	Execute:= TRUE, 
+	Execute:= NOT Command.Done AND NOT Command.Busy  , //TRUE, 
 	Distance:= Distance, 
 	Velocity:= Velocity, 
 	Acceleration:= Acceleration, 
@@ -799,7 +800,10 @@ fbMoveRelative(
 	Error=> Command.Error, 
 	ErrorID=> Command.ErrorID_Udint);
 
-itfAxisCommand.Done  				:=	Command.Done;	
+//itfAxisCommand.Done  				:=	Command.Done;	
+itfAxisCommand.Done                 S=	Command.Done;
+itfAxisCommand.Done                 R=	Command.Busy OR Command.CommandAborted OR Command.Error;	
+
 itfAxisCommand.Busy   				:=	Command.Busy;
 itfAxisCommand.Active 				:=	Command.Active;
 itfAxisCommand.CommandAborted		:=	Command.CommandAborted;
