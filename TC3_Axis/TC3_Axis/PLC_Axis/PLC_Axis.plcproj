@@ -86,6 +86,12 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxisCommand.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2_Camming.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2_FlyingSaw.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfCamTable.TcIO">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxisCommand.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2_Camming.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2_FlyingSaw.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcCamTable.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -134,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
-    <Folder Include="GVLs" />
     <Folder Include="TwinCAT Library Template" />
     <Folder Include="TwinCAT Library Template\VendorImplementation" />
     <Folder Include="TwinCAT Library Template\Part1Definition" />

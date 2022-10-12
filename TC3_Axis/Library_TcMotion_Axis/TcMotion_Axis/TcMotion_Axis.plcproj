@@ -44,84 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
-    <Folder Include="Component_Axis\Part1Definition" />
-    <Folder Include="Component_Axis\Part1Definition\Enums" />
-    <Folder Include="Component_Axis\Part1Definition\GlobalConstants" />
-    <Folder Include="Component_Axis\Part1Definition\Interfaces" />
-    <Folder Include="Component_Axis\Part1Definition\Structs" />
     <Folder Include="Project Information" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component_Axis\CamGearExample.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\LabelingExample.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\AXIS_DIRECTION.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\AXIS_STATUS.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_BUFFER_MODE.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_COMBINE_MODE.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_Direction.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_Error.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_ExecutionMode.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_Source.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_StartMode.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MC_SYNC_MODE.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Enums\MOTION_STATUS.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\GlobalConstants\Constants.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfAxis.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfAxisCommand.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfCamTable.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfCommand.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfContinuousAxisCommand.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Interfaces\itfSynchronizedAxisCommand.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Structs\MC_CAM_REF.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\Part1Definition\Structs\MC_COMMAND_REF.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component_Axis\WarehousingExample.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
       <SubType>Code</SubType>
       <SystemCall>true</SystemCall>
@@ -142,92 +68,6 @@
     <None Include="TcMotion_Axis.tmc">
       <SubType>Content</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <SubObject Include="itfAxis.AccelerationProfile" />
-    <SubObject Include="itfAxis.ActualPosition" />
-    <SubObject Include="itfAxis.ActualPosition.Get" />
-    <SubObject Include="itfAxis.ActualTorque" />
-    <SubObject Include="itfAxis.ActualTorque.Get" />
-    <SubObject Include="itfAxis.ActualVelocity" />
-    <SubObject Include="itfAxis.ActualVelocity.Get" />
-    <SubObject Include="itfAxis.AxisWarning" />
-    <SubObject Include="itfAxis.AxisWarning.Get" />
-    <SubObject Include="itfAxis.CamIn" />
-    <SubObject Include="itfAxis.CombineAxes" />
-    <SubObject Include="itfAxis.CommunicationReady" />
-    <SubObject Include="itfAxis.CommunicationReady.Get" />
-    <SubObject Include="itfAxis.Direction" />
-    <SubObject Include="itfAxis.Direction.Get" />
-    <SubObject Include="itfAxis.ErrorId" />
-    <SubObject Include="itfAxis.ErrorId.Get" />
-    <SubObject Include="itfAxis.GearIn" />
-    <SubObject Include="itfAxis.GearInPos" />
-    <SubObject Include="itfAxis.Halt" />
-    <SubObject Include="itfAxis.HaltSuperimposed" />
-    <SubObject Include="itfAxis.Home" />
-    <SubObject Include="itfAxis.HomeAbsSwitch" />
-    <SubObject Include="itfAxis.HomeAbsSwitch.Get" />
-    <SubObject Include="itfAxis.IsHomed" />
-    <SubObject Include="itfAxis.IsHomed.Get" />
-    <SubObject Include="itfAxis.LimitSwitchNegative" />
-    <SubObject Include="itfAxis.LimitSwitchNegative.Get" />
-    <SubObject Include="itfAxis.LimitSwitchPositive" />
-    <SubObject Include="itfAxis.LimitSwitchPositive.Get" />
-    <SubObject Include="itfAxis.MotionStatus" />
-    <SubObject Include="itfAxis.MotionStatus.Get" />
-    <SubObject Include="itfAxis.MoveAbsolute" />
-    <SubObject Include="itfAxis.MoveAdditive" />
-    <SubObject Include="itfAxis.MoveContinuousAbsolute" />
-    <SubObject Include="itfAxis.MoveContinuousRelative" />
-    <SubObject Include="itfAxis.MoveRelative" />
-    <SubObject Include="itfAxis.MoveSuperimposed" />
-    <SubObject Include="itfAxis.MoveVelocity" />
-    <SubObject Include="itfAxis.PhasingAbsolute" />
-    <SubObject Include="itfAxis.PhasingRelative" />
-    <SubObject Include="itfAxis.PositionProfile" />
-    <SubObject Include="itfAxis.Power" />
-    <SubObject Include="itfAxis.PowerOn" />
-    <SubObject Include="itfAxis.PowerOn.Get" />
-    <SubObject Include="itfAxis.ReadBoolParameter" />
-    <SubObject Include="itfAxis.ReadParameter" />
-    <SubObject Include="itfAxis.ReadyForPowerOn" />
-    <SubObject Include="itfAxis.ReadyForPowerOn.Get" />
-    <SubObject Include="itfAxis.Release" />
-    <SubObject Include="itfAxis.Reset" />
-    <SubObject Include="itfAxis.SetOverride" />
-    <SubObject Include="itfAxis.SetPosition" />
-    <SubObject Include="itfAxis.Simulation" />
-    <SubObject Include="itfAxis.Simulation.Get" />
-    <SubObject Include="itfAxis.Status" />
-    <SubObject Include="itfAxis.Status.Get" />
-    <SubObject Include="itfAxis.Stop" />
-    <SubObject Include="itfAxis.TorqueControl" />
-    <SubObject Include="itfAxis.VelocityProfile" />
-    <SubObject Include="itfAxis.WriteBoolParameter" />
-    <SubObject Include="itfAxis.WriteParameter" />
-    <SubObject Include="itfAxisCommand.Update" />
-    <SubObject Include="itfCamTable.Select" />
-    <SubObject Include="itfCommand.Abort" />
-    <SubObject Include="itfCommand.Active" />
-    <SubObject Include="itfCommand.Active.Get" />
-    <SubObject Include="itfCommand.Busy" />
-    <SubObject Include="itfCommand.Busy.Get" />
-    <SubObject Include="itfCommand.Command" />
-    <SubObject Include="itfCommand.Command.Get" />
-    <SubObject Include="itfCommand.CommandAborted" />
-    <SubObject Include="itfCommand.CommandAborted.Get" />
-    <SubObject Include="itfCommand.Done" />
-    <SubObject Include="itfCommand.Done.Get" />
-    <SubObject Include="itfCommand.Error" />
-    <SubObject Include="itfCommand.Error.Get" />
-    <SubObject Include="itfCommand.ErrorId" />
-    <SubObject Include="itfCommand.ErrorId.Get" />
-    <SubObject Include="itfCommand.Wait" />
-    <SubObject Include="itfContinuousAxisCommand.InVelocity" />
-    <SubObject Include="itfContinuousAxisCommand.InVelocity.Get" />
-    <SubObject Include="itfSynchronizedAxisCommand.InSync" />
-    <SubObject Include="itfSynchronizedAxisCommand.InSync.Get" />
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

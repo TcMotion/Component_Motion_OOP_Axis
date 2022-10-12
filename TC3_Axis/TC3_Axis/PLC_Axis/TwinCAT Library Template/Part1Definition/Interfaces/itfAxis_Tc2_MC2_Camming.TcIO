@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfAxis_Tc2_MC2_Camming" Id="{72492760-3ab6-4bbc-84e1-1034d9b6c83f}">
+    <Declaration><![CDATA[INTERFACE itfAxis_Tc2_MC2_Camming
+]]></Declaration>
+    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}">
+      <Declaration><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5050 TC3 NC Camming !!!!!!*)
+
+{warning 'add method implementation '}
+METHOD CamIn 			: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;	
+	MasterOffset		: REAL;
+	SlaveOffset			: REAL;
+	MasterScaling		: REAL;
+	SlaveScaling		: REAL;
+	MasterStartDistance	: REAL;
+	MasterSyncPosition	: REAL;
+	StartMode			: MC_StartMode;
+	MasterValueSource	: MC_Source;
+//	CamTable			: itfCamTable;
+	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

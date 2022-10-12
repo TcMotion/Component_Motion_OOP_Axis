@@ -123,57 +123,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="CamIn" Id="{45c4d1ec-c9c7-4748-9af2-de5fe6aa5021}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD CamIn 			: itfSynchronizedAxisCommand
-VAR_INPUT
-//	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;	
-	MasterOffset		: REAL;
-	SlaveOffset			: REAL;
-	MasterScaling		: REAL;
-	SlaveScaling		: REAL;
-	MasterStartDistance	: REAL;
-	MasterSyncPosition	: REAL;
-	StartMode			: MC_StartMode;
-	MasterValueSource	: MC_Source;
-//	CamTable			: itfCamTable;
-	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-
-VAR
-	fbCamIn			 	: Tc2_MC2_Camming.MC_CamIn;	
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[(*
-!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
-!!!! TF5050 TC3 NC Camming !!!!!!*)
-
-fbCamIn(
-	Master:= Master, 
-	Slave:= Slave, 
-	Execute:= TRUE, 
-	MasterOffset:= MasterOffset, 
-	SlaveOffset:= SlaveOffset, 
-	MasterScaling:= MasterScaling, 
-	SlaveScaling:= SlaveScaling, 
-	StartMode:= StartMode, 
-	CamTableID:= CamTableID, //CamTable, 
-	BufferMode:= , //BufferMode, 
-	Options:= , 
-	InSync=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
-
-count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="CombineAxes" Id="{86b3b20f-3c82-4776-952d-655701191d61}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD CombineAxes 			: itfSynchronizedAxisCommand
@@ -339,62 +288,6 @@ fbGearIn(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
-
-count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GearInPos" Id="{46b7aadc-117d-466b-ae3b-6f63b0937d8d}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD GearInPos 		: itfSynchronizedAxisCommand
-VAR_INPUT
-//	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;		
-	RatioNumerator		: REAL;
-	RatioDenominator	: REAL;
-	MasterValueSource	: MC_SOURCE;
-	MasterSyncPosition	: REAL;
-	SlaveSyncPosition	: REAL;
-	SyncMode			: MC_SYNC_MODE;
-	MasterStartDistance	: REAL;
-	Velocity			: REAL;
-	Acceleration		: REAL;
-	Deceleration		: REAL;
-	Jerk				: REAL;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-VAR
-	fbGearInPos			: Tc2_MC2_FlyingSaw.MC_GearInPos;	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[(*
-!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
-!!!! TF5055 TC3 NC Flying Saw !!!!!!*)
-
-fbGearInPos(
-	Master:= Master, 
-	Slave:= Slave, 
-	Execute:= , 
-	RatioNumerator:= , 
-	RatioDenominator:= , 
-	MasterSyncPosition:= , 
-	SlaveSyncPosition:= , 
-	SyncMode:= , 
-	MasterStartDistance:= , 
-	Velocity:= , 
-	Acceleration:= , 
-	Deceleration:= , 
-	Jerk:= , 
-	BufferMode:= , 
-	Options:= , 
-	StartSync=> , 
-	InSync=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
-
 
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>

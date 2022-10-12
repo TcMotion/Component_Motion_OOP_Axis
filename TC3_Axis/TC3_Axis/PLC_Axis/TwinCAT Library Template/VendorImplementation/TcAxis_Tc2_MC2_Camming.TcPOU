@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TcAxis_Tc2_MC2_Camming" Id="{dfa815c5-8a21-40f4-8b32-84f1ab361648}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2_Camming EXTENDS TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc2_MC2_Camming
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CamIn" Id="{b6930e2a-eb2e-455a-99ba-8a81a8331f07}">
+      <Declaration><![CDATA[{error 'Agregar implementación de método o eliminar método para utilizar la implementación básica.'}
+(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5050 TC3 NC Camming !!!!!!*)
+METHOD CamIn : itfSynchronizedAxisCommand
+VAR_INPUT
+	(*	Master				: itfAxis;*)
+	Master	: Tc2_MC2.AXIS_REF;
+	Slave	: Tc2_MC2.AXIS_REF;
+	MasterOffset	: REAL;
+	SlaveOffset	: REAL;
+	MasterScaling	: REAL;
+	SlaveScaling	: REAL;
+	MasterStartDistance	: REAL;
+	MasterSyncPosition	: REAL;
+	StartMode	: MC_StartMode;
+	MasterValueSource	: MC_Source;
+	(*	CamTable			: itfCamTable;*)
+	CamTableID	: Tc2_MC2_Camming.MC_CAM_ID;
+	BufferMode	: MC_BUFFER_MODE;
+END_VAR
+
+VAR
+	fbCamIn			 	: Tc2_MC2_Camming.MC_CamIn;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5050 TC3 NC Camming !!!!!!*)
+
+fbCamIn(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	MasterOffset:= MasterOffset, 
+	SlaveOffset:= SlaveOffset, 
+	MasterScaling:= MasterScaling, 
+	SlaveScaling:= SlaveScaling, 
+	StartMode:= StartMode, 
+	CamTableID:= CamTableID, //CamTable, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	InSync=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

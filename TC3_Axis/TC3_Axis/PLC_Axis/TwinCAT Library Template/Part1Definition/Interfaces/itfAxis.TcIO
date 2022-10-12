@@ -51,31 +51,6 @@ PROPERTY AxisWarning : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[(*
-!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
-!!!! TF5050 TC3 NC Camming !!!!!!*)
-
-{warning 'add method implementation '}
-METHOD CamIn 			: itfSynchronizedAxisCommand
-VAR_INPUT
-//	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;	
-	MasterOffset		: REAL;
-	SlaveOffset			: REAL;
-	MasterScaling		: REAL;
-	SlaveScaling		: REAL;
-	MasterStartDistance	: REAL;
-	MasterSyncPosition	: REAL;
-	StartMode			: MC_StartMode;
-	MasterValueSource	: MC_Source;
-//	CamTable			: itfCamTable;
-	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="CombineAxes" Id="{c33a9fa2-effc-4321-ac46-ce9c88fb47c7}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD CombineAxes 			: itfSynchronizedAxisCommand
@@ -157,32 +132,6 @@ END_VAR
 VAR_IN_OUT 
 	Slave				: Tc2_MC2.AXIS_REF;	
 END_VAR]]></Declaration>
-    </Method>
-    <Method Name="GearInPos" Id="{da47bb20-130a-45d1-ab30-cb5184d13e0b}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[(*
-!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
-!!!! TF5055 TC3 NC Flying Saw !!!!!!*)
-
-{warning 'add method implementation '}
-METHOD GearInPos 		: itfSynchronizedAxisCommand
-VAR_INPUT
-//	Master				: itfAxis;
-	Master				: Tc2_MC2.AXIS_REF;
-	Slave				: Tc2_MC2.AXIS_REF;			
-	RatioNumerator		: REAL;
-	RatioDenominator	: REAL;
-	MasterValueSource	: MC_SOURCE;
-	MasterSyncPosition	: REAL;
-	SlaveSyncPosition	: REAL;
-	SyncMode			: MC_SYNC_MODE;
-	MasterStartDistance	: REAL;
-	Velocity			: REAL;
-	Acceleration		: REAL;
-	Deceleration		: REAL;
-	Jerk				: REAL;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-]]></Declaration>
     </Method>
     <Method Name="Halt" Id="{05feb609-2f44-4cb4-b018-7e157ba0b718}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
