@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_Command" Id="{271c0ece-e0ca-4b2b-a144-d7bcd5334e95}">
+    <Declaration><![CDATA[TYPE ST_Command :
+STRUCT
+	Active 			: BOOL;
+	Busy 			: BOOL;
+	Command 		: MC_COMMAND_REF;
+	CommandAborted 	: BOOL;
+	Done           	: BOOL;
+	Error    		: BOOL;
+	ErrorId        	: MC_Error;
+	ErrorID_Udint	: MC_ErrorID_Udint;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

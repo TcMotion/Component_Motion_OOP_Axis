@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfCommand" Id="{5250b5ec-8adf-4a00-a8b0-e8cc89f6a9c6}">
+    <Declaration><![CDATA[INTERFACE itfCommand
+]]></Declaration>
+    <Method Name="Abort" Id="{8879ef62-d1fc-4963-9a0b-5d65ca893dfc}">
+      <Declaration><![CDATA[METHOD Abort : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Active" Id="{28d3f1ac-2954-4588-88c8-61f6009efa8a}">
+      <Declaration><![CDATA[PROPERTY Active : BOOL]]></Declaration>
+      <Get Name="Get" Id="{806e3e01-33a9-40fe-9670-357da9401fc9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{46ee662c-65d1-446f-9d57-afbc25c43d46}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Busy" Id="{2d01e143-2399-43b7-863d-4b77823a55ba}">
+      <Declaration><![CDATA[PROPERTY Busy : BOOL]]></Declaration>
+      <Get Name="Get" Id="{d6976065-c885-4cbb-b8c9-c2875a8cba7b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{eb38f715-f05d-440e-aa70-09f4173b521e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Command" Id="{b2c9129f-feea-4473-85af-65f70883686d}">
+      <Declaration><![CDATA[PROPERTY Command : MC_COMMAND_REF]]></Declaration>
+      <Get Name="Get" Id="{d6ee44cb-7fe5-4561-a37e-94e880a17bd7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{d6311410-f905-4229-b495-2ede7327b20b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="CommandAborted" Id="{91876b81-59bc-4e52-aebe-267a3038d803}">
+      <Declaration><![CDATA[PROPERTY CommandAborted : BOOL]]></Declaration>
+      <Get Name="Get" Id="{75eb28ad-b2ef-4c04-8ca2-499550f652ca}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{0b6776f9-bc70-462c-9f3a-b91e57af12ef}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Done" Id="{ec239c16-214a-498b-be65-26f3b537b8ab}">
+      <Declaration><![CDATA[PROPERTY Done : BOOL]]></Declaration>
+      <Get Name="Get" Id="{20fe5caa-4d4d-4baf-a9e9-35dcda8e4892}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{f8495318-8cf1-4974-a3d2-1a67d942a25d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Error" Id="{37174fd7-cfb9-413b-8287-816c0a92597d}">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{c9d4009b-62ee-42bf-856c-721709d018f2}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{2252b00b-101e-49a2-839e-b45750b7874e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="ErrorId" Id="{0d123eec-51a7-4234-bde4-c57b670a2bb8}">
+      <Declaration><![CDATA[PROPERTY ErrorId : MC_Error]]></Declaration>
+      <Get Name="Get" Id="{675f6d49-1f8f-40e0-a984-498b0cc48137}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{400d7b0d-76a7-4efd-b755-df4b05d6a3d8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="ErrorID_Udint" Id="{aee349c9-8e08-42b4-a06e-76e3836bdd5a}">
+      <Declaration><![CDATA[PROPERTY ErrorID_Udint : MC_ErrorID_Udint]]></Declaration>
+      <Get Name="Get" Id="{c94dcbf0-2042-45a2-b517-6c19825cb383}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{619ef6d4-d46d-48e9-b1e6-47ee389854a8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="Wait" Id="{7b416bd3-0e82-47f6-ac03-447772e7f86d}">
+      <Declaration><![CDATA[METHOD Wait 		: MC_Error // This method only makes sense in the IEC 61499 environment
+VAR_INPUT
+	Timeout		 	: TIME;
+	AbortOnTimeout 	: BOOL; 
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

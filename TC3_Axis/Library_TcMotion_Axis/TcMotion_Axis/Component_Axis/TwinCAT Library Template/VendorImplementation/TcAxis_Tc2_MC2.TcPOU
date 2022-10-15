@@ -1,0 +1,1293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TcAxis_Tc2_MC2" Id="{76a8ae72-076f-4496-9b29-241be281aeef}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
+//VAR_INPUT
+//	Axis 				: Tc2_MC2.AXIS_REF;
+//END_VAR
+//VAR_OUTPUT
+//END_VAR
+VAR_IN_OUT 
+	Axis 				: Tc2_MC2.AXIS_REF;
+END_VAR
+VAR	
+	_PowerOn : BOOL;
+//	itfCommand      : itfCommand;
+
+//	_fbCommand       	: TcCommand;
+	
+	_fbAxisCommand   	: TcAxisCommand;
+
+//itfAxisCommand  : itfAxisCommand;
+//_Command         : ST_Command;
+	
+
+MC : ST_MC;	
+
+count_delete : INT;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ ACT_Cyclic_Update();
+ ]]></ST>
+    </Implementation>
+    <Folder Name="ActualValues" Id="{bf6621de-c177-4a09-bb79-b99585bfe002}" />
+    <Folder Name="Control" Id="{06794aac-8420-453e-b864-5fd464d223a3}" />
+    <Folder Name="MultiAxesMotion" Id="{8ee0f051-4aa2-47ec-8474-34dfb6376ad5}" />
+    <Folder Name="SingleAxisMotion" Id="{67d80e93-bd2b-4731-8f86-48306d12ebb9}" />
+    <Folder Name="Status" Id="{5753597b-783e-4c50-871e-d7ef8be07716}" />
+    <Method Name="AccelerationProfile" Id="{4dacecfe-85bf-4b10-bc14-92e20afa8f58}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD AccelerationProfile 	: itfCommand
+VAR_INPUT
+	TimeScale				: REAL;
+	AccelerationScale		: REAL;
+	Offset					: REAL;
+	BufferMode				: MC_BUFFER_MODE;
+END_VAR
+VAR
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Action Name="ACT_Cyclic_Update" Id="{74f012e3-83c2-4fb4-8627-6e673dff629c}">
+      <Implementation>
+        <ST><![CDATA[//update local variables from hardware
+Axis.ReadStatus();]]></ST>
+      </Implementation>
+    </Action>
+    <Property Name="ActualPosition" Id="{ce90fe9b-7926-4796-94a5-247f48be0b37}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualPosition : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{688245a9-85c6-4eb7-ac2b-209f92907775}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[//Actual Position
+IF Axis.Status.OpMode.Modulo THEN
+    ActualPosition := Axis.NcToPlc.ModuloActPos;
+ELSE
+    ActualPosition := Axis.NcToPlc.ActPos;
+END_IF
+
+count_delete  := count_delete + 1;
+
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualTorque" Id="{3161c56d-d5bf-4dfa-beee-fc6620d0359e}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualTorque : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{9f1dd932-3e81-4eae-abaf-a1fde1f6b629}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualTorque := Axis.NcToPlc.ActTorque;
+
+count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{8a155a80-3520-4ca5-981f-cd7174b79687}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualVelocity : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{ba709307-5dd7-4f71-84ff-628090546b4f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[//Actual Velocity
+ActualVelocity := Axis.NcToPlc.ActVelo;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="AxisWarning" Id="{31f1e863-6f67-4022-b32e-32f9ca086de5}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY AxisWarning : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{14bd722c-68aa-486f-972e-82a563643af4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="CombineAxes" Id="{50168f5b-e34a-4df9-87f1-62a5d8e3462b}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD CombineAxes 			: itfSynchronizedAxisCommand
+VAR_INPUT
+	Master1					: itfAxis;
+	Master2					: itfAxis;
+	CombineMode				: MC_COMBINE_MODE;
+	GearRatioNumeratorM1	: INT;
+	GearRatioDenominatorM1	: INT;
+	GearRatioNumeratorM2	: INT;
+	GearRatioDenominatorM2	: INT;
+	MasterValueSourceM1		: MC_SOURCE;
+	MasterValueSourceM2		: MC_SOURCE;
+	BufferMode				: MC_BUFFER_MODE;
+END_VAR
+VAR
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+//fbGearIn(
+//	Master:= , 
+//	Slave:= , 
+//	Execute:= , 
+//	RatioNumerator:= , 
+//	RatioDenominator:= , 
+//	Acceleration:= , 
+//	Deceleration:= , 
+//	Jerk:= , 
+//	BufferMode:= , 
+//	Options:= , 
+//	InGear=> , 
+//	Busy=> , 
+//	Active=> , 
+//	CommandAborted=> , 
+//	Error=> , 
+//	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="CommunicationReady" Id="{b9b88327-b9c9-4c6c-9533-0adb0bceef7f}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY CommunicationReady : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4b8ad6a0-dd45-47f6-8829-a230460bc599}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Direction" Id="{002b9da8-2425-454d-bd2e-09d1137caddf}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Direction : AXIS_DIRECTION
+]]></Declaration>
+      <Get Name="Get" Id="{b9a24d94-b730-4a83-8b60-f9c50057a083}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{73a52d1b-1e51-40fb-a51b-257dd2c0e6bc}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e475d9e9-5544-4ef3-a088-7056b6e7a947}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error :=  Axis.Status.Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{336b9ee2-5870-458b-ab43-2358133f2db6}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ErrorId : WORD
+]]></Declaration>
+      <Get Name="Get" Id="{1b91ed8e-be41-4074-a87a-5eca4ca7156f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+//ErrorId := Axis.Status.ErrorID;
+
+count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ErrorId_Udint_Status" Id="{aff65bca-e6be-4a4e-9502-ac3aaf012da9}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorId_Udint_Status : UDINT]]></Declaration>
+      <Get Name="Get" Id="{957ac01e-aa8a-4bf3-b139-522f00534493}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId_Udint_Status := Axis.Status.ErrorID;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Geared" Id="{60eeb550-88d6-44fc-a4ce-a4ebf0426c35}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
+      <Get Name="Get" Id="{9708583b-f27e-4c00-b076-0abc7ba2b247}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Geared :=  Axis.Status.Coupled;
+//Axis.NcToPlc.CoupleState
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="GearIn" Id="{dae0b528-9c20-4988-af96-1e106bfbdd90}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD GearIn 			: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+//	Master				: Tc2_MC2.AXIS_REF;
+//	Slave				: Tc2_MC2.AXIS_REF;		
+//	Ratio				: REAL;
+//	MasterValueSource	: INT;
+	RatioNumerator		: LREAL;
+	RatioDenominator	: UINT;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+//	BufferMode			: Tc2_MC2.MC_BufferMode;
+//	Options             : Tc2_MC2.ST_GearInOptions;
+END_VAR
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
+END_VAR
+VAR
+	fbGearIn			: Tc2_MC2.MC_GearIn;	
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[	
+fbGearIn(
+	Master:= Axis, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	RatioNumerator:= RatioNumerator, 
+	RatioDenominator:= RatioDenominator, 
+	Acceleration:= ,//Acceleration, 
+	Deceleration:= ,//Deceleration, 
+	Jerk:= ,//Jerk, 
+	BufferMode:= ,//BufferMode,//BufferMode, 
+	Options:= ,//Options, 
+	InGear=> ,//Geared , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Halt" Id="{50026dde-39e9-46e4-8ec5-e7ffc24f5490}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Halt 		: itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbHalt			: Tc2_MC2.MC_HALT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbHalt(
+	Axis:= Axis, 
+	Execute:= , 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HaltSuperimposed" Id="{d3fbab16-55ad-42ca-ba19-e286005a1273}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD HaltSuperimposed : itfAxisCommand
+VAR_INPUT
+	Deceleration		: REAL;
+	Jerk				: REAL;
+END_VAR
+VAR
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Home" Id="{e1c5072b-71e1-4265-9883-bc919d0cf4bc}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Home 		: itfAxisCommand
+VAR_INPUT
+	Position		: REAL;
+	Velocity		: REAL;
+	EndVelocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	HomingMode		: INT;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbHome			: Tc2_MC2.MC_HOME;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbHome(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	HomingMode:= HomingMode, 
+	BufferMode:= ,//BufferMode , 
+	Options:= , 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="HomeAbsSwitch" Id="{a68913cd-dfbf-436b-9d68-62d4d2e497a4}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY HomeAbsSwitch : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1c7c8d5d-8300-4909-92e1-d4812fe5370d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsHomed" Id="{4b06cf20-82c3-429d-8ca0-e9e5bd10212d}" FolderPath="Status\">
+      <Declaration><![CDATA[
+PROPERTY IsHomed : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{b206e76e-cdd4-40a2-92e5-0af87dfc7dcb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+IsHomed := Axis.Status.Homed;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Jog" Id="{f69b4fbe-7ae6-45c8-b3d2-be0280276836}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Jog 			: itfAxisCommand
+VAR_INPUT
+    JogForward 		: BOOL;
+    JogBackwards 	: BOOL;
+    Mode     		: Tc2_MC2.E_JogMode;
+    Position        : LREAL;
+    Velocity        : LREAL;
+    Acceleration 	: LREAL;
+    Deceleration 	: LREAL;
+    Jerk     		: LREAL;
+END_VAR
+VAR
+	fbJog			: Tc2_MC2.MC_JOG;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="LimitSwitchNegative" Id="{5118ee6b-9bb3-48a8-9e5c-eb2faece13ee}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY LimitSwitchNegative : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{64a33452-e485-498e-bdc7-571be2c8fef6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+LimitSwitchNegative := Axis.Status.SoftLimitMinExceeded;
+
+count_delete  := count_delete + 1;
+
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchPositive" Id="{21e02608-0431-424c-8142-5213e37a2e79}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY LimitSwitchPositive : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{9c3e8a2c-929b-4e9a-9a09-c76d4100a095}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+LimitSwitchPositive := Axis.Status.SoftLimitMaxExceeded;
+
+count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MotionStatus" Id="{7a29f048-a479-4128-930b-19b4e2153aa0}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY MotionStatus : MOTION_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{d2b4cf34-057a-4bc2-847f-ac3551c0cc3c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="MoveAbsolute" Id="{732e2c19-39e3-4091-a514-ed9e521e5c86}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveAbsolute : itfAxisCommand
+VAR_INPUT
+	Position		: REAL;
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+
+VAR
+	itfAxisCommand   : itfAxisCommand;
+    _Command         : ST_Command;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
+	
+MC.MoveAbsolute(
+	Axis:= Axis, 
+	Execute:= TRUE ,
+	Position:= Position, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= BufferMode,//BufferMode, 
+	Options:= , 
+	Done=> _Command.Done, 
+	Busy=> _Command.Busy, 
+	Active=>_Command.Active, 
+	CommandAborted=> _Command.CommandAborted, 
+	Error=> _Command.Error, 
+	ErrorID=> _Command.ErrorID_Udint);
+	
+MC.MoveAbsolute(
+	Axis:= Axis, 
+	Execute:= FALSE);	
+
+itfAxisCommand.Done 				:=  _Command.Done AND ActualPosition = Position;             
+itfAxisCommand.Busy   				:=	_Command.Busy;
+itfAxisCommand.Active 				:=	_Command.Active;
+itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
+itfAxisCommand.Error 				:=	_Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+MoveAbsolute := itfAxisCommand;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveAdditive" Id="{95493b6e-e904-4768-ac2d-1aebb5470971}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveAdditive : itfAxisCommand
+VAR_INPUT
+	Distance		: REAL;
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbMoveAdditive 	: Tc2_MC2.MC_MoveAdditive;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbMoveAdditive(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= , //BufferMode, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveContinuousAbsolute" Id="{4e3eb752-1753-4b3e-8afd-618bec2332e9}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveContinuousAbsolute 	: itfContinuousAxisCommand
+VAR_INPUT
+	Position					: REAL;
+	EndVelocity					: REAL;
+	Velocity					: REAL;
+	Acceleration				: REAL;
+	Deceleration				: REAL;
+	Jerk						: REAL;
+	Direction					: MC_DIRECTION;
+	BufferMode					: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbMoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbMoveContinuousAbsolute(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	Velocity:= Velocity, 
+	EndVelocity:= EndVelocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	InEndVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveContinuousRelative" Id="{7fc6876b-4c11-427a-ba6b-20c53077c11e}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveContinuousRelative 	: itfContinuousAxisCommand
+VAR_INPUT
+	Distance					: REAL;
+	EndVelocity					: REAL;
+	Velocity					: REAL;
+	Acceleration				: REAL;
+	Deceleration				: REAL;
+	Jerk						: REAL;
+	Direction					: MC_DIRECTION;
+	BufferMode					: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbMoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbMoveContinuousRelative(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	EndVelocity:= EndVelocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	InEndVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveRelative" Id="{1e1c14dc-deee-4d2c-9844-fe8ea1230541}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveRelative 	: itfAxisCommand
+VAR_INPUT
+	Distance			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	itfAxisCommand   : itfAxisCommand;
+	_Command         : ST_Command;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
+
+MC.MoveRelative(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= ,//BufferMode, 
+	Options:= , 
+	Done=> _Command.Done, 
+	Busy=> _Command.Busy, 
+	Active=> _Command.Active, 
+	CommandAborted=> _Command.CommandAborted, 
+	Error=> _Command.Error, 
+	ErrorID=> _Command.ErrorID_Udint);
+	
+MC.MoveRelative(
+	Axis:= Axis, 
+	Execute:= FALSE);		
+	
+itfAxisCommand.Done 				:=  _Command.Done; //AND ActualPosition = ActualPosition + Distance;             
+itfAxisCommand.Busy   				:=	_Command.Busy;
+itfAxisCommand.Active 				:=	_Command.Active;
+itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
+itfAxisCommand.Error 				:=	_Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+MoveRelative := itfAxisCommand;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveSuperimposed" Id="{d6e10484-4114-4dd6-85bb-b697932df920}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveSuperimposed 	: itfAxisCommand
+VAR_INPUT
+	Distance				: REAL;
+	VelocityDiff			: REAL;
+	Acceleration			: REAL;
+	Deceleration			: REAL;
+	Jerk					: REAL;
+END_VAR
+VAR
+	fbMoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbMoveSuperimposed(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Mode:= , 
+	Distance:= , 
+	VelocityDiff:= VelocityDiff, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	VelocityProcess:= , 
+	Length:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	Warning=> , 
+	WarningId=> , 
+	ActualVelocityDiff=> , 
+	ActualDistance=> , 
+	ActualLength=> , 
+	ActualAcceleration=> , 
+	ActualDeceleration=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveVelocity" Id="{a04c8e3e-92d7-4d82-a167-f2bb4311a11d}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveVelocity 	: itfContinuousAxisCommand
+VAR_INPUT
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	Direction			: MC_Direction;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbMoveVelocity	 	: Tc2_MC2.MC_MoveVelocity;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbMoveVelocity(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Direction:= Direction, 
+	BufferMode:= , //BufferMode
+	Options:= , 
+	InVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PhasingAbsolute" Id="{efd5e080-8463-46ae-8252-bffd419aa249}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+	PhaseShift			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbPhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbPhasingAbsolute(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= TRUE, 
+	ContinuousUpdate:= , 
+	PhaseShift:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	AbsolutePhaseShift=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PhasingRelative" Id="{e1ea9137-a3f9-43d5-bfaf-4ada24cf3e1c}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PhasingRelative 	: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+	PhaseShift			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbPhasingRelative	: Tc2_MC2.MC_PhasingRelative;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+fbPhasingRelative(
+	Master:= Master, 
+	Slave:= Slave, 
+	Execute:= , 
+	ContinuousUpdate:= , 
+	PhaseShift:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> , 
+	CoveredPhaseShift=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PositionProfile" Id="{7f7d4c65-b1d6-4208-85e6-b67491fa10c5}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PositionProfile 	: itfCommand
+VAR_INPUT
+	TimeScale			: REAL;
+	PositionScale		: REAL;
+	Offset				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+//	fbPositionProfile	 	: Tc2_MC2.;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+
+
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Power" Id="{5839b036-8df6-4678-82f8-106dbd1c8733}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Power 		: itfCommand
+VAR_INPUT
+	Enable			: BOOL;
+	EnablePositive	: BOOL;
+	EnableNegative	: BOOL;
+END_VAR
+VAR
+	_fbCommand       	: TcCommand;
+	itfCommand      : itfCommand;
+	Command         : ST_Command;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+itfCommand := _fbCommand;
+
+MC.Power(
+	Axis:= Axis, 
+	Enable:= Enable, 
+	Enable_Positive:= EnablePositive, 
+	Enable_Negative:= EnableNegative, 
+	Override:= 100, 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> Command.Busy,
+	Active=> Command.Active,
+	Error=> Command.Error,
+	ErrorID=> Command.ErrorID_Udint);
+		
+itfCommand.Busy   		:=	Command.Busy;
+itfCommand.Active 		:=	Command.Active;
+itfCommand.Error 		:=	Command.Error;
+itfCommand.ErrorID_Udint :=	Command.ErrorID_Udint;
+	
+Power := itfCommand;
+
+_PowerOn := MC.Power.Enable;
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="PowerOn" Id="{7c3ae3b9-b601-4acd-9e07-739d7dadbed8}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{bb471086-d48f-4f44-bedc-ad7aa1b0be16}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PowerOn := _PowerOn;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ReadBoolParameter" Id="{28685725-8df5-490a-884f-742b87a6f66a}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD ReadBoolParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber			: INT;
+END_VAR
+VAR_OUTPUT
+	Value					: BOOL;
+END_VAR
+VAR
+	fbReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbReadBoolParameter(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	ReadMode:= , 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Value=> Value);
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadParameter" Id="{9ce4e995-1307-40b0-b8a5-d8612f985c2e}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD ReadParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber		: INT;
+END_VAR
+VAR_OUTPUT
+	Value				: REAL;
+END_VAR
+VAR
+	fbReadParameter		: Tc2_MC2.MC_ReadParameter;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbReadParameter(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	ReadMode:= , 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Value=> Value);
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ReadyForPowerOn" Id="{9e707521-a62a-43e5-a7f9-a3772d54989a}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ReadyForPowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{ea5455c1-bd39-45e2-b531-8956373f7e40}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Release" Id="{39dee455-3460-41e5-9ec9-ae548c94bafa}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Release : MC_Error
+
+VAR
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{cb5b7bbc-d47f-4b28-b950-8c8b3bec7720}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Reset 		: itfCommand
+
+VAR
+	fbReset 		: Tc2_MC2.MC_RESET;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbReset(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetOverride" Id="{d17a071f-3c10-44fb-a522-1c221ddfbb46}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SetOverride 	: MC_Error
+VAR_INPUT
+	VelFactor		: REAL;
+	AccFactor		: REAL;
+	JerkFactor		: REAL;
+END_VAR
+
+VAR
+	fbSetOverride 	: Tc2_MC2.MC_SetOverride;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbSetOverride(
+	Axis:= Axis, 
+	Enable:= TRUE, 
+	VelFactor:= VelFactor, 
+	AccFactor:= AccFactor, 
+	JerkFactor:= JerkFactor, 
+	Enabled=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetPosition" Id="{fa4be7e9-5db6-4aec-a372-e1e1afb830f0}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SetPosition 	: itfCommand
+VAR_INPUT
+	Position		: REAL;
+	Relative		: BOOL; (* RELATIVE=True, ABSOLUTE=False (Default)*)
+//	ExecutionMode	: MC_ExecutionMode;
+    ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
+END_VAR
+
+VAR
+	fbSetPosition 	: Tc2_MC2.MC_SetPosition;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbSetPosition(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= Position, 
+	Mode:= Relative, 
+	Options:= ExecutionMode, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;
+
+ ]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Simulation" Id="{889e46b8-805a-4a00-82d9-8657f3b80d9e}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Simulation : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{7bf32895-d5da-448c-b72b-08d5ab8c2206}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Status" Id="{ec10d2d3-032b-4846-af8a-91cdbbcb828f}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Status : Tc2_MC2.MC_AxisStates
+]]></Declaration>
+      <Get Name="Get" Id="{74c78e0f-8037-4399-b954-b20766509684}">
+        <Declaration><![CDATA[VAR
+	ReadStatus : Tc2_MC2.MC_ReadStatus;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+//ReadStatus(
+//	Axis:= Axis, 
+//	Enable:= FALSE);
+
+//ReadStatus(
+//	Axis:= Axis, 
+//	Enable:= TRUE, 
+//	Valid=> , 
+//	Busy=> , 
+//	Error=> , 
+//	ErrorID=> , 
+//	ErrorStop=>, 
+//	Disabled=> , 
+//	StandStill=> , 
+//	DiscreteMotion=> , 
+//	ContinuousMotion=> , 
+//	SynchronizedMotion=> , 
+//	Homing=> , 
+//	ConstantVelocity=> , 
+//	Accelerating=> , 
+//	Decelerating=> , 
+//	Status=> );
+
+Status := Axis.Status.MotionState;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Stop" Id="{af8fe5f6-3cc6-4f1e-b12d-0d1ed80f3406}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Stop 		: itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk			: REAL;
+END_VAR
+VAR
+	fbStop			: Tc2_MC2.MC_STOP;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbStop(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TorqueControl" Id="{b9b8a532-f917-4f87-8a07-7a9378dbe87d}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD TorqueControl 	: itfAxisCommand
+VAR_INPUT
+	Torque				: REAL;
+	TorqueRamp			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	Direction			: MC_DIRECTION;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	fbTorqueControl		: Tc2_MC2.MC_TorqueControl;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbTorqueControl(
+	Axis:= Axis, 
+	Execute:= , 
+	ContinuousUpdate:= , 
+	Relative:= , 
+	Torque:= Torque, 
+	TorqueRamp:= TorqueRamp, 
+	VelocityLimitHigh:= , 
+	VelocityLimitLow:= , 
+	BufferMode:= , 
+	Options:= , 
+	InTorque=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorId=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="VelocityProfile" Id="{34c5a780-10a0-4977-9a13-c7371f831e9f}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD VelocityProfile 	: itfCommand
+VAR_INPUT
+	TimeScale			: REAL;
+	VelocityScale		: REAL;
+	Offset				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+VAR
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteBoolParameter" Id="{06dacae1-eed6-48d9-b7ae-db0a3c4e87ae}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD WriteBoolParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber			: INT;
+	Value					: BOOL;
+END_VAR
+
+VAR
+	fbWriteBoolParameter 	: Tc2_MC2.MC_WriteBoolParameter;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbWriteBoolParameter(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	Value:= Value, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteParameter" Id="{6d5b9895-a2c4-48bf-b049-7b7ab1c53235}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD WriteParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber		: INT;
+	Value				: REAL;
+END_VAR
+
+VAR
+	fbWriteParameter 	: Tc2_MC2.MC_WriteParameter;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbWriteParameter(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	ParameterNumber:= ParameterNumber, 
+	Value:= Value, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

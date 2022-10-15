@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfAxis" Id="{3d8059f9-5cdc-4913-8ed9-943cadd2d90e}">
+    <Declaration><![CDATA[INTERFACE itfAxis
+]]></Declaration>
+    <Folder Name="ActualValues" Id="{84c4f433-6929-49ce-9957-673db204fddf}" />
+    <Folder Name="Control" Id="{4229e7e7-53c1-4e20-ae27-579d0dd6acac}" />
+    <Folder Name="MultiAxesMotion" Id="{aa940943-1a41-4913-bd5d-fad2f2c6376c}" />
+    <Folder Name="SingleAxisMotion" Id="{826aafc6-2af2-49b5-9cf2-47b82deb415b}" />
+    <Folder Name="Status" Id="{c22ee18f-1794-4f84-b054-9cad1f2f56c0}" />
+    <Method Name="AccelerationProfile" Id="{64256464-7bda-4bed-bcb5-ba6de49bf433}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD AccelerationProfile 	: itfCommand
+VAR_INPUT
+	TimeScale				: REAL;
+	AccelerationScale		: REAL;
+	Offset					: REAL;
+	BufferMode				: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="ActualPosition" Id="{6f578f11-05e7-4233-8736-9f58529a7f00}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualPosition : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{bdc54bad-72e9-4eb0-bf84-144526fa81d1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualTorque" Id="{c6b62dad-517e-48b9-87b3-d4c2e087f4ad}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualTorque : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{40f05420-0c53-4366-9e74-bfc02909e9c1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{11fab741-e20a-4b8e-b322-54d3dd993de6}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ActualVelocity : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{78116217-02b6-4e90-87cb-11e59ebaa489}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="AxisWarning" Id="{c66e10e2-a185-4ea4-8a72-7b2b3bbb0009}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY AxisWarning : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{ee84e0c6-2200-4d4d-88c3-4e3601b92257}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="CombineAxes" Id="{b1ef9323-9f2e-469d-9a7f-af571ea433c4}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD CombineAxes 			: itfSynchronizedAxisCommand
+VAR_INPUT
+	Master1					: itfAxis;
+	Master2					: itfAxis;
+	CombineMode				: MC_COMBINE_MODE;
+	GearRatioNumeratorM1	: INT;
+	GearRatioDenominatorM1	: INT;
+	GearRatioNumeratorM2	: INT;
+	GearRatioDenominatorM2	: INT;
+	MasterValueSourceM1		: MC_SOURCE;
+	MasterValueSourceM2		: MC_SOURCE;
+	BufferMode				: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="CommunicationReady" Id="{be2ab3d4-e1af-4957-bc88-fbe77af61434}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY CommunicationReady : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{88f57d87-ef41-4a99-af04-5ba36f8f19cc}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Direction" Id="{8e9ea91c-fa8a-4d6f-ad9e-1144df22e093}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Direction : AXIS_DIRECTION
+]]></Declaration>
+      <Get Name="Get" Id="{5f0e8555-caea-48b1-8374-0b281c77e22d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{b5b4e4de-c23f-48cf-8a47-7a94ac1971d5}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{7cb69269-b212-47b3-895c-1b77058e76c0}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ErrorId" Id="{e6820d1d-17e6-41cb-a2fd-7f7b5428a4d0}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ErrorId : WORD
+]]></Declaration>
+      <Get Name="Get" Id="{ba47f6fe-c0d8-4ed8-8e2f-784d941cfeb8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ErrorId_Udint_Status" Id="{60ef0807-8054-40a6-8938-e4e56a2b86d1}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorId_Udint_Status : UDINT]]></Declaration>
+      <Get Name="Get" Id="{54fe33f5-a26f-4066-8693-0105f41c1cb9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Geared" Id="{c109597b-3bf1-4417-b858-7724bfc6d6c4}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
+      <Get Name="Get" Id="{8c12487a-1cfd-4ee0-84f1-0561493a137f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="GearIn" Id="{8eb96ef8-7050-4ef0-bbb1-e1e65feb7bef}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD GearIn 			: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+//	Master				: Tc2_MC2.AXIS_REF;
+//	Slave				: Tc2_MC2.AXIS_REF;		
+//	Ratio				: REAL;
+//	MasterValueSource	: INT;
+	RatioNumerator		: LREAL;
+	RatioDenominator	: UINT;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+//	BufferMode			: Tc2_MC2.MC_BufferMode;
+//	Options             : Tc2_MC2.ST_GearInOptions;
+END_VAR
+
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
+END_VAR]]></Declaration>
+    </Method>
+    <Method Name="Halt" Id="{9b0ef816-da4a-477d-a432-af5c3ea28016}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Halt 		: itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="HaltSuperimposed" Id="{4dca1e39-a492-4d08-a5c7-bf5d55301149}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD HaltSuperimposed : itfAxisCommand
+VAR_INPUT
+	Deceleration		: REAL;
+	Jerk				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Home" Id="{9a0a0335-cdcf-43b3-b57f-4942ef0e8fe5}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Home 		: itfAxisCommand
+VAR_INPUT
+	Position		: REAL;
+	Velocity		: REAL;
+	EndVelocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	HomingMode		: INT;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="HomeAbsSwitch" Id="{38b2ebdf-ff3a-43ad-b3e8-820ce43ec837}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY HomeAbsSwitch : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4125fd9f-bdb1-4d61-b039-54b79a81c5bb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsHomed" Id="{fa3b5a1d-4bcb-41e5-a210-61f7980ba75c}" FolderPath="Status\">
+      <Declaration><![CDATA[
+PROPERTY IsHomed : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{9dd56cdb-d0af-417e-8e98-27ed826f0a07}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Jog" Id="{9ef61807-f04f-49cb-999d-993510357690}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Jog 			: itfAxisCommand
+VAR_INPUT
+    JogForward 		: BOOL;
+    JogBackwards 	: BOOL;
+    Mode     		: Tc2_MC2.E_JogMode;
+    Position        : LREAL;
+    Velocity        : LREAL;
+    Acceleration 	: LREAL;
+    Deceleration 	: LREAL;
+    Jerk     		: LREAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="LimitSwitchNegative" Id="{9c1eff9c-7e10-447c-809d-cf7ee7a3f5d0}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY LimitSwitchNegative : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{81b96c40-2569-4973-82a5-b8130b25f6c3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="LimitSwitchPositive" Id="{61c7171a-8da4-449d-a33a-0088e0ce178f}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY LimitSwitchPositive : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{27c63639-9fc1-48c2-a2d0-97034f3e6561}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MotionStatus" Id="{6a4d8875-04f9-4c91-b993-2e498fd5c7c0}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY MotionStatus : MOTION_STATUS
+]]></Declaration>
+      <Get Name="Get" Id="{5cfe2521-a4b7-4a7b-aa11-9db7bbebf13e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="MoveAbsolute" Id="{40bd691b-4f90-4cdd-b0ba-980c45f27bac}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveAbsolute : itfAxisCommand
+VAR_INPUT
+	Position		: REAL;
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveAdditive" Id="{b78fe1c7-7db2-4229-90ea-f06a648458ad}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveAdditive : itfAxisCommand
+VAR_INPUT
+	Distance		: REAL;
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveContinuousAbsolute" Id="{97c9f327-e5fd-4034-a611-421ae2365b67}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveContinuousAbsolute 	: itfContinuousAxisCommand
+VAR_INPUT
+	Position					: REAL;
+	EndVelocity					: REAL;
+	Velocity					: REAL;
+	Acceleration				: REAL;
+	Deceleration				: REAL;
+	Jerk						: REAL;
+	Direction					: MC_DIRECTION;
+	BufferMode					: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveContinuousRelative" Id="{51693fa8-76b6-4a07-861c-996f191d8f56}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveContinuousRelative 	: itfContinuousAxisCommand
+VAR_INPUT
+	Distance					: REAL;
+	EndVelocity					: REAL;
+	Velocity					: REAL;
+	Acceleration				: REAL;
+	Deceleration				: REAL;
+	Jerk						: REAL;
+	Direction					: MC_DIRECTION;
+	BufferMode					: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveRelative" Id="{d5904971-42ac-44d7-8df2-b5c42615fd0f}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveRelative : itfAxisCommand
+VAR_INPUT
+	Distance		: REAL;
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveSuperimposed" Id="{8a4e7871-e762-49c2-8eec-39b0f42f821d}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveSuperimposed : itfAxisCommand
+VAR_INPUT
+	Distance			: REAL;
+	VelocityDiff		: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveVelocity" Id="{95f66b7a-f7b1-4445-8ab0-aa5ad5dad826}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD MoveVelocity : itfContinuousAxisCommand
+VAR_INPUT
+	Velocity		: REAL;
+	Acceleration	: REAL;
+	Deceleration	: REAL;
+	Jerk			: REAL;
+	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PhasingAbsolute" Id="{bfc74215-1d12-4439-a809-26ce2f03f562}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+	PhaseShift			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PhasingRelative" Id="{ff37b891-f985-404a-9ca3-0dc6d9b13efa}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PhasingRelative 	: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;		
+	PhaseShift			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PositionProfile" Id="{a0509aea-ab4f-4103-9814-5e6a4f44b930}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD PositionProfile : itfCommand
+VAR_INPUT
+	TimeScale			: REAL;
+	PositionScale		: REAL;
+	Offset				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Power" Id="{c010dc1f-7962-4545-8dbb-575639f72405}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Power 		: itfCommand
+VAR_INPUT
+	Enable			: BOOL;
+	EnablePositive	: BOOL;
+	EnableNegative	: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="PowerOn" Id="{b5e15b20-8656-463d-a226-4600b7a5cbfe}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{58f03a02-a458-4cd2-ad88-4d41ecb66929}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="ReadBoolParameter" Id="{927a0b52-00cb-4ea0-9aa7-c2d1863176bd}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD ReadBoolParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber			: INT;
+END_VAR
+VAR_OUTPUT
+	Value					: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadParameter" Id="{3881a757-eb44-4cef-8a06-753b7a2f57a7}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD ReadParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber		: INT;
+END_VAR
+VAR_OUTPUT
+	Value				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="ReadyForPowerOn" Id="{471a341d-6a21-4080-b14c-27d737fa972f}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ReadyForPowerOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{747fba13-215e-4213-9f95-30c7a41d517b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Release" Id="{d9a62e48-bbe3-4ea8-b868-7d6f7158820b}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Release : MC_Error
+]]></Declaration>
+    </Method>
+    <Method Name="Reset" Id="{01501c6b-bbb2-4abf-a642-792e38d8f898}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Reset : itfCommand
+]]></Declaration>
+    </Method>
+    <Method Name="SetOverride" Id="{21da1bd2-5b7c-4777-977b-90dcbeb820d1}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SetOverride 	: MC_Error
+VAR_INPUT
+	VelFactor		: REAL;
+	AccFactor		: REAL;
+	JerkFactor		: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetPosition" Id="{d32a1029-a732-4a1b-b712-3e7e4343053d}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SetPosition 	: itfCommand
+VAR_INPUT
+	Position		: REAL;
+	Relative		: BOOL;
+//	ExecutionMode	: MC_ExecutionMode;
+	ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Simulation" Id="{e548cd77-145d-445a-a6fc-a9d8a6fe38f7}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Simulation : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{c3012801-2802-4d93-a3ce-50b24ee7217b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Status" Id="{979dd8f2-932f-43c0-9fa2-81fbb5d3deb4}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Status : Tc2_MC2.MC_AxisStates
+]]></Declaration>
+      <Get Name="Get" Id="{3aca8f52-1b13-452e-9709-7b81445c1290}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Stop" Id="{8759d769-edc6-435f-8402-3e117f27ad2f}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Stop 		: itfAxisCommand
+VAR_INPUT
+	Deceleration	: REAL;
+	Jerk			: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="TorqueControl" Id="{0e4eab8b-f590-4fc3-8d58-dfbfc5c9308d}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD TorqueControl	: itfAxisCommand
+VAR_INPUT
+	Torque				: REAL;
+	TorqueRamp			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	Direction			: MC_DIRECTION;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="VelocityProfile" Id="{5b0cbf71-2144-4871-b3af-54334b098a45}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD VelocityProfile 	: itfCommand
+VAR_INPUT
+	TimeScale			: REAL;
+	VelocityScale		: REAL;
+	Offset				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteBoolParameter" Id="{c5e4e631-9e64-4c74-9b7d-06cff352d5ae}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD WriteBoolParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber			: INT;
+	Value					: BOOL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteParameter" Id="{898b15c7-bdd5-4fe6-a4eb-41714bfceff2}" FolderPath="Control\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD WriteParameter 	: MC_Error
+VAR_INPUT
+	ParameterNumber		: INT;
+	Value				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

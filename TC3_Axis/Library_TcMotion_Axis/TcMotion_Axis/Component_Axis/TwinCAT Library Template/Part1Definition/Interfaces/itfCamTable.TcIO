@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfCamTable" Id="{df65775e-5c31-4237-8f7c-3635f303245c}">
+    <Declaration><![CDATA[INTERFACE itfCamTable
+]]></Declaration>
+    <Method Name="Select" Id="{3fef919c-6e93-469a-a7fb-64c192ede530}">
+      <Declaration><![CDATA[METHOD Select		: itfCommand
+VAR_INPUT
+	Periodic 		: BOOL;
+	MasterAbsolute 	: BOOL;
+	SlaveAbsolute 	: BOOL;
+	CamTable 		: MC_CAM_REF;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

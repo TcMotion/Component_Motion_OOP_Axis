@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MC_Direction" Id="{2b704d87-a0a7-48c9-8d35-ceb78c2df6f6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE MC_Direction :
+(
+	mcPositiveDirection := 0,
+	mcShortestWay := 1,
+	mcNegativeDirection := 2,
+	mcCurrentDirection := 3
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

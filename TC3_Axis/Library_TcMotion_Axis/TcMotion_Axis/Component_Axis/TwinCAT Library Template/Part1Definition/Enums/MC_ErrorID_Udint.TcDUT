@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MC_ErrorID_Udint" Id="{23c9f0e6-0ae1-4520-92a7-95cbfc91b275}">
+    <Declaration><![CDATA[TYPE MC_ErrorID_Udint : UDINT; END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

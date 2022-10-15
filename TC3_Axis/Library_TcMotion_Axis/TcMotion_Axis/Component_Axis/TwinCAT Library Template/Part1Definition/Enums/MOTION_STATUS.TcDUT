@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MOTION_STATUS" Id="{f1a60187-137f-40c8-b5c4-a62b7728468b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE MOTION_STATUS :
+(
+	ConstantVelocity := 0,
+	Accelerating := 1,
+	Decelerating :=2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

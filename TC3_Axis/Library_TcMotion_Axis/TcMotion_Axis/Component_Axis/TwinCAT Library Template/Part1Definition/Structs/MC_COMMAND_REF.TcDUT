@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MC_COMMAND_REF" Id="{963dc813-424c-43c5-b38a-75c41fe42c55}">
+    <Declaration><![CDATA[TYPE MC_COMMAND_REF :
+STRUCT
+	CommandId: INT;
+END_STRUCT
+END_TYPE
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

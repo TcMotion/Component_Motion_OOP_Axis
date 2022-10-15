@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="LabelingExample" Id="{0df13b03-dc01-470c-8e4a-27a377d425dd}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LabelingExample
+VAR
+	AXIS_REF_LabelDrive			: TC2_MC2.AXIS_REF;
+	AXIS_REF_Conveyor 			: TC2_MC2.AXIS_REF;
+
+	// Hardware definitions
+	LabelDrive 			: TcAxis_Tc2_MC2;
+	Conveyor 			: TcAxis_Tc2_MC2;
+	LabelLength 		: REAL := 100;
+	SensorDistance 		: REAL := 10;
+	Velocity 			: REAL := 5;
+	ProductDetection 	: BOOL := FALSE;
+	DelayTimer 			: TON;
+	
+	// States
+	ConveyorState 		: INT := 0;
+	LabelDriveState 	: INT := 0;
+	
+	// Control
+	Start 				: BOOL := FALSE;
+	
+	// Commands
+	ConveyorMove 		: itfCommand;
+	LabelDriveMove 		: itfCommand;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+LabelDrive(Axis:= AXIS_REF_LabelDrive);
+Conveyor(Axis:= AXIS_REF_Conveyor);
+
+// Run the timer. As it is a classic FB it should be called every cycle
+DelayTimer(IN:=ProductDetection, PT:= INT_TO_TIME(REAL_TO_INT(SensorDistance * 1000 / Velocity)));
+
+CASE ConveyorState OF
+	0: // Disabled
+		IF Start THEN
+			ConveyorState := ConveyorState + 1;
+		END_IF
+		
+	1: // Power On
+		Conveyor.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		//IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+	  IF Conveyor.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
+			ConveyorState := ConveyorState + 1;
+		END_IF
+		
+	2: // Wait for LabelDrive 
+		//IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		IF LabelDrive.Status =  Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
+			ConveyorMove := Conveyor.MoveVelocity(Velocity:=Velocity, Acceleration:=0, Deceleration:=0, Jerk:=0, Direction:=MC_Direction.mcPositiveDirection, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			ConveyorState := ConveyorState + 1;
+		END_IF
+		
+	3: // Moving
+		IF NOT Start THEN
+			ConveyorMove := Conveyor.Halt(Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			ConveyorState := ConveyorState + 1;
+		END_IF
+		
+	4: // Stopping
+		IF ConveyorMove.Done THEN
+			ConveyorState := ConveyorState + 1;
+		END_IF
+		
+	5: // Power off
+		Conveyor.Power(Enable:=FALSE, EnablePositive:=FALSE, EnableNegative:=FALSE);
+		IF Conveyor.Status = AXIS_STATUS.Disabled THEN
+			ConveyorState := 0;
+		END_IF
+END_CASE
+
+CASE LabelDriveState OF
+	0: // Disabled
+		IF Start THEN
+			LabelDriveState := LabelDriveState + 1;
+		END_IF
+		
+	1: // Power On
+		LabelDrive.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		//IF LabelDrive.Status = AXIS_STATUS.Standstill THEN
+		IF LabelDrive.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
+			LabelDriveState := LabelDriveState + 1;
+		END_IF
+		
+	2: // Wait for Conveyor 
+		//IF Conveyor.Status = AXIS_STATUS.Standstill THEN
+		IF Conveyor.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN
+			LabelDriveState := LabelDriveState + 1;
+		END_IF
+						
+	3: // Wait for product
+		IF NOT Start THEN
+			LabelDriveState := 5;
+		END_IF
+		IF DelayTimer.Q THEN
+			LabelDriveMove := LabelDrive.MoveRelative(Distance:=LabelLength, Velocity:=Velocity, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting);
+			LabelDriveState := LabelDriveState + 1;
+		END_IF
+		
+	4: // Wait for label to be transfered
+		IF LabelDriveMove.Done AND NOT DelayTimer.Q THEN
+			LabelDriveState := 3;
+		END_IF
+		
+	5: // Power off
+		Conveyor.Power(Enable:=FALSE, EnablePositive:=FALSE, EnableNegative:=FALSE);
+		IF Conveyor.Status = AXIS_STATUS.Disabled THEN
+			LabelDriveState := 0;
+		END_IF
+	
+END_CASE
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

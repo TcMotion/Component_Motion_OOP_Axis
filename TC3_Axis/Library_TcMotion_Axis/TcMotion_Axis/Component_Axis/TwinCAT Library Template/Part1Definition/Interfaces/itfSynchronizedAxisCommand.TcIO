@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfSynchronizedAxisCommand" Id="{57e46a7a-22f5-473d-bd21-af003d437965}">
+    <Declaration><![CDATA[INTERFACE itfSynchronizedAxisCommand EXTENDS itfAxisCommand
+]]></Declaration>
+    <Property Name="InSync" Id="{4c6be8ac-11ee-419f-807f-8d4fb4150cce}">
+      <Declaration><![CDATA[PROPERTY InSync : BOOL]]></Declaration>
+      <Get Name="Get" Id="{3e770395-ebea-4f4f-a010-b4bade2560b7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

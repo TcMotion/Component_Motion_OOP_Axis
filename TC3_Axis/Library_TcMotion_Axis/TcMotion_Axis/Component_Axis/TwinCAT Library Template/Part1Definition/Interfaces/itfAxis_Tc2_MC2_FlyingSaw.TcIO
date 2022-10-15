@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="itfAxis_Tc2_MC2_FlyingSaw" Id="{8deaa7be-3681-4cf2-9d37-58ffc34ae75a}">
+    <Declaration><![CDATA[INTERFACE itfAxis_Tc2_MC2_FlyingSaw
+]]></Declaration>
+    <Method Name="GearInPos" Id="{f33bdd5f-f57c-42a3-9cfc-7492818ceb34}">
+      <Declaration><![CDATA[(*
+!!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
+!!!! TF5055 TC3 NC Flying Saw !!!!!!*)
+
+{warning 'add method implementation '}
+METHOD GearInPos 		: itfSynchronizedAxisCommand
+VAR_INPUT
+//	Master				: itfAxis;
+	Master				: Tc2_MC2.AXIS_REF;
+	Slave				: Tc2_MC2.AXIS_REF;			
+	RatioNumerator		: REAL;
+	RatioDenominator	: REAL;
+	MasterValueSource	: MC_SOURCE;
+	MasterSyncPosition	: REAL;
+	SlaveSyncPosition	: REAL;
+	SyncMode			: MC_SYNC_MODE;
+	MasterStartDistance	: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MC_Error" Id="{8c1d0b75-ed83-485d-847e-949890e52329}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+//{attribute 'conditionalshow' := 'SomeText'}
+//{attribute 'conditionalshow'}
+//{attribute 'hide'}
+TYPE MC_Error : (NO_ERROR, TIME_OUT); END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_MC" Id="{f2f021ce-6e77-4360-8ebd-c2ee62cf6663}">
+    <Declaration><![CDATA[TYPE ST_MC :
+STRUCT
+	Power 			: Tc2_MC2.MC_POWER;
+	MoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
+	MoveRelative 	: Tc2_MC2.MC_MoveRelative;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -25,16 +25,16 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\CamGearExample.TcPOU">
+    <Compile Include="Examples\CamGearExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\LabelingExample.TcPOU">
+    <Compile Include="Examples\LabelingExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MAIN.TcPOU">
+    <Compile Include="Examples\MAIN_Examples.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\WareHousingExample.TcPOU">
+    <Compile Include="Examples\WareHousingExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\AXIS_DIRECTION.TcDUT">
@@ -154,7 +154,7 @@
     <Folder Include="TwinCAT Library Template\Part1Definition\GlobalConstants" />
     <Folder Include="TwinCAT Library Template\Part1Definition\Structs" />
     <Folder Include="VISUs" />
-    <Folder Include="POUs" />
+    <Folder Include="Examples" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_MC2">

@@ -44,10 +44,136 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
+    <Folder Include="Component_Axis\Examples" />
+    <Folder Include="Component_Axis\TwinCAT Library Template" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\Part1Definition" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\Part1Definition\GlobalConstants" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\Part1Definition\Structs" />
+    <Folder Include="Component_Axis\TwinCAT Library Template\VendorImplementation" />
     <Folder Include="Project Information" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component_Axis\Examples\CamGearExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\Examples\LabelingExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\Examples\MAIN_Examples.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\Examples\WareHousingExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\AXIS_DIRECTION.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\AXIS_STATUS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\E_AxisParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_BUFFER_MODE.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_COMBINE_MODE.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_Direction.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_Error.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_ErrorID_Udint.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_ExecutionMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_Source.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_StartMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MC_SYNC_MODE.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Enums\MOTION_STATUS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\GlobalConstants\Constants.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfAxis.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2_Camming.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2_FlyingSaw.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfCamTable.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfContinuousAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Interfaces\itfSynchronizedAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Structs\MC_CAM_REF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Structs\MC_COMMAND_REF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Structs\ST_Command.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\Part1Definition\Structs\ST_MC.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcAxisCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcAxis_DMC_Tc3_Direct_Motion_Control.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2_Camming.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2_FlyingSaw.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcCamTable.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcContinuousAxisCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component_Axis\TwinCAT Library Template\VendorImplementation\TcSynchronizedAxisCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
       <SubType>Code</SubType>
       <SystemCall>true</SystemCall>

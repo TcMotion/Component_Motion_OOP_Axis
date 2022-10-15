@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TcCommand" Id="{e8f9fb2a-654e-4cba-815b-553b67545df0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TcCommand IMPLEMENTS itfCommand
+//VAR_INPUT
+//END_VAR
+//VAR_OUTPUT
+//END_VAR
+VAR
+	_Command        : ST_Command;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Abort" Id="{24a343c7-760a-41b7-bb70-f72b5e25b299}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Abort : MC_Error
+VAR
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Active" Id="{2720e767-fe04-44c0-bbcf-f06184d2ad20}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Active : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{b11ca942-0adc-4d97-80c8-4668e727e494}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Active := _Command.Active;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{32c544ad-fa82-4c92-80c2-55828e34d554}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.Active := Active;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Busy" Id="{cf8f3abf-9327-4e38-ac9d-65ef09dc1f16}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{2c33ef5d-6052-4199-ac6a-ec7a8a9b5029}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Command.Busy;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3e8d634e-f252-4264-8411-8fe4ce317e8b}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.Busy := Busy;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Command" Id="{378c910e-a8c7-4401-9098-8e04a5ab9cd3}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Command : MC_COMMAND_REF
+]]></Declaration>
+      <Get Name="Get" Id="{80d78255-7df6-47d0-99a3-fd5ea2122407}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Command := _Command.Command;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e9b0ea02-628f-4ba0-90c1-5a1ff9d57d74}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ _Command.Command :=  Command;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="CommandAborted" Id="{e97f9496-7981-4895-aa93-8dab67642603}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY CommandAborted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{6cdf14cb-71eb-4a12-8464-a204bbfa90a9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[CommandAborted := _Command.CommandAborted;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b5f29b6d-2575-413d-b9a0-e54c27480445}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ _Command.CommandAborted := CommandAborted;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Done" Id="{357dca3d-7954-47ca-bf93-29e0741b485f}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{270c9587-1b81-49c6-8750-d802bc67f571}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Command.Done;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ed4328b7-b43d-4f76-ade7-db01b701244c}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.Done := Done;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Error" Id="{8340cbd2-7fc3-4229-8fbe-a3ec0ac74ef3}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{801043b3-ef60-452f-ab45-3caaf23495cb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Command.Error;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{97167a2d-0425-42b3-ac16-7f070b5b016a}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.Error := Error;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ErrorId" Id="{fe72e8ec-5584-486b-a73a-dafdbeb5627c}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY ErrorId : MC_Error
+]]></Declaration>
+      <Get Name="Get" Id="{174e5abd-8e7a-4372-ac8c-f261dc1ba5b8}">
+        <Declaration><![CDATA[VAR
+
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorId := _Command.ErrorId;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{72fcc745-c329-48e5-af68-49e95ba9f03e}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.ErrorId := ErrorId;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ErrorID_Udint" Id="{554ee8f6-4246-4f19-9a2a-a20d45173f83}">
+      <Declaration><![CDATA[PROPERTY ErrorID_Udint : UDINT]]></Declaration>
+      <Get Name="Get" Id="{7db93102-df1d-40a5-b5b8-3dbce321da57}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorID_Udint := _Command.ErrorID_Udint;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e7001d4d-398b-43ec-9350-fc1bdca27ab7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Command.ErrorID_Udint := ErrorID_Udint;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Wait" Id="{9f601dc2-318f-45fa-99c9-69984c49fb48}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Wait : MC_Error (* This method only makes sense in the IEC 61499 environment*)
+VAR_INPUT
+	Timeout	: TIME;
+	AbortOnTimeout	: BOOL;
+END_VAR
+VAR
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
