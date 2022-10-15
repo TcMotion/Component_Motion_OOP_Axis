@@ -3,8 +3,11 @@
   <POU Name="MAIN_Examples" Id="{ce97d388-e861-4591-bddd-7771707f573f}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN_Examples
 VAR
-
+//	fbAxis_X1 				: TcAxis_Tc2_MC2;
+			
+	fbSum : FB_Sum;
 END_VAR
+
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[

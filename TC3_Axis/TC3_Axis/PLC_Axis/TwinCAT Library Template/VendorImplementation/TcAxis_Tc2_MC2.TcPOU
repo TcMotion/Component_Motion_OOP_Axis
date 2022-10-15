@@ -880,7 +880,7 @@ count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Power 		: itfCommand
 VAR_INPUT
 	Enable			: BOOL;
@@ -924,7 +924,8 @@ _PowerOn := MC.Power.Enable;
       </Implementation>
     </Method>
     <Property Name="PowerOn" Id="{788c8284-a067-4b73-bd3e-a5329fda0703}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
+      <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
+PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{4debc66c-8c89-4b05-b196-32da99b6b0be}">
         <Declaration><![CDATA[VAR
@@ -1117,12 +1118,12 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Status" Id="{899ae5c5-cb0d-4a4d-9f83-26636f1764e2}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
+      <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
 PROPERTY Status : Tc2_MC2.MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{d011a0b2-92b3-4928-b561-f5a955384b13}">
         <Declaration><![CDATA[VAR
-	ReadStatus : Tc2_MC2.MC_ReadStatus;
+//	ReadStatus : Tc2_MC2.MC_ReadStatus;
 END_VAR
 ]]></Declaration>
         <Implementation>

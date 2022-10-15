@@ -22,6 +22,9 @@
     <Compile Include="Component_Axis\FB_TcAxis_Codesys.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MsTestUnit\FB_Sum.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -146,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
+    <Folder Include="MsTestUnit" />
     <Folder Include="TwinCAT Library Template" />
     <Folder Include="TwinCAT Library Template\VendorImplementation" />
     <Folder Include="TwinCAT Library Template\Part1Definition" />

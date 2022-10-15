@@ -362,7 +362,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="Power" Id="{c9828e8c-2044-4cbd-a958-20990c623821}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Power 		: itfCommand
 VAR_INPUT
 	Enable			: BOOL;
@@ -372,7 +372,8 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="PowerOn" Id="{9b897603-8b0e-42c9-8307-158f379c0996}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PowerOn : BOOL
+      <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
+PROPERTY PowerOn : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{fc90beb8-74c7-4e90-a2a6-615166e290ce}">
         <Declaration><![CDATA[]]></Declaration>
@@ -448,7 +449,7 @@ PROPERTY Simulation : BOOL
       </Get>
     </Property>
     <Property Name="Status" Id="{14d056dd-c46b-4831-8f46-c76b5fa10182}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'add property implementation'}
+      <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
 PROPERTY Status : Tc2_MC2.MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{339192d7-b808-4051-93a0-5ad6b05713d7}">

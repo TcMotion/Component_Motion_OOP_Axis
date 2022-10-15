@@ -93,7 +93,9 @@ ActualTorque_X3_Slave 	:= Axis_X3_Slave.ActualTorque;
 
 CASE stateOOP OF
 	0: ;
-		stateOOP := stateOOP + 10;	
+		IF stepOn THEN
+			stateOOP := stateOOP + 10;	
+		END_IF
 	10: 
 	// init
 		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
