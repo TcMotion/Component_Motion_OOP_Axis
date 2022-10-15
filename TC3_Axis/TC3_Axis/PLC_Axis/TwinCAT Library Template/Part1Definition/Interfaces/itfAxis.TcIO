@@ -111,7 +111,7 @@ PROPERTY ErrorId : WORD
       </Get>
     </Property>
     <Method Name="GearIn" Id="{c95c1128-9524-4448-a3ec-30a5218a30e7}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;

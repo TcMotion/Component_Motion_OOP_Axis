@@ -244,7 +244,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="GearIn" Id="{6cbcc261-b3fb-4547-98ae-75e372afb64e}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
