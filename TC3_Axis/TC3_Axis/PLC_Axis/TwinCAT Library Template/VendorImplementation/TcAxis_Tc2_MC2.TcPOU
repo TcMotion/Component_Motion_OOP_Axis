@@ -1022,7 +1022,7 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Reset 		: itfCommand
 
 VAR

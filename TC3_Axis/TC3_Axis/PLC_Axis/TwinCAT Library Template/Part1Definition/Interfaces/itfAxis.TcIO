@@ -415,7 +415,7 @@ METHOD Release : MC_Error
 ]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{9db611ca-2e2e-4cc1-b03c-8b53f588c20b}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Reset : itfCommand
 ]]></Declaration>
     </Method>
