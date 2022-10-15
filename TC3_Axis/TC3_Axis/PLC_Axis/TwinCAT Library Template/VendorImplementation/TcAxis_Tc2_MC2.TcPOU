@@ -469,7 +469,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="MoveAbsolute" Id="{75c5779f-04ff-4069-95d9-d7a1de4e344e}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
 	Position		: REAL;
@@ -641,7 +641,7 @@ count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveRelative 	: itfAxisCommand
 VAR_INPUT
 	Distance			: REAL;

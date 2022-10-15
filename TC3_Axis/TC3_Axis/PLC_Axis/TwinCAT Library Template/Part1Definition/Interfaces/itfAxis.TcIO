@@ -224,7 +224,7 @@ PROPERTY MotionStatus : MOTION_STATUS
       </Get>
     </Property>
     <Method Name="MoveAbsolute" Id="{2a51a717-b5ae-41b5-a6ab-5883230e3013}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
 	Position		: REAL;
@@ -281,7 +281,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="MoveRelative" Id="{015842e8-cb9b-4296-80c3-bbcab955723f}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveRelative : itfAxisCommand
 VAR_INPUT
 	Distance		: REAL;
