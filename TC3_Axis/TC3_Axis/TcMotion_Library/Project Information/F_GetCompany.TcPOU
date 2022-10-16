@@ -1,21 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="F_GetVersion" Id="{0e064b68-d228-4513-89bb-aeeb62b64600}" SpecialFunc="None">
+  <POU Name="F_GetCompany" Id="{80d93bb3-45e1-40c3-b61c-555ce780ab98}" SpecialFunc="None">
     <Declaration><![CDATA[// This function has been automatically generated from the project information.
 {attribute 'signature_flag' := '1073741824'}
 {attribute 'TcGenerated'}
 {attribute 'no-analysis'}
-FUNCTION F_GetVersion : ST_LibVersion
+FUNCTION F_GetCompany : WSTRING
 VAR_INPUT
 	
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[F_GetVersion.iMajor := 1;
-F_GetVersion.iMinor := 0;
-F_GetVersion.iBuild := 0;
-F_GetVersion.iRevision := 1;
-F_GetVersion.sVersion := '1.0.0.1';
-F_GetVersion.nFlags := 0;
+      <ST><![CDATA[F_GetCompany := "TcMotion";
 ]]></ST>
     </Implementation>
   </POU>

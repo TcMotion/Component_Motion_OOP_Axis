@@ -17,8 +17,8 @@
     <LibraryReferences>{b62f2133-e5f4-4205-b61d-0b02eaffae66}</LibraryReferences>
     <Company>TcMotion</Company>
     <Released>false</Released>
-    <ProjectVersion>1.0.0.0</ProjectVersion>
-    <Title>Component Motion OOP Axis</Title>
+    <ProjectVersion>1.0.0.1</ProjectVersion>
+    <Title>TcMotion_Component</Title>
     <DocFormat>reStructuredText</DocFormat>
     <Description>Component Motion OOP Axis</Description>
     <Author>victorduranm@hotmail.com</Author>
@@ -194,6 +194,12 @@
     <None Include="TcMotion_Axis.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_MC2">
+      <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2</Namespace>
+    </PlaceholderReference>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

@@ -982,9 +982,9 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="PLC_Axis" PrjFilePath="..\..\PLC_Axis\PLC_Axis.plcproj" TmcFilePath="..\..\PLC_Axis\PLC_Axis.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{36BB1153-22AA-CC5D-2830-6FEB5A35F762}">
-			<Name>PLC_Axis Instance</Name>
+	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="TcMotion_Library" PrjFilePath="..\..\TcMotion_Library\TcMotion_Library.plcproj" TmcFilePath="..\..\TcMotion_Library\TcMotion_Library.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{415362A6-D3AE-6291-4343-8D94C09AF0FB}">
+			<Name>TcMotion_Library Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
@@ -1119,7 +1119,7 @@ External Setpoint Generation:
 		</Instance>
 	</Project>
 	<Mappings>
-		<OwnerA Name="PLC_Axis Instance">
+		<OwnerA Name="TcMotion_Library Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X1">
 				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X1.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X1.PlcToNc" VarB="Inputs^FromPlc"/>
