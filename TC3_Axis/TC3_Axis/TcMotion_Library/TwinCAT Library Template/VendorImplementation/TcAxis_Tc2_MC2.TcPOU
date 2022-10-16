@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc2_MC2
+//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_DMC_Tc3_Direct_Motion_Control IMPLEMENTS itfAxis_Tc2_MC2
 //VAR_INPUT
 //	Axis 				: Tc2_MC2.AXIS_REF;
 //END_VAR
@@ -127,8 +128,8 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD CombineAxes 			: itfSynchronizedAxisCommand
 VAR_INPUT
-	Master1					: itfAxis;
-	Master2					: itfAxis;
+	Master1					: itfAxis_Tc2_MC2;
+	Master2					: itfAxis_Tc2_MC2;
 	CombineMode				: MC_COMBINE_MODE;
 	GearRatioNumeratorM1	: INT;
 	GearRatioDenominatorM1	: INT;
@@ -1119,39 +1120,39 @@ END_VAR
     </Property>
     <Property Name="Status" Id="{899ae5c5-cb0d-4a4d-9f83-26636f1764e2}" FolderPath="Status\">
       <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
-PROPERTY Status : Tc2_MC2.MC_AxisStates
+PROPERTY Status : MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{d011a0b2-92b3-4928-b561-f5a955384b13}">
-        <Declaration><![CDATA[VAR
-//	ReadStatus : Tc2_MC2.MC_ReadStatus;
+        <Declaration><![CDATA[VAR	
+	AxisStates : MC_AxisStates;
 END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[
-//ReadStatus(
-//	Axis:= Axis, 
-//	Enable:= FALSE);
+CASE Axis.Status.MotionState OF 
+     MC_AXISSTATE_UNDEFINED : 
+         AxisStates := MC_AxisStates.MC_AXISSTATE_UNDEFINED;
+	MC_AXISSTATE_DISABLED:
+		AxisStates := MC_AxisStates.MC_AXISSTATE_DISABLED;
+	MC_AXISSTATE_STANDSTILL:
+		AxisStates := MC_AxisStates.MC_AXISSTATE_STANDSTILL;
+	MC_AXISSTATE_ERRORSTOP:		
+		AxisStates := MC_AxisStates.MC_AXISSTATE_ERRORSTOP;
+	MC_AXISSTATE_STOPPING:			
+		AxisStates := MC_AxisStates.MC_AXISSTATE_STOPPING;
+	MC_AXISSTATE_HOMING:			
+		AxisStates := MC_AxisStates.MC_AXISSTATE_HOMING;
+	MC_AXISSTATE_DISCRETEMOTION:			
+		AxisStates := MC_AxisStates.MC_AXISSTATE_DISCRETEMOTION;
+	MC_AXISSTATE_CONTINOUSMOTION:			
+		AxisStates := MC_AxisStates.MC_AXISSTATE_CONTINOUSMOTION;
+	MC_AXISSTATE_SYNCHRONIZEDMOTION:			
+		AxisStates := MC_AxisStates.MC_AXISSTATE_SYNCHRONIZEDMOTION;
+END_CASE;
 
-//ReadStatus(
-//	Axis:= Axis, 
-//	Enable:= TRUE, 
-//	Valid=> , 
-//	Busy=> , 
-//	Error=> , 
-//	ErrorID=> , 
-//	ErrorStop=>, 
-//	Disabled=> , 
-//	StandStill=> , 
-//	DiscreteMotion=> , 
-//	ContinuousMotion=> , 
-//	SynchronizedMotion=> , 
-//	Homing=> , 
-//	ConstantVelocity=> , 
-//	Accelerating=> , 
-//	Decelerating=> , 
-//	Status=> );
+Status := AxisStates;
 
-Status := Axis.Status.MotionState;]]></ST>
+]]></ST>
         </Implementation>
       </Get>
     </Property>

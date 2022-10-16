@@ -19,11 +19,11 @@ VAR
 		fbAxis_X3_Slave 		: TcAxis_Tc2_MC2;
 
 
-		Axis_X1 				: itfAxis;
-		Axis_Y 					: itfAxis;
-		Axis_Z 					: itfAxis;
-		Axis_X2_Slave 			: itfAxis;
-		Axis_X3_Slave 			: itfAxis;
+		Axis_X1 				: itfAxis_Tc2_MC2;
+		Axis_Y 					: itfAxis_Tc2_MC2;
+		Axis_Z 					: itfAxis_Tc2_MC2;
+		Axis_X2_Slave 			: itfAxis_Tc2_MC2;
+		Axis_X3_Slave 			: itfAxis_Tc2_MC2;
 		                    	
 		lastCommandX1 			: itfCommand;
 		lastCommandY 			: itfCommand;
@@ -105,8 +105,8 @@ CASE stateOOP OF
 		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
 			
        IF Axis_X1.PowerOn AND Axis_Y.PowerOn AND Axis_Z.PowerOn AND Axis_X2_Slave.PowerOn AND Axis_X3_Slave.PowerOn THEN  	
-			IF Axis_X1.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND
-				 Axis_Z.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X2_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL AND Axis_X3_Slave.Status = Tc2_MC2.MC_AXISSTATE_STANDSTILL THEN			
+			IF Axis_X1.Status = MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = MC_AXISSTATE_STANDSTILL AND
+				 Axis_Z.Status = MC_AXISSTATE_STANDSTILL AND Axis_X2_Slave.Status = MC_AXISSTATE_STANDSTILL AND Axis_X3_Slave.Status = MC_AXISSTATE_STANDSTILL THEN			
 				IF stepOn THEN
 					stateOOP := 11;		
 					stepOn := FALSE;

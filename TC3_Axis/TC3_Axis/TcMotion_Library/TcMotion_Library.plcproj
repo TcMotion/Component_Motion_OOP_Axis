@@ -85,6 +85,9 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\E_AxisParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_AxisStates.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_Error.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -119,10 +122,13 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis.TcIO">
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxisCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc3_DriveMotionControl.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Interfaces\itfAxis_Tc2_MC2_Camming.TcIO">
@@ -155,7 +161,10 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_MC.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_DMC_Tc3_Direct_Motion_Control.TcPOU">
+    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Base.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Tc3_DriveMotionControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Tc2_MC2.TcPOU">

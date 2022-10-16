@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="CamGearExample" Id="{25fe79e7-b11d-446e-bf4e-fd12438231a1}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM CamGearExample
 VAR
@@ -9,9 +9,9 @@ VAR
 	TcGearDrive 	: TcAxis_Tc2_MC2;
 	
 	
-	MasterDrive 	: itfAxis;
-	CamDrive 		: itfAxis;
-	GearDrive 		: itfAxis;
+	MasterDrive 	: itfAxis_Tc2_MC2;
+	CamDrive 		: itfAxis_Tc2_MC2;
+	GearDrive 		: itfAxis_Tc2_MC2;
 	Table 			: TcCamTable;
 	TableData 		: MC_CAM_REF;
 	Velocity 		: REAL := 5;

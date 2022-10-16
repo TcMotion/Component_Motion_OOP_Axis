@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="MC_AxisStates" Id="{38f2a0bd-f502-43e9-a28a-40c50cc6531b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE MC_AxisStates :
+(
+    MC_AXISSTATE_UNDEFINED,
+    MC_AXISSTATE_DISABLED,
+    MC_AXISSTATE_STANDSTILL,
+    MC_AXISSTATE_ERRORSTOP,
+    MC_AXISSTATE_STOPPING,
+    MC_AXISSTATE_HOMING,
+    MC_AXISSTATE_DISCRETEMOTION,
+    MC_AXISSTATE_CONTINOUSMOTION,
+    MC_AXISSTATE_SYNCHRONIZEDMOTION
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
