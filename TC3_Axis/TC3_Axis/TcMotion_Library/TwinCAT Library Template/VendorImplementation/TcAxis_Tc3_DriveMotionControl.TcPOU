@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="TcAxis_Tc3_DriveMotionControl" Id="{3ecf364f-113f-4c6b-b875-0e5527cca083}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc3_DriveMotionControl IMPLEMENTS itfAxis_Tc3_DriveMotionControl
+    <Declaration><![CDATA[//FUNCTION_BLOCK TcAxis_Tc3_DriveMotionControl EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc3_DriveMotionControl
+//FUNCTION_BLOCK TcAxis_Tc3_DriveMotionControl EXTENDS TcAxis_Base
+FUNCTION_BLOCK TcAxis_Tc3_DriveMotionControl IMPLEMENTS itfAxis_Tc3_DriveMotionControl
 //VAR_INPUT
 //END_VAR
 //VAR_OUTPUT
@@ -10,6 +12,9 @@ VAR_IN_OUT
 	Axis 				: Tc3_DriveMotionControl.AXIS_REF();
 END_VAR
 VAR
+	_PowerOn 			: BOOL;
+	_fbAxisCommand   	: TcAxisCommand;
+	MC 					: ST_Tc3_DriveMotionControl;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -94,7 +99,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Halt" Id="{955fbd7d-c030-408d-afe3-691e208b6d21}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Halt : itfAxisCommand
 VAR_INPUT
 	Deceleration	: REAL;
@@ -107,7 +112,7 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="Home" Id="{295f9667-97ab-4fef-8431-c56488c0ce43}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Home : itfAxisCommand
 VAR_INPUT
 	Position	: REAL;
@@ -139,7 +144,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Jog" Id="{623021d8-2cdb-46ff-acbd-868a96d59581}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Jog : itfAxisCommand
 VAR_INPUT
 	JogForward	: BOOL;
@@ -171,24 +176,58 @@ END_VAR
     </Property>
     <Method Name="MoveAbsolute" Id="{83d876d4-3b03-4f0f-9a15-b15c1a9a76bd}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-{warning 'Agregar implementación de método'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
-	Position	: REAL;
-	Velocity	: REAL;
+	Position		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+//	Direction		: MC_Direction;
+	BufferMode		: MC_BUFFER_MODE;
+//	Options         : Tc2_MC2.ST_MoveOptions;
+	Options         : ST_MoveOptions;
+END_VAR
+
+VAR
+	itfAxisCommand   : itfAxisCommand;
+    _Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
+	
+MC.MoveAbsolute(
+	Axis:= Axis, 
+	Execute:= TRUE ,
+	Position:= Position, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Options:= ,//,Options, 
+	Done=> _Command.Done, 
+	Busy=> _Command.Busy, 
+	Active=>_Command.Active, 
+	CommandAborted=> _Command.CommandAborted, 
+	Error=> _Command.Error, 
+	ErrorID=> _Command.ErrorID_Udint);
+	
+MC.MoveAbsolute(
+	Axis:= Axis, 
+	Execute:= FALSE);	
+
+itfAxisCommand.Done 				:=  _Command.Done AND ActualPosition = Position;             
+itfAxisCommand.Busy   				:=	_Command.Busy;
+itfAxisCommand.Active 				:=	_Command.Active;
+itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
+itfAxisCommand.Error 				:=	_Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+MoveAbsolute := itfAxisCommand;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveModulo" Id="{1a34a205-a66a-489a-ac35-79ff51afa913}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveModulo : itfAxisCommand
 ]]></Declaration>
       <Implementation>
@@ -197,7 +236,6 @@ METHOD MoveModulo : itfAxisCommand
     </Method>
     <Method Name="MoveRelative" Id="{892d2412-1304-44be-a52e-798f5976d6af}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-{warning 'Agregar implementación de método'}
 METHOD MoveRelative : itfAxisCommand
 VAR_INPUT
 	Distance	: REAL;
@@ -213,7 +251,7 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{51c35689-c199-4411-8e3a-a8b21bff495b}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveVelocity : itfContinuousAxisCommand
 VAR_INPUT
 	Velocity	: REAL;
@@ -230,16 +268,39 @@ END_VAR
     </Method>
     <Method Name="Power" Id="{94b47b09-3379-4705-94af-80b852c42c93}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-{warning 'Agregar implementación de método'}
 METHOD Power : itfCommand
 VAR_INPUT
 	Enable	: BOOL;
 	EnablePositive	: BOOL;
 	EnableNegative	: BOOL;
 END_VAR
-]]></Declaration>
+VAR
+	_fbCommand      : TcCommand;
+	itfCommand      : itfCommand;
+	Command         : ST_Command;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[
+itfCommand := _fbCommand;
+
+MC.Power(
+	Axis:= Axis, 
+	Enable:= Enable, 
+	Status=> Command.Status, 
+	Busy=> Command.Busy, 
+	Active=> Command.Active, 
+	Error=> Command.Error, 
+	ErrorID=> Command.ErrorID_Udint);
+	
+itfCommand.Status		:=	Command.Status;
+itfCommand.Busy   		:=	Command.Busy;
+itfCommand.Active 		:=	Command.Active;
+itfCommand.Error 		:=	Command.Error;
+itfCommand.ErrorID_Udint :=	Command.ErrorID_Udint;
+	
+Power := itfCommand;
+
+_PowerOn := MC.Power.Enable;	]]></ST>
       </Implementation>
     </Method>
     <Property Name="PowerOn" Id="{91f5fe00-793f-465e-b14b-8962261961e3}" FolderPath="Status\">
@@ -257,7 +318,6 @@ END_VAR
     </Property>
     <Method Name="Reset" Id="{3fc0ed87-e795-46d0-b18a-a6fd89904168}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-{warning 'Agregar implementación de método'}
 METHOD Reset : itfCommand
 ]]></Declaration>
       <Implementation>
@@ -265,7 +325,7 @@ METHOD Reset : itfCommand
       </Implementation>
     </Method>
     <Method Name="SetPosition" Id="{2b189c3e-5b6f-429f-963f-350a39320a4b}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD SetPosition : itfCommand
 VAR_INPUT
 	Position	: REAL;
@@ -318,8 +378,8 @@ END_VAR
 		AxisStates := MC_AxisStates.MC_AXISSTATE_DISCRETEMOTION;
 	MC_AXISSTATE_CONTINOUSMOTION:			
 		AxisStates := MC_AxisStates.MC_AXISSTATE_CONTINOUSMOTION;
-	MC_AXISSTATE_SYNCHRONIZEDMOTION:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_SYNCHRONIZEDMOTION;
+//	MC_AXISSTATE_SYNCHRONIZEDMOTION:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_SYNCHRONIZEDMOTION;
 END_CASE;
 
 Status := AxisStates;]]></ST>
@@ -327,7 +387,7 @@ Status := AxisStates;]]></ST>
       </Get>
     </Property>
     <Method Name="Stop" Id="{2d28494d-9637-4f56-b05f-8de95af50c48}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'Agregar implementación de método'}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Stop : itfAxisCommand
 VAR_INPUT
 	Deceleration	: REAL;

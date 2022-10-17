@@ -189,6 +189,25 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Property Name="Status" Id="{627338eb-b183-4da7-935e-204f633cbe81}">
+      <Declaration><![CDATA[PROPERTY Status : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b79df3fd-8747-4f93-9540-3b2f6416d741}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ff722dcf-ee2e-4ba2-b245-ac3e9d0e0029}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="Update" Id="{0d1a4fff-7089-4186-8730-c136d6df7aa7}">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Update 		: MC_Error

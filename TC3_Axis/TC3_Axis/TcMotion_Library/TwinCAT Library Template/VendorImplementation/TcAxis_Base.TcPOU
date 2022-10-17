@@ -169,15 +169,15 @@ END_VAR
     <Method Name="MoveAbsolute" Id="{8a3d5802-d6b5-4a40-89db-b9e127f2da4c}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 {warning 'Agregar implementación de método'}
-METHOD MoveAbsolute : itfAxisCommand
+METHOD ABSTRACT MoveAbsolute : itfAxisCommand
 VAR_INPUT
-	Position	: REAL;
-	Velocity	: REAL;
-	Acceleration	: REAL;
-	Deceleration	: REAL;
-	Jerk	: REAL;
-	Direction	: MC_Direction;
-	BufferMode	: MC_BUFFER_MODE;
+//	Position	: REAL;
+//	Velocity	: REAL;
+//	Acceleration	: REAL;
+//	Deceleration	: REAL;
+//	Jerk	: REAL;
+//	Direction	: MC_Direction;
+//	BufferMode	: MC_BUFFER_MODE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -228,11 +228,11 @@ END_VAR
     <Method Name="Power" Id="{b9175ddb-7f90-4c6e-b87f-cde2843a64a1}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 {warning 'Agregar implementación de método'}
-METHOD Power : itfCommand
+METHOD ABSTRACT Power : itfCommand
 VAR_INPUT
-	Enable	: BOOL;
-	EnablePositive	: BOOL;
-	EnableNegative	: BOOL;
+//	Enable	: BOOL;
+//	EnablePositive	: BOOL;
+//	EnableNegative	: BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>

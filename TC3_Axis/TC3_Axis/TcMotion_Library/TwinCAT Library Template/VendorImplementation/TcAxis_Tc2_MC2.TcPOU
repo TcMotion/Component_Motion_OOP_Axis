@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc2_MC2
+    <Declaration><![CDATA[//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc2_MC2
 //FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_DMC_Tc3_Direct_Motion_Control IMPLEMENTS itfAxis_Tc2_MC2
+FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
+//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
+
 //VAR_INPUT
 //	Axis 				: Tc2_MC2.AXIS_REF;
 //END_VAR
@@ -23,7 +26,7 @@ VAR
 //_Command         : ST_Command;
 	
 
-MC : ST_MC;	
+MC : ST_Tc2_MC2;	
 
 count_delete : INT;	
 END_VAR
@@ -37,6 +40,16 @@ END_VAR
     <Folder Name="MultiAxesMotion" Id="{44c4f412-6645-404f-9d81-e01de0858822}" />
     <Folder Name="SingleAxisMotion" Id="{773962eb-b74d-45a8-b24d-288626989ff0}" />
     <Folder Name="Status" Id="{03058b18-c49a-4761-8ec3-e8bf4e5aa1d1}" />
+    <Folder Name="Touch Probe" Id="{a5f81912-eef1-4913-a787-44651389cb63}" />
+    <Method Name="AbortTrigger" Id="{7e7b714c-aa2c-4a74-95f0-6833e466216b}" FolderPath="Touch Probe\">
+      <Declaration><![CDATA[METHOD AbortTrigger : itfCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="AccelerationProfile" Id="{2d031de7-aa1e-4760-a585-3c08e8401237}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD AccelerationProfile 	: itfCommand
@@ -478,8 +491,10 @@ VAR_INPUT
 	Acceleration	: REAL;
 	Deceleration	: REAL;
 	Jerk			: REAL;
-	Direction		: MC_Direction;
+//	Direction		: MC_Direction;
 	BufferMode		: MC_BUFFER_MODE;
+//	Options         : Tc2_MC2.ST_MoveOptions;
+	Options         : ST_MoveOptions;
 END_VAR
 
 VAR
@@ -499,7 +514,7 @@ MC.MoveAbsolute(
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= BufferMode,//BufferMode, 
-	Options:= , 
+	Options:= , //Options, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=>_Command.Active, 
@@ -639,6 +654,15 @@ fbMoveContinuousRelative(
 
 
 count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveModulo" Id="{e498b0d0-5eab-4e87-b643-9fc1e9a96f1d}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[METHOD MoveModulo : itfAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">
@@ -889,7 +913,7 @@ VAR_INPUT
 	EnableNegative	: BOOL;
 END_VAR
 VAR
-	_fbCommand       	: TcCommand;
+	_fbCommand      : TcCommand;
 	itfCommand      : itfCommand;
 	Command         : ST_Command;
 END_VAR]]></Declaration>
@@ -905,12 +929,13 @@ MC.Power(
 	Override:= 100, 
 	BufferMode:= , 
 	Options:= , 
-	Status=> , 
+	Status=> Command.Status, 
 	Busy=> Command.Busy,
 	Active=> Command.Active,
 	Error=> Command.Error,
 	ErrorID=> Command.ErrorID_Udint);
-		
+
+itfCommand.Status		:=	Command.Status;
 itfCommand.Busy   		:=	Command.Busy;
 itfCommand.Active 		:=	Command.Active;
 itfCommand.Error 		:=	Command.Error;
@@ -1221,6 +1246,15 @@ fbTorqueControl(
 	ErrorId=> );
 
 count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TouchProbe" Id="{9724a4d0-7f15-4489-9615-ca6b57fe446e}" FolderPath="Touch Probe\">
+      <Declaration><![CDATA[METHOD TouchProbe : itfCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="VelocityProfile" Id="{ae47a6cf-f02b-4ff4-9871-0cd776202783}" FolderPath="SingleAxisMotion\">

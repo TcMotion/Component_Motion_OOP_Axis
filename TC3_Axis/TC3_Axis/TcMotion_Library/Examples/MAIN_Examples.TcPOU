@@ -5,17 +5,19 @@
 VAR
 //	fbAxis_X1 				: TcAxis_Tc2_MC2;
 			
-	fbSum : FB_Sum;
+//	fbSum : FB_Sum;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-WareHousingExample();
-
-LabelingExample();
-
+      <ST><![CDATA[//Examples Tc2_MC2:
+WareHousingExample_Tc2_MC2();
+//LabelingExample();
 //CamGearExample();
+
+//Examples Tc3_DriveMotionControl:
+WareHousingExample_Tc3_DriveMotionControl();
+
 
 
 ]]></ST>

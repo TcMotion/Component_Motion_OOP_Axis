@@ -9,7 +9,7 @@
     <Folder Name="SingleAxisMotion" Id="{abafcda8-9d6d-45cf-afd2-2c702b3f6ac0}" />
     <Folder Name="Status" Id="{023fc74a-643f-4641-afcf-b66559b00ebc}" />
     <Method Name="AccelerationProfile" Id="{df31f7b2-0556-40dc-b14a-854531e29ed5}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD AccelerationProfile 	: itfCommand
 VAR_INPUT
 	TimeScale				: REAL;
@@ -36,7 +36,7 @@ PROPERTY AxisWarning : BOOL
       </Get>
     </Property>
     <Method Name="CombineAxes" Id="{c33a9fa2-effc-4321-ac46-ce9c88fb47c7}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD CombineAxes 			: itfSynchronizedAxisCommand
 VAR_INPUT
 	Master1					: itfAxis_Tc2_MC2;
@@ -98,7 +98,7 @@ VAR_IN_OUT
 END_VAR]]></Declaration>
     </Method>
     <Method Name="HaltSuperimposed" Id="{d68cb379-a128-40e2-beca-7c4e6ddd88e0}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD HaltSuperimposed : itfAxisCommand
 VAR_INPUT
 	Deceleration		: REAL;
@@ -131,7 +131,7 @@ PROPERTY LimitSwitchPositive : BOOL
       </Get>
     </Property>
     <Method Name="MoveAdditive" Id="{82801e35-f9f5-4d17-9c52-2ad8fb992b71}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveAdditive : itfAxisCommand
 VAR_INPUT
 	Distance		: REAL;
@@ -144,7 +144,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="MoveContinuousAbsolute" Id="{cab2631a-6b16-4d7b-97d2-b3ef1a50638a}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveContinuousAbsolute 	: itfContinuousAxisCommand
 VAR_INPUT
 	Position					: REAL;
@@ -159,7 +159,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="MoveContinuousRelative" Id="{e243a40a-6895-4c97-9537-990d7389ad60}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveContinuousRelative 	: itfContinuousAxisCommand
 VAR_INPUT
 	Distance					: REAL;
@@ -174,7 +174,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="MoveSuperimposed" Id="{e6ebe6d8-b482-4321-acf9-4b22df4a9581}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveSuperimposed : itfAxisCommand
 VAR_INPUT
 	Distance			: REAL;
@@ -186,7 +186,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="PhasingAbsolute" Id="{83de4694-0ed4-470c-8084-9521fb186863}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
@@ -202,7 +202,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="PhasingRelative" Id="{f386ddd5-736e-4e7c-8a62-1e5046c596d3}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD PhasingRelative 	: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
@@ -218,7 +218,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="PositionProfile" Id="{19b92d91-811d-4e6f-9bbf-f46faa803b76}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD PositionProfile : itfCommand
 VAR_INPUT
 	TimeScale			: REAL;
@@ -229,7 +229,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="ReadBoolParameter" Id="{13dfcb7a-9fca-42a9-9019-a3f4052bfe8c}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadBoolParameter 	: MC_Error
 VAR_INPUT
 	ParameterNumber			: INT;
@@ -240,7 +240,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="ReadParameter" Id="{c5b548c4-a9c4-44cb-b222-a03f23b47bcb}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadParameter 	: MC_Error
 VAR_INPUT
 	ParameterNumber		: INT;
@@ -259,12 +259,12 @@ PROPERTY ReadyForPowerOn : BOOL
       </Get>
     </Property>
     <Method Name="Release" Id="{50052424-1f88-4c87-b31a-991d95e0a89f}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Release : MC_Error
 ]]></Declaration>
     </Method>
     <Method Name="SetOverride" Id="{1c09732f-7e62-4d8f-b8f9-e500a69291f3}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD SetOverride 	: MC_Error
 VAR_INPUT
 	VelFactor		: REAL;
@@ -274,7 +274,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="TorqueControl" Id="{e40b1b18-f414-42ef-ad98-67224ac9a31a}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD TorqueControl	: itfAxisCommand
 VAR_INPUT
 	Torque				: REAL;
@@ -289,7 +289,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="VelocityProfile" Id="{e9f3e391-a484-4147-82be-c9fb21ffd36a}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD VelocityProfile 	: itfCommand
 VAR_INPUT
 	TimeScale			: REAL;
@@ -300,7 +300,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="WriteBoolParameter" Id="{e455080b-9cbe-445c-98e5-c78faebf683b}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD WriteBoolParameter 	: MC_Error
 VAR_INPUT
 	ParameterNumber			: INT;
@@ -309,7 +309,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="WriteParameter" Id="{97fcd37b-6856-4802-a866-95a897e19fed}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD WriteParameter 	: MC_Error
 VAR_INPUT
 	ParameterNumber		: INT;

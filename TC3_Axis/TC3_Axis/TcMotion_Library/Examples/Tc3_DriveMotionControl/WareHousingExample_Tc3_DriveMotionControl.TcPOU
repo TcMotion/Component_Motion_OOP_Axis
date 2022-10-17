@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="WareHousingExample_Tc3_DriveMotionControl" Id="{125c523c-3615-4582-9716-0ee9faeb192c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM WareHousingExample_Tc3_DriveMotionControl
+VAR
+		stateOOP 				: INT;
+		stepOn 					: BOOL := FALSE;
+                            	
+		AXIS_REF_X1 			: Tc3_DriveMotionControl.AXIS_REF;
+		AXIS_REF_Y 				: Tc3_DriveMotionControl.AXIS_REF;
+		AXIS_REF_Z 				: Tc3_DriveMotionControl.AXIS_REF;
+		                    	
+		fbAxis_X1 				: TcAxis_Tc3_DriveMotionControl;
+		fbAxis_Y 				: TcAxis_Tc3_DriveMotionControl;
+		fbAxis_Z 				: TcAxis_Tc3_DriveMotionControl;
+
+		Axis_X1 				: itfAxis_Tc3_DriveMotionControl;
+		Axis_Y 					: itfAxis_Tc3_DriveMotionControl;
+		Axis_Z 					: itfAxis_Tc3_DriveMotionControl;
+		                    	
+		lastCommandX1 			: itfCommand;
+		lastCommandY 			: itfCommand;
+		lastCommandZ 			: itfCommand;
+		
+		targetPosX 				: REAL := 400;
+		targetPosY 				: REAL := 600;
+		
+		ActualPosition_X1 		: REAL;
+		ActualPosition_Y 		: REAL;
+		ActualPosition_Z 		: REAL;
+		
+		ActualVelocity_X1 		: REAL;
+		ActualVelocity_Y 		: REAL;
+		ActualVelocity_Z 		: REAL;
+		
+		ActualTorque_X1 		: REAL;
+		ActualTorque_Y 			: REAL;
+		ActualTorque_Z 			: REAL;
+					
+		Done_X1                 : BOOL;
+		Done_Y                  : BOOL;	
+		Done_Z                  : BOOL;	
+		
+		Options					: ST_MoveOptions;		
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+fbAxis_X1(Axis:=AXIS_REF_X1);
+fbAxis_Y(Axis:=AXIS_REF_Y);
+fbAxis_Z(Axis:=AXIS_REF_Z);
+
+Axis_X1 := fbAxis_X1;
+Axis_Y := fbAxis_Y;
+Axis_Z := fbAxis_Z;
+
+ActualPosition_X1 		:= Axis_X1.ActualPosition;
+ActualPosition_Y 		:= Axis_Y.ActualPosition;
+ActualPosition_Z 		:= Axis_Z.ActualPosition;
+
+ActualVelocity_X1 		:= Axis_X1.ActualVelocity;
+ActualVelocity_Y 		:= Axis_Y.ActualVelocity;
+ActualVelocity_Z 		:= Axis_Z.ActualVelocity;
+
+//Torque Tc3_DriveMotionControl
+//ActualTorque_X1 		:= Axis_X1.ActualTorque;
+//ActualTorque_Y 			:= Axis_Y.ActualTorque;
+//ActualTorque_Z 			:= Axis_Z.ActualTorque;
+
+
+CASE stateOOP OF
+	0: ;
+		IF stepOn THEN
+			stateOOP := stateOOP + 10;	
+		END_IF
+	10: 
+	// init
+		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+			
+       IF Axis_X1.PowerOn AND Axis_Y.PowerOn AND Axis_Z.PowerOn THEN  	
+			IF Axis_X1.Status = MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = MC_AXISSTATE_STANDSTILL AND
+				 Axis_Z.Status = MC_AXISSTATE_STANDSTILL THEN			
+				IF stepOn THEN
+					stateOOP := 11;		
+					stepOn := FALSE;
+				END_IF
+			END_IF
+		END_IF
+	11 : 
+	//GearIn
+//		Axis_X1.GearIn(Slave:= AXIS_REF_X2_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
+//		Axis_X1.GearIn(Slave:= AXIS_REF_X3_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
+		stateOOP := 12;						
+			
+	12:
+	// Geared
+//	    IF Axis_X2_Slave.Geared AND Axis_X3_Slave.Geared THEN			
+			stateOOP := 20;
+			stepOn := FALSE;		
+//		END_IF			
+
+	20:
+	// start movement in XY
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=targetPosX, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options);
+		lastCommandY := Axis_Y.MoveAbsolute(Position:=targetPosY, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options);
+			
+		Done_X1 S= lastCommandX1.Done;
+		Done_Y  S= lastCommandY.Done;
+			
+		IF Done_X1 AND Done_Y THEN
+			stateOOP := stateOOP + 10;					
+	  		Done_X1  := FALSE;
+			Done_Y   := FALSE;
+		END_IF		
+
+	30:
+	// wait till movement is finished to 'forkIn'
+		Done_Z S= Axis_Z.MoveRelative(Distance:=100, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		IF Done_Z THEN
+			stateOOP := stateOOP + 10;
+			Done_Z := FALSE;
+		END_IF
+		
+	40:
+	// lift pallet if forked in
+	    IF NOT Done_X1 THEN
+			Done_X1 S= Axis_X1.MoveRelative(Distance:=100, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		END_IF
+		IF NOT Done_Y THEN
+			Done_Y  S= Axis_Y.MoveRelative(Distance:=100, Velocity:=10, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting).Done;
+		END_IF
+		IF Done_X1 AND Done_Y THEN
+			stateOOP := stateOOP + 10;
+			Done_X1 := FALSE;
+			Done_Y  := FALSE;
+		END_IF
+		
+	50:
+	// fork out with pallet if forked in is done
+		lastCommandZ := Axis_Z.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options);
+		IF lastCommandZ.Done THEN
+			stateOOP := stateOOP + 10;
+			stepOn := FALSE;
+		END_IF
+
+	60:
+	// move to delivery if fork out is done
+		lastCommandX1 := Axis_X1.MoveAbsolute(Position:=20, Velocity:=40, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options);
+		lastCommandY := Axis_Y.MoveAbsolute(Position:=20, Velocity:=80, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options);
+
+		Done_X1	S= lastCommandX1.Done;
+		Done_Y  S= lastCommandY.Done;
+			
+		IF Done_X1 AND Done_Y THEN			
+			stateOOP := stateOOP + 10;
+			Done_X1 := FALSE;	
+	        Done_Y  := FALSE;
+		END_IF
+
+	70:
+	// wait till finished	
+		Done_X1 S= Axis_X1.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options).Done;
+		Done_Y  S= Axis_Y.MoveAbsolute(Position:=0, Velocity:=20, Acceleration:=0, Deceleration:=0, Jerk:=0, BufferMode:=MC_BUFFER_MODE.mcAborting, Options:= Options).Done;
+		IF Done_X1 AND Done_Y THEN
+			stateOOP := stateOOP + 10;	
+			Done_X1 := FALSE;
+			Done_Y  := FALSE;
+		END_IF
+	80: 
+	// ready
+	;
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

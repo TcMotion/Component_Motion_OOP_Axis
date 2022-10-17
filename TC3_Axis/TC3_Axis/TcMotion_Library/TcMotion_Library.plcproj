@@ -43,10 +43,16 @@
     </SelectedLibraryCategories>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassDiagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Component_Axis\FB_TcAxis_Codesys.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MsTestUnit\FB_Sum.TcPOU">
+    <Compile Include="Examples\Tc2_MC2\WareHousingExample_Tc2_MC2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Examples\Tc3_DriveMotionControl\WareHousingExample_Tc3_DriveMotionControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -59,9 +65,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Examples\MAIN_Examples.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Examples\WareHousingExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
@@ -158,7 +161,13 @@
     <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_Command.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_MC.TcDUT">
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_MoveOptions.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_Tc2_MC2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwinCAT Library Template\Part1Definition\Structs\ST_Tc3_DriveMotionControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\VendorImplementation\TcAxis_Base.TcPOU">
@@ -197,7 +206,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component_Axis" />
-    <Folder Include="MsTestUnit" />
+    <Folder Include="Examples\Tc3_DriveMotionControl" />
+    <Folder Include="Examples\Tc2_MC2" />
     <Folder Include="Project Information" />
     <Folder Include="TwinCAT Library Template" />
     <Folder Include="TwinCAT Library Template\VendorImplementation" />

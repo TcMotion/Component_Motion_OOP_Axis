@@ -795,6 +795,451 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{3A8BFF29-A39F-1212-8FD9-D3CF9EA71B2A}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_FeedbackStatusWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>LatchCValid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>LatchExternValid</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetCounterDone</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CounterUnderflow</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CounterOverflow</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OpenCircuit</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtrapolationStall</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StatusOfInputA</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StatusOfInputB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>9</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StatusOfInputC</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>10</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StatusOfInputGate</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StatusOfExternLatch</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>12</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{87CA2864-2AD2-C3E3-A51A-F98EC4E085D0}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_DriveStatusWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>ReadyToEnable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Ready</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MovingPositive</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MovingNegative</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TorqueReduced</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MotorStall</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DigitalInput1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DigitalInput2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>12</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{67CCC2FB-C8AE-52A0-BC50-FE28152B7E13}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_PositioningStatusWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Busy</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InTarget</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Calibrated</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Accelerate</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Decelerate</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ReadyToExecute</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{91CE10F9-9650-BAA1-D460-F4E92A7AEAB6}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">DRIVETOPLC_SYNCHRON_INFO_DATA</Name>
+			<BitSize>48</BitSize>
+			<SubItem>
+				<Name>InfoData1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InfoData2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InfoData3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>pack_mode</Name>
+					<Value>1</Value>
+				</Property>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{0DE18E34-570B-EA73-24A8-9A8FB8CA912C}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">DRIVETOPLC_AXIS_REF</Name>
+			<BitSize>512</BitSize>
+			<SubItem>
+				<Name>FeedbackStatus</Name>
+				<Type GUID="{3A8BFF29-A39F-1212-8FD9-D3CF9EA71B2A}" Namespace="Tc3_DriveMotionControl">ST_FeedbackStatusWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DriveStatus</Name>
+				<Type GUID="{87CA2864-2AD2-C3E3-A51A-F98EC4E085D0}" Namespace="Tc3_DriveMotionControl">ST_DriveStatusWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PositioningStatus</Name>
+				<Type GUID="{67CCC2FB-C8AE-52A0-BC50-FE28152B7E13}" Namespace="Tc3_DriveMotionControl">ST_PositioningStatusWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetPos</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetVelo</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ActDriveTime</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PosDiff</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>160</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ActVelo</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>224</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ActPos</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>240</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ErrorId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>304</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InputCycleCounter</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>336</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ChannelId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>344</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>LatchValue</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>352</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SyncInfoData</Name>
+				<Type GUID="{91CE10F9-9650-BAA1-D460-F4E92A7AEAB6}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_SYNCHRON_INFO_DATA</Type>
+				<BitSize>48</BitSize>
+				<BitOffs>416</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>pack_mode</Name>
+					<Value>1</Value>
+				</Property>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{FFC8CEBE-7BAB-7DE7-00F8-73225E662AD8}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">DRIVETOPLC_WCSTATE</Name>
+			<BitSize>32</BitSize>
+			<SubItem>
+				<Name>WcState</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InputToggle</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>pack_mode</Name>
+					<Value>1</Value>
+				</Property>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000042}" TcBaseType="true" CName="AmsAddr">AMSADDR</Name>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>netId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				<BitSize>48</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>port</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d:%d</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+			<Format Name="Iec">
+				<Printf>(netId:=[%d.%d.%d.%d.%d.%d], port :=%d)</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{8C06EC48-792C-69BC-DDCB-B0FE2DA05671}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">DRIVETOPLC_INFODATA</Name>
+			<BitSize>80</BitSize>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>AdsAddr</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>pack_mode</Name>
+					<Value>1</Value>
+				</Property>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -981,71 +1426,422 @@ External Setpoint Generation:
 				</Relation>
 			</Relations>
 		</DataType>
+		<DataType>
+			<Name GUID="{BCE2B3AC-CF81-6088-E1B2-84541BBDFA25}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_FeedbackControlWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>EnableLatchC</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EnableLatchExternPositiveEdge</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetCounter</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EnableLatchExternNegativeEdge</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{8CE19EC4-1E20-BD26-30B5-21F07DAA0EAC}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_DriveControlWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Enable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Reset</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ReduceTorque</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DigitalOutput1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DigitalOutput2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{1CE3DC97-3E28-93B5-5E21-D04B46918679}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">ST_PositioningControlWord</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Execute</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EmergencyStop</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EnableAutoStart</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{C0CBDFE2-5AA9-EA9D-2ED6-05B2392CF973}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">_E_StartPosType</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_Undefined]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_Absolute]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_Relative]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessPlus]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessMinus]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_Additive]]></Text>
+				<Enum>6</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ReversingSequence]]></Text>
+				<Enum>7</Enum>
+				<Comment><![CDATA[ Not implemented			]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloShort]]></Text>
+				<Enum>261</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloShortExt]]></Text>
+				<Enum>277</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloPlus]]></Text>
+				<Enum>517</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloPlusExt]]></Text>
+				<Enum>533</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloMinus]]></Text>
+				<Enum>773</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloMinusExt]]></Text>
+				<Enum>789</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloCurrent]]></Text>
+				<Enum>1029</Enum>
+				<Comment><![CDATA[ Not implemented]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ModuloCurrentExt]]></Text>
+				<Enum>1045</Enum>
+				<Comment><![CDATA[ Not implemented]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_AbsoluteChange]]></Text>
+				<Enum>4097</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_RelativeChange]]></Text>
+				<Enum>4098</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_AdditiveChange]]></Text>
+				<Enum>4102</Enum>
+				<Comment><![CDATA[ Not implemented		]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ScanMotor]]></Text>
+				<Enum>20480</Enum>
+				<Comment><![CDATA[ Not implemented]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_CalibrationPlcCam]]></Text>
+				<Enum>24576</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_CalibrationHardwareSync]]></Text>
+				<Enum>24832</Enum>
+				<Comment><![CDATA[ Not implemented]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_CalibrationOnBlock]]></Text>
+				<Enum>25088</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_SetCalibration]]></Text>
+				<Enum>28160</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_SetCalibrationAuto]]></Text>
+				<Enum>28161</Enum>
+				<Comment><![CDATA[ Not implemented]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_ClearCalibration]]></Text>
+				<Enum>28416</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_StopAndLock]]></Text>
+				<Enum>61441</Enum>
+				<Comment><![CDATA[ additional internal start types	]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_Halt]]></Text>
+				<Enum>61442</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessPlus_SlowManual]]></Text>
+				<Enum>61697</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessMinus_SlowManual]]></Text>
+				<Enum>61698</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessPlus_FastManual]]></Text>
+				<Enum>61699</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[eStartPosType_EndlessMinus_FastManual]]></Text>
+				<Enum>61700</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>strict</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{A65200DE-34DE-8610-A0C0-FC86E2E1B12B}" Namespace="Tc3_DriveMotionControl" AutoDeleteType="true">PLCTODRIVE_AXIS_REF</Name>
+			<BitSize>320</BitSize>
+			<SubItem>
+				<Name>FeedBackControl</Name>
+				<Type GUID="{BCE2B3AC-CF81-6088-E1B2-84541BBDFA25}" Namespace="Tc3_DriveMotionControl">ST_FeedbackControlWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DriveControl</Name>
+				<Type GUID="{8CE19EC4-1E20-BD26-30B5-21F07DAA0EAC}" Namespace="Tc3_DriveMotionControl">ST_DriveControlWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PositioningControl</Name>
+				<Type GUID="{1CE3DC97-3E28-93B5-5E21-D04B46918679}" Namespace="Tc3_DriveMotionControl">ST_PositioningControlWord</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetCounterValue</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TargetPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TargetVelocity</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>176</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StartType</Name>
+				<Type GUID="{C0CBDFE2-5AA9-EA9D-2ED6-05B2392CF973}" Namespace="Tc3_DriveMotionControl">_E_StartPosType</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TargetAcceleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>208</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TargetDeceleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>224</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>pack_mode</Name>
+					<Value>1</Value>
+				</Property>
+				<Property>
+					<Name>conditionalshow</Name>
+				</Property>
+			</Properties>
+		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="TcMotion_Library" PrjFilePath="..\..\TcMotion_Library\TcMotion_Library.plcproj" TmcFilePath="..\..\TcMotion_Library\TcMotion_Library.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{5F492A50-606D-4D52-9367-1CAFADAC23F4}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_Axis\PLC_Axis.tmc" TmcHash="{E0A26F87-3E5A-99BF-E546-E4FAD22AB365}">
 			<Name>TcMotion_Library Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X1.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X1.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_Y.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Y.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_Z.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Z.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X2_Slave.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X3_Slave.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.AXIS_REF_LabelDrive.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_X1.DriveToPlc</Name>
+					<Type GUID="{0DE18E34-570B-EA73-24A8-9A8FB8CA912C}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.AXIS_REF_Conveyor.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_X1.WcState</Name>
+					<Type GUID="{FFC8CEBE-7BAB-7DE7-00F8-73225E662AD8}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_WCSTATE</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_X1.InfoData</Name>
+					<Type GUID="{8C06EC48-792C-69BC-DDCB-B0FE2DA05671}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_INFODATA</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Y.DriveToPlc</Name>
+					<Type GUID="{0DE18E34-570B-EA73-24A8-9A8FB8CA912C}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Y.WcState</Name>
+					<Type GUID="{FFC8CEBE-7BAB-7DE7-00F8-73225E662AD8}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_WCSTATE</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Y.InfoData</Name>
+					<Type GUID="{8C06EC48-792C-69BC-DDCB-B0FE2DA05671}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_INFODATA</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Z.DriveToPlc</Name>
+					<Type GUID="{0DE18E34-570B-EA73-24A8-9A8FB8CA912C}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Z.WcState</Name>
+					<Type GUID="{FFC8CEBE-7BAB-7DE7-00F8-73225E662AD8}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_WCSTATE</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Z.InfoData</Name>
+					<Type GUID="{8C06EC48-792C-69BC-DDCB-B0FE2DA05671}" Namespace="Tc3_DriveMotionControl">DRIVETOPLC_INFODATA</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X1.PlcToNc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X1.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_Y.PlcToNc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Y.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_Z.PlcToNc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Z.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X2_Slave.PlcToNc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample.AXIS_REF_X3_Slave.PlcToNc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.AXIS_REF_LabelDrive.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_X1.PlcToDrive</Name>
+					<Type GUID="{A65200DE-34DE-8610-A0C0-FC86E2E1B12B}" Namespace="Tc3_DriveMotionControl">PLCTODRIVE_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>LabelingExample.AXIS_REF_Conveyor.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Y.PlcToDrive</Name>
+					<Type GUID="{A65200DE-34DE-8610-A0C0-FC86E2E1B12B}" Namespace="Tc3_DriveMotionControl">PLCTODRIVE_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc3_DriveMotionControl.AXIS_REF_Z.PlcToDrive</Name>
+					<Type GUID="{A65200DE-34DE-8610-A0C0-FC86E2E1B12B}" Namespace="Tc3_DriveMotionControl">PLCTODRIVE_AXIS_REF</Type>
 				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2022-10-05T16:20:37">
@@ -1102,6 +1898,24 @@ External Setpoint Generation:
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2022-10-17T15:37:18">
+				<OwnerA Name="InputDst" Prefix="TIPC^TcMotion_Library^TcMotion_Library Instance" Type="1">
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Conveyor">
+						<Link VarA="LabelingExample.AXIS_REF_Conveyor.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^LabelDrive">
+						<Link VarA="LabelingExample.AXIS_REF_LabelDrive.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+				<OwnerA Name="OutputSrc" Prefix="TIPC^TcMotion_Library^TcMotion_Library Instance" Type="2">
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Conveyor">
+						<Link VarA="LabelingExample.AXIS_REF_Conveyor.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^LabelDrive">
+						<Link VarA="LabelingExample.AXIS_REF_LabelDrive.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
 			<Contexts>
 				<Context>
 					<Id NeedCalleeCall="true">0</Id>
@@ -1121,32 +1935,24 @@ External Setpoint Generation:
 	<Mappings>
 		<OwnerA Name="TcMotion_Library Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X1">
-				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X1.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X1.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample_Tc2_MC2.AXIS_REF_X1.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample_Tc2_MC2.AXIS_REF_X1.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X2_Slave">
-				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X2_Slave.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X2_Slave.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_X3_Slave">
-				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_X3_Slave.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_X3_Slave.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Y">
-				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_Y.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_Y.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample_Tc2_MC2.AXIS_REF_Y.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample_Tc2_MC2.AXIS_REF_Y.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_Z">
-				<Link VarA="PlcTask Inputs^WareHousingExample.AXIS_REF_Z.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^WareHousingExample.AXIS_REF_Z.PlcToNc" VarB="Inputs^FromPlc"/>
-			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Conveyor">
-				<Link VarA="PlcTask Inputs^LabelingExample.AXIS_REF_Conveyor.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^LabelingExample.AXIS_REF_Conveyor.PlcToNc" VarB="Inputs^FromPlc"/>
-			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^LabelDrive">
-				<Link VarA="PlcTask Inputs^LabelingExample.AXIS_REF_LabelDrive.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^LabelingExample.AXIS_REF_LabelDrive.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^WareHousingExample_Tc2_MC2.AXIS_REF_Z.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^WareHousingExample_Tc2_MC2.AXIS_REF_Z.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
