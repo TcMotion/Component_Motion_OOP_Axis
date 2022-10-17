@@ -140,6 +140,7 @@ VAR_INPUT
 	Deceleration	: REAL;
 	Jerk			: REAL;
 	BufferMode		: MC_BUFFER_MODE;
+	Options         : ST_MoveOptions;
 END_VAR
 ]]></Declaration>
     </Method>

@@ -238,12 +238,13 @@ METHOD MoveModulo : itfAxisCommand
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveRelative : itfAxisCommand
 VAR_INPUT
-	Distance	: REAL;
-	Velocity	: REAL;
+	Distance		: REAL;
+	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk	: REAL;
-	BufferMode	: MC_BUFFER_MODE;
+	Jerk			: REAL;
+	BufferMode		: MC_BUFFER_MODE;
+	Options         : ST_MoveOptions;
 END_VAR
 ]]></Declaration>
       <Implementation>
