@@ -182,11 +182,11 @@ VAR_INPUT
 	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk			: REAL;
+//	Jerk			: REAL;
 //	Direction		: MC_Direction;
-	BufferMode		: MC_BUFFER_MODE;
+//	BufferMode		: MC_BUFFER_MODE;
 //	Options         : Tc2_MC2.ST_MoveOptions;
-	Options         : ST_MoveOptions;
+	Options         : Tc3_DriveMotionControl.ST_MoveOptions;
 END_VAR
 
 VAR
@@ -204,7 +204,7 @@ MC.MoveAbsolute(
 	Velocity:= Velocity, 
 	Acceleration:= Acceleration, 
 	Deceleration:= Deceleration, 
-	Options:= ,//,Options, 
+	Options:= ,//Options, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=>_Command.Active, 
@@ -242,13 +242,43 @@ VAR_INPUT
 	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk			: REAL;
-	BufferMode		: MC_BUFFER_MODE;
-	Options         : ST_MoveOptions;
+//	Jerk			: REAL;
+//	BufferMode		: MC_BUFFER_MODE;
+	Options         : Tc3_DriveMotionControl.ST_MoveOptions;
+END_VAR
+VAR
+	itfAxisCommand   : itfAxisCommand;
+	_Command         : ST_Command;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[MC.MoveRelative(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Distance:= Distance, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Options:= Options, 
+	Done=> _Command.Done, 
+	Busy=> _Command.Busy, 
+	Active=>  _Command.Active, 
+	CommandAborted=>  _Command.CommandAborted, 
+	Error=> _Command.Error, 
+	ErrorID=> _Command.ErrorID_Udint);
+	
+MC.MoveRelative(
+	Axis:= Axis, 
+	Execute:= FALSE);		
+	
+itfAxisCommand.Done 				:=  _Command.Done; //AND ActualPosition = ActualPosition + Distance;             
+itfAxisCommand.Busy   				:=	_Command.Busy;
+itfAxisCommand.Active 				:=	_Command.Active;
+itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
+itfAxisCommand.Error 				:=	_Command.Error;
+itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+MoveRelative := itfAxisCommand;	]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{51c35689-c199-4411-8e3a-a8b21bff495b}" FolderPath="SingleAxisMotion\">
@@ -272,8 +302,8 @@ END_VAR
 METHOD Power : itfCommand
 VAR_INPUT
 	Enable	: BOOL;
-	EnablePositive	: BOOL;
-	EnableNegative	: BOOL;
+//	EnablePositive	: BOOL;
+//	EnableNegative	: BOOL;
 END_VAR
 VAR
 	_fbCommand      : TcCommand;

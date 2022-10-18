@@ -116,10 +116,10 @@ VAR_INPUT
 	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk			: REAL;
+//	Jerk			: REAL;
 //	Direction		: MC_Direction;
-	BufferMode		: MC_BUFFER_MODE;
-	Options         : ST_MoveOptions;
+//	BufferMode		: MC_BUFFER_MODE;
+	Options         : Tc3_DriveMotionControl.ST_MoveOptions;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -138,9 +138,9 @@ VAR_INPUT
 	Velocity		: REAL;
 	Acceleration	: REAL;
 	Deceleration	: REAL;
-	Jerk			: REAL;
-	BufferMode		: MC_BUFFER_MODE;
-	Options         : ST_MoveOptions;
+//	Jerk			: REAL;
+//	BufferMode		: MC_BUFFER_MODE;
+	Options         : Tc3_DriveMotionControl.ST_MoveOptions;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -163,8 +163,8 @@ END_VAR
 METHOD Power	: itfCommand
 VAR_INPUT
 	Enable				: BOOL;
-	EnablePositive		: BOOL;
-	EnableNegative		: BOOL;
+//	EnablePositive		: BOOL;
+//	EnableNegative		: BOOL;
 END_VAR
 ]]></Declaration>
     </Method>

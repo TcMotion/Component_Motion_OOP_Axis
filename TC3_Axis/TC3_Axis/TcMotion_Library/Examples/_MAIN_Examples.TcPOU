@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="MAIN_Examples" Id="{ce97d388-e861-4591-bddd-7771707f573f}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM MAIN_Examples
+  <POU Name="_MAIN_Examples" Id="{ce97d388-e861-4591-bddd-7771707f573f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM _MAIN_Examples
 VAR
 //	fbAxis_X1 				: TcAxis_Tc2_MC2;
 			

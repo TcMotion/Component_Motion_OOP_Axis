@@ -3,7 +3,7 @@
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
     <Declaration><![CDATA[//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc2_MC2
 //FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_DMC_Tc3_Direct_Motion_Control IMPLEMENTS itfAxis_Tc2_MC2
-FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
+FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc2_MC2
 //FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
 
 //VAR_INPUT
@@ -494,7 +494,7 @@ VAR_INPUT
 //	Direction		: MC_Direction;
 	BufferMode		: MC_BUFFER_MODE;
 //	Options         : Tc2_MC2.ST_MoveOptions;
-	Options         : ST_MoveOptions;
+	Options         : Tc2_Mc2.ST_MoveOptions;
 END_VAR
 
 VAR
@@ -675,7 +675,7 @@ VAR_INPUT
 	Deceleration		: REAL;
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
-	Options         : ST_MoveOptions;
+	Options         	: TC2_MC2.ST_MoveOptions;
 END_VAR
 VAR
 	itfAxisCommand   : itfAxisCommand;
@@ -693,7 +693,7 @@ MC.MoveRelative(
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= ,//BufferMode, 
-	Options:= , 
+	Options:= Options, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=> _Command.Active, 
