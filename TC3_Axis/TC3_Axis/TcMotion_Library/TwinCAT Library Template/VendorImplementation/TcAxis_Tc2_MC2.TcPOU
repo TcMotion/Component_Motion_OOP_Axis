@@ -1146,37 +1146,39 @@ END_VAR
     </Property>
     <Property Name="Status" Id="{899ae5c5-cb0d-4a4d-9f83-26636f1764e2}" FolderPath="Status\">
       <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
-PROPERTY Status : MC_AxisStates
+PROPERTY Status : Tc2_MC2.MC_AxisStates
 ]]></Declaration>
       <Get Name="Get" Id="{d011a0b2-92b3-4928-b561-f5a955384b13}">
         <Declaration><![CDATA[VAR	
-	AxisStates : MC_AxisStates;
+	AxisStates : Tc2_MC2.MC_AxisStates;
 END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[
-CASE Axis.Status.MotionState OF 
-     MC_AXISSTATE_UNDEFINED : 
-         AxisStates := MC_AxisStates.MC_AXISSTATE_UNDEFINED;
-	MC_AXISSTATE_DISABLED:
-		AxisStates := MC_AxisStates.MC_AXISSTATE_DISABLED;
-	MC_AXISSTATE_STANDSTILL:
-		AxisStates := MC_AxisStates.MC_AXISSTATE_STANDSTILL;
-	MC_AXISSTATE_ERRORSTOP:		
-		AxisStates := MC_AxisStates.MC_AXISSTATE_ERRORSTOP;
-	MC_AXISSTATE_STOPPING:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_STOPPING;
-	MC_AXISSTATE_HOMING:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_HOMING;
-	MC_AXISSTATE_DISCRETEMOTION:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_DISCRETEMOTION;
-	MC_AXISSTATE_CONTINOUSMOTION:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_CONTINOUSMOTION;
-	MC_AXISSTATE_SYNCHRONIZEDMOTION:			
-		AxisStates := MC_AxisStates.MC_AXISSTATE_SYNCHRONIZEDMOTION;
-END_CASE;
+//CASE Axis.Status.MotionState OF 
+//     MC_AXISSTATE_UNDEFINED : 
+//         AxisStates := MC_AxisStates.MC_AXISSTATE_UNDEFINED;
+//	MC_AXISSTATE_DISABLED:
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_DISABLED;
+//	MC_AXISSTATE_STANDSTILL:
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_STANDSTILL;
+//	MC_AXISSTATE_ERRORSTOP:		
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_ERRORSTOP;
+//	MC_AXISSTATE_STOPPING:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_STOPPING;
+//	MC_AXISSTATE_HOMING:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_HOMING;
+//	MC_AXISSTATE_DISCRETEMOTION:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_DISCRETEMOTION;
+//	MC_AXISSTATE_CONTINOUSMOTION:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_CONTINOUSMOTION;
+//	MC_AXISSTATE_SYNCHRONIZEDMOTION:			
+//		AxisStates := MC_AxisStates.MC_AXISSTATE_SYNCHRONIZEDMOTION;
+//END_CASE;
 
-Status := AxisStates;
+//Status := AxisStates;
+
+Status := Axis.Status.MotionState;
 
 ]]></ST>
         </Implementation>

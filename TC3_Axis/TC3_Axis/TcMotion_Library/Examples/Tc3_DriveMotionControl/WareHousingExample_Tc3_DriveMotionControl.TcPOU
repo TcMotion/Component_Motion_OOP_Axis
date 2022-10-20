@@ -41,7 +41,8 @@ VAR
 		Done_Y                  : BOOL;	
 		Done_Z                  : BOOL;	
 		
-		Options					: Tc3_DriveMotionControl.ST_MoveOptions;		
+		Options					: Tc3_DriveMotionControl.ST_MoveOptions;	
+ 
 END_VAR
 ]]></Declaration>
     <Implementation>

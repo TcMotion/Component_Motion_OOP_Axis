@@ -19,7 +19,7 @@
     <DocFormat>reStructuredText</DocFormat>
     <Company>TcMotion</Company>
     <Title>TcMotion_Component</Title>
-    <ProjectVersion>1.0.0.4</ProjectVersion>
+    <ProjectVersion>1.0.0.5</ProjectVersion>
     <DefaultNamespace>Tc3_Motion</DefaultNamespace>
     <Author>victorduranm@hotmail.com</Author>
     <Description>Component Motion OOP Axis</Description>
@@ -86,9 +86,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\E_AxisParameters.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_AxisStates.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TwinCAT Library Template\Part1Definition\Enums\MC_Error.TcDUT">

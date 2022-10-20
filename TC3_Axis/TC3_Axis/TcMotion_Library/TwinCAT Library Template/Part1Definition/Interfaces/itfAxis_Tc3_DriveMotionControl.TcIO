@@ -201,7 +201,7 @@ PROPERTY Simulation : BOOL
       </Get>
     </Property>
     <Property Name="Status" Id="{e4198a14-7f2f-4104-8313-0f25851d2bf7}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY Status : MC_AxisStates]]></Declaration>
+      <Declaration><![CDATA[PROPERTY Status : Tc3_DriveMotionControl.MC_AxisStates]]></Declaration>
       <Get Name="Get" Id="{d814797c-ff1a-4ea5-9dc1-1750ae336e27}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
