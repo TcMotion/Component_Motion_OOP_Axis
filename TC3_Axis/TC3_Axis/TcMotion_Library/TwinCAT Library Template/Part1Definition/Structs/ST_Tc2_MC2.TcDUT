@@ -3,9 +3,79 @@
   <DUT Name="ST_Tc2_MC2" Id="{e87bf896-9231-4520-a679-e6ae0efc462e}">
     <Declaration><![CDATA[TYPE ST_Tc2_MC2 :
 STRUCT
-	Power 			: Tc2_MC2.MC_POWER;
-	MoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
-	MoveRelative 	: Tc2_MC2.MC_MoveRelative;
+	Power 							: Tc2_MC2.MC_Power;
+	Reset 							: Tc2_MC2.MC_Reset;
+	SetPosition     				: Tc2_MC2.MC_SetPosition;
+	                            	
+//	ReadDriveOperationMode			:
+//	WriteDriveOperationMode			:
+	                            	
+//	BacklashCompensation    		:
+//	OverrideFilter					:
+//	PositionCorrectionLimiter		:
+//	PowerStepper					:
+//	ReadDriveAddress				:
+//	SelectControlLoop				:
+//	SetAcceptBlockedDriveSignal		:
+//	SetEncoderScalingFactor			:
+	SetOverride						: Tc2_MC2.MC_SetOverride;
+//	WriteNcIoOutput					:
+	                            	
+//	ExtSetPointGenDisable			:
+//	ExtSetPointGenEnable			:
+//	ExtSetPointGenFeed				:
+	                            	
+//	ReadActualPosition				:
+//	ReadActualVelocity				:
+//	ReadAxisComponents				:
+//	ReadAxisError					:
+	ReadBoolParameter				: Tc2_MC2.MC_ReadBoolParameter;
+//	ReadLargeParameter				:
+	ReadParameter					: Tc2_MC2.MC_ReadParameter;
+//	ReadParameterSet				:
+//	ReadStatus						:
+	WriteBoolParameter				: Tc2_MC2.MC_WriteBoolParameter;
+//	WriteBoolParameterPersistent	:
+//	WriteLargeParameter				:
+//	WriteLargeParameterPersistent	:
+	writeParameter					: Tc2_MC2.MC_WriteParameter;
+//	WriteParameterPersistent		:
+	
+//	AbortTrigger					:
+//	TouchProbe						:
+	
+	GearIn							: Tc2_MC2.MC_GearIn;
+//	GearInDyn						:
+//	GearInMultimaster				:
+//	GearOut							:
+
+	Home							: Tc2_MC2.MC_Home;
+	
+	Jog								: Tc2_MC2.MC_Jog;
+	
+//	HaltPhasing						:
+	PhasingAbsolute					: Tc2_MC2.MC_PhasingAbsolute;
+	PhasingRelative					: Tc2_MC2.MC_PhasingRelative;
+	
+	Halt							: Tc2_MC2.MC_Halt;
+	MoveAbsolute 					: Tc2_MC2.MC_MoveAbsolute;	
+	MoveAdditive					: Tc2_MC2.MC_MoveAdditive;
+	MoveContinuousAbsolute			: Tc2_MC2.MC_MoveContinuousAbsolute;
+	MoveContinuousRelative			: Tc2_MC2.MC_MoveContinuousRelative;
+	MoveRelative 					: Tc2_MC2.MC_MoveRelative;
+	MoveVelocity					: Tc2_MC2.MC_MoveVelocity;
+	Stop							: Tc2_MC2.MC_Stop;
+	
+//	AbortSuperposition				:
+	MoveSuperImposed				: Tc2_MC2.MC_MoveSuperimposed;	
+	
+	TorqueControl					: Tc2_MC2.MC_TorqueControl;
+	
+//	TableBasedPositionCompensation  :
+	
+//	ReadApplicationRequest			:
+//	ReadStopInfo					:
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>

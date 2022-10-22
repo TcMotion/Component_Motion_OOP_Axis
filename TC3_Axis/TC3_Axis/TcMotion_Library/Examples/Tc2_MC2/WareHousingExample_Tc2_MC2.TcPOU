@@ -117,14 +117,19 @@ CASE stateOOP OF
 	//GearIn
 		Axis_X1.GearIn(Slave:= AXIS_REF_X2_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
 		Axis_X1.GearIn(Slave:= AXIS_REF_X3_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
-		stateOOP := 12;						
-			
-	12:
+//		stateOOP := 12;						
+
 	// Geared
 	    IF Axis_X2_Slave.Geared AND Axis_X3_Slave.Geared THEN			
 			stateOOP := 20;
 			stepOn := FALSE;		
-		END_IF			
+		END_IF						
+//	12:
+//	// Geared
+//	    IF Axis_X2_Slave.Geared AND Axis_X3_Slave.Geared THEN			
+//			stateOOP := 20;
+//			stepOn := FALSE;		
+//		END_IF			
 
 	20:
 	// start movement in XY

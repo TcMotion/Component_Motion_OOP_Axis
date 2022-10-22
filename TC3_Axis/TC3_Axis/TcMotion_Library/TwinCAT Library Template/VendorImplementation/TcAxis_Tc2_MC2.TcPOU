@@ -279,13 +279,13 @@ VAR_IN_OUT
 	Slave				: Tc2_MC2.AXIS_REF;	
 END_VAR
 VAR
-	fbGearIn			: Tc2_MC2.MC_GearIn;	
+//	fbGearIn			: Tc2_MC2.MC_GearIn;	
 END_VAR
 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[	
-fbGearIn(
+MC.GearIn(
 	Master:= Axis, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
@@ -302,7 +302,12 @@ fbGearIn(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
-
+	
+MC.GearIn(
+	Master:= Axis, 
+	Slave:= Slave, 
+	Execute:= FALSE);
+	
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
@@ -315,11 +320,11 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbHalt			: Tc2_MC2.MC_HALT;
+//	fbHalt			: Tc2_MC2.MC_HALT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbHalt(
+MC.Halt(
 	Axis:= Axis, 
 	Execute:= , 
 	Deceleration:= Deceleration, 
@@ -365,11 +370,11 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbHome			: Tc2_MC2.MC_HOME;
+//	fbHome			: Tc2_MC2.MC_HOME;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbHome(
+MC.Home(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
@@ -428,10 +433,28 @@ VAR_INPUT
     Jerk     		: LREAL;
 END_VAR
 VAR
-	fbJog			: Tc2_MC2.MC_JOG;
+//	fbJog			: Tc2_MC2.MC_JOG;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
+MC.Jog(
+	Axis:= Axis, 
+	JogForward:= JogForward, 
+	JogBackwards:= JogBackwards, 
+	Mode:= Mode, 
+	Position:= Position, 
+	Velocity:= Velocity, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
@@ -507,14 +530,14 @@ END_VAR
 	
 MC.MoveAbsolute(
 	Axis:= Axis, 
-	Execute:= TRUE ,
+	Execute:= TRUE ,//Execute, //
 	Position:= Position, 
 	Velocity:= Velocity, 
 	Acceleration:= Acceleration, 
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= BufferMode,//BufferMode, 
-	Options:= , //Options, 
+	Options:= Options, //Options, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=>_Command.Active, 
@@ -548,11 +571,11 @@ VAR_INPUT
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbMoveAdditive 	: Tc2_MC2.MC_MoveAdditive;	
+//	fbMoveAdditive 	: Tc2_MC2.MC_MoveAdditive;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbMoveAdditive(
+MC.MoveAdditive(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -589,11 +612,11 @@ VAR_INPUT
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbMoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
+//	fbMoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbMoveContinuousAbsolute(
+MC.MoveContinuousAbsolute(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
@@ -629,11 +652,11 @@ VAR_INPUT
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbMoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
+//	fbMoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbMoveContinuousRelative(
+MC.MoveContinuousRelative(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -727,11 +750,11 @@ VAR_INPUT
 	Jerk					: REAL;
 END_VAR
 VAR
-	fbMoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
+//	fbMoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbMoveSuperimposed(
+MC.MoveSuperimposed(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Mode:= , 
@@ -772,11 +795,11 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbMoveVelocity	 	: Tc2_MC2.MC_MoveVelocity;	
+//	fbMoveVelocity	 	: Tc2_MC2.MC_MoveVelocity;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbMoveVelocity(
+MC.MoveVelocity(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Velocity:= Velocity, 
@@ -811,12 +834,12 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbPhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
+//	fbPhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbPhasingAbsolute(
+MC.PhasingAbsolute(
 	Master:= Master, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
@@ -854,13 +877,12 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbPhasingRelative	: Tc2_MC2.MC_PhasingRelative;
+//	fbPhasingRelative	: Tc2_MC2.MC_PhasingRelative;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-
-fbPhasingRelative(
+MC.PhasingRelative(
 	Master:= Master, 
 	Slave:= Slave, 
 	Execute:= , 
@@ -973,12 +995,12 @@ VAR_OUTPUT
 	Value					: BOOL;
 END_VAR
 VAR
-	fbReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
+//	fbReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbReadBoolParameter(
+MC.ReadBoolParameter(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1003,12 +1025,12 @@ VAR_OUTPUT
 	Value				: REAL;
 END_VAR
 VAR
-	fbReadParameter		: Tc2_MC2.MC_ReadParameter;
+//	fbReadParameter		: Tc2_MC2.MC_ReadParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbReadParameter(
+MC.ReadParameter(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1053,12 +1075,12 @@ END_VAR
 METHOD Reset 		: itfCommand
 
 VAR
-	fbReset 		: Tc2_MC2.MC_RESET;
+//	fbReset 		: Tc2_MC2.MC_RESET;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbReset(
+MC.Reset(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Done=> , 
@@ -1080,12 +1102,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbSetOverride 	: Tc2_MC2.MC_SetOverride;
+//	fbSetOverride 	: Tc2_MC2.MC_SetOverride;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbSetOverride(
+MC.SetOverride(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	VelFactor:= VelFactor, 
@@ -1110,12 +1132,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbSetPosition 	: Tc2_MC2.MC_SetPosition;
+//	fbSetPosition 	: Tc2_MC2.MC_SetPosition;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbSetPosition(
+MC.SetPosition(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
@@ -1192,11 +1214,11 @@ VAR_INPUT
 	Jerk			: REAL;
 END_VAR
 VAR
-	fbStop			: Tc2_MC2.MC_STOP;
+//	fbStop			: Tc2_MC2.MC_STOP;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbStop(
+MC.Stop(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Deceleration:= Deceleration, 
@@ -1226,11 +1248,11 @@ VAR_INPUT
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
 VAR
-	fbTorqueControl		: Tc2_MC2.MC_TorqueControl;
+//	fbTorqueControl		: Tc2_MC2.MC_TorqueControl;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbTorqueControl(
+MC.TorqueControl(
 	Axis:= Axis, 
 	Execute:= , 
 	ContinuousUpdate:= , 
@@ -1285,11 +1307,11 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbWriteBoolParameter 	: Tc2_MC2.MC_WriteBoolParameter;	
+//	fbWriteBoolParameter 	: Tc2_MC2.MC_WriteBoolParameter;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbWriteBoolParameter(
+MC.WriteBoolParameter(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1311,11 +1333,11 @@ VAR_INPUT
 END_VAR
 
 VAR
-	fbWriteParameter 	: Tc2_MC2.MC_WriteParameter;	
+//	fbWriteParameter 	: Tc2_MC2.MC_WriteParameter;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-fbWriteParameter(
+MC.WriteParameter(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
