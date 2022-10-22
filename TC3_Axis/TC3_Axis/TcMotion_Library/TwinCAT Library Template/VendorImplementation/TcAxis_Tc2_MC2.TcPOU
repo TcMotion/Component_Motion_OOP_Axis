@@ -685,7 +685,24 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[
+MC.MoveModulo(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Direction:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">

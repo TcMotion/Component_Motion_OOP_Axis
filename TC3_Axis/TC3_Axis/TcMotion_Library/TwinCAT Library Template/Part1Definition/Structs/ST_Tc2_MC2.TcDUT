@@ -3,78 +3,94 @@
   <DUT Name="ST_Tc2_MC2" Id="{e87bf896-9231-4520-a679-e6ae0efc462e}">
     <Declaration><![CDATA[TYPE ST_Tc2_MC2 :
 STRUCT
+// Administrative/Axis Functions:	
 	Power 							: Tc2_MC2.MC_Power;
 	Reset 							: Tc2_MC2.MC_Reset;
 	SetPosition     				: Tc2_MC2.MC_SetPosition;
-	                            	
-//	ReadDriveOperationMode			:
-//	WriteDriveOperationMode			:
-	                            	
-//	BacklashCompensation    		:
-//	OverrideFilter					:
-//	PositionCorrectionLimiter		:
-//	PowerStepper					:
-//	ReadDriveAddress				:
-//	SelectControlLoop				:
-//	SetAcceptBlockedDriveSignal		:
-//	SetEncoderScalingFactor			:
-	SetOverride						: Tc2_MC2.MC_SetOverride;
-//	WriteNcIoOutput					:
-	                            	
-//	ExtSetPointGenDisable			:
-//	ExtSetPointGenEnable			:
-//	ExtSetPointGenFeed				:
-	                            	
-//	ReadActualPosition				:
-//	ReadActualVelocity				:
-//	ReadAxisComponents				:
-//	ReadAxisError					:
-	ReadBoolParameter				: Tc2_MC2.MC_ReadBoolParameter;
-//	ReadLargeParameter				:
-	ReadParameter					: Tc2_MC2.MC_ReadParameter;
-//	ReadParameterSet				:
-//	ReadStatus						:
-	WriteBoolParameter				: Tc2_MC2.MC_WriteBoolParameter;
-//	WriteBoolParameterPersistent	:
-//	WriteLargeParameter				:
-//	WriteLargeParameterPersistent	:
-	writeParameter					: Tc2_MC2.MC_WriteParameter;
-//	WriteParameterPersistent		:
 	
-//	AbortTrigger					:
-//	TouchProbe						:
-	
-	GearIn							: Tc2_MC2.MC_GearIn;
-//	GearInDyn						:
-//	GearInMultimaster				:
-//	GearOut							:
+//Administrative/Extensions/DriveOperationMode:		                            	
+//	ReadDriveOperationMode			: Tc2_MC2.ReadDriveOperationMode;
+//	WriteDriveOperationMode			: Tc2_MC2.WriteDriveOperationMode;
 
+//Administrative/Extensions:		                            	
+//	BacklashCompensation    		: Tc2_MC2.BacklashCompensation;
+//	OverrideFilter					: Tc2_MC2.OverrideFilter;
+//	PositionCorrectionLimiter		: Tc2_MC2.PositionCorrectionLimiter;
+//	PowerStepper					: Tc2_MC2.PowerStepper;
+//	ReadDriveAddress				: Tc2_MC2.ReadDriveAddress;
+//	SelectControlLoop				: Tc2_MC2.SelectControlLoop;
+//	SetAcceptBlockedDriveSignal		: Tc2_MC2.SetAcceptBlockedDriveSignal;
+//	SetEncoderScalingFactor			: Tc2_MC2.SetEncoderScalingFactor
+	SetOverride						: Tc2_MC2.MC_SetOverride;
+//	WriteNcIoOutput					: Tc2_MC2.WriteNcIoOutput;
+
+//Administrative/Extenal Set Point Generator:                            	
+//	ExtSetPointGenDisable			: Tc2_MC2.ExtSetPointGenDisable;
+//	ExtSetPointGenEnable			: Tc2_MC2.ExtSetPointGenEnable;
+//	ExtSetPointGenFeed				: Tc2_MC2.ExtSetPointGenFeed;
+
+//Administrative/Status and Parameter:                            	
+//	ReadActualPosition				: Tc2_MC2.ReadActualPosition;
+//	ReadActualVelocity				: Tc2_MC2.ReadActualVelocity;
+//	ReadAxisComponents				: Tc2_MC2.ReadAxisComponents;
+//	ReadAxisError					: Tc2_MC2.ReadAxisError;
+	ReadBoolParameter				: Tc2_MC2.MC_ReadBoolParameter;
+//	ReadLargeParameter				: Tc2_MC2.ReadLargeParameter;
+	ReadParameter					: Tc2_MC2.MC_ReadParameter;
+//	ReadParameterSet				: Tc2_MC2.ReadParameterSet;
+//	ReadStatus						: Tc2_MC2.ReadStatus;
+	WriteBoolParameter				: Tc2_MC2.MC_WriteBoolParameter;
+//	WriteBoolParameterPersistent	: Tc2_MC2.WriteBoolParameterPersistent;
+//	WriteLargeParameter				: Tc2_MC2.WriteLargeParameter;
+//	WriteLargeParameterPersistent	: Tc2_MC2.WriteLargeParameterPersistent;
+	writeParameter					: Tc2_MC2.MC_WriteParameter;
+//	WriteParameterPersistent		: Tc2_MC2.WriteParameterPersistent
+
+//Administrative/Touch Probe:	
+//	AbortTrigger					: Tc2_MC2.AbortTrigger;
+//	TouchProbe						: Tc2_MC2.TouchProbe;
+
+//Motion/Gearing:	
+	GearIn							: Tc2_MC2.MC_GearIn;
+//	GearInDyn						: Tc2_MC2.GearInDyn;
+//	GearInMultimaster				: Tc2_MC2.GearInMultimaster;
+//	GearOut							: Tc2_MC2.GearOut
+
+//Motion/Homing:
 	Home							: Tc2_MC2.MC_Home;
-	
+
+//Motion/Manual Motion:	
 	Jog								: Tc2_MC2.MC_Jog;
-	
-//	HaltPhasing						:
+
+//Motion/Phasing:	
+//	HaltPhasing						: Tc2_MC2.HaltPhasing;
 	PhasingAbsolute					: Tc2_MC2.MC_PhasingAbsolute;
 	PhasingRelative					: Tc2_MC2.MC_PhasingRelative;
-	
+
+//Motion/Point To Point Motion:
 	Halt							: Tc2_MC2.MC_Halt;
 	MoveAbsolute 					: Tc2_MC2.MC_MoveAbsolute;	
 	MoveAdditive					: Tc2_MC2.MC_MoveAdditive;
 	MoveContinuousAbsolute			: Tc2_MC2.MC_MoveContinuousAbsolute;
 	MoveContinuousRelative			: Tc2_MC2.MC_MoveContinuousRelative;
+	MoveModulo						: Tc2_MC2.MC_MoveModulo;
 	MoveRelative 					: Tc2_MC2.MC_MoveRelative;
 	MoveVelocity					: Tc2_MC2.MC_MoveVelocity;
 	Stop							: Tc2_MC2.MC_Stop;
-	
-//	AbortSuperposition				:
+
+//Motion/Superposition:	
+//	AbortSuperposition				: Tc2_MC2.AbortSuperposition;
 	MoveSuperImposed				: Tc2_MC2.MC_MoveSuperimposed;	
-	
+
+//Motion/TorqueControl:	
 	TorqueControl					: Tc2_MC2.MC_TorqueControl;
-	
-//	TableBasedPositionCompensation  :
-	
-//	ReadApplicationRequest			:
-//	ReadStopInfo					:
+
+//[internal]/Beta Function Blocks/Position Correction:	
+//	TableBasedPositionCompensation  : Tc2_MC2.TableBasedPositionCompensation;
+
+//[internal]/Beta Function Blocks/Sinus motion:	
+//	ReadApplicationRequest			: Tc2_MC2.ReadApplicationRequest;
+//	ReadStopInfo					: Tc2_MC2.ReadStopInfo;
 	
 END_STRUCT
 END_TYPE
