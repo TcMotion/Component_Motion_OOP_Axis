@@ -137,49 +137,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="CombineAxes" Id="{86b3b20f-3c82-4776-952d-655701191d61}" FolderPath="MultiAxesMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD CombineAxes 			: itfSynchronizedAxisCommand
-VAR_INPUT
-	Master1					: itfAxis_Tc2_MC2;
-	Master2					: itfAxis_Tc2_MC2;
-	CombineMode				: MC_COMBINE_MODE;
-	GearRatioNumeratorM1	: INT;
-	GearRatioDenominatorM1	: INT;
-	GearRatioNumeratorM2	: INT;
-	GearRatioDenominatorM2	: INT;
-	MasterValueSourceM1		: MC_SOURCE;
-	MasterValueSourceM2		: MC_SOURCE;
-	BufferMode				: MC_BUFFER_MODE;
-END_VAR
-VAR
-	
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-//fbGearIn(
-//	Master:= , 
-//	Slave:= , 
-//	Execute:= , 
-//	RatioNumerator:= , 
-//	RatioDenominator:= , 
-//	Acceleration:= , 
-//	Deceleration:= , 
-//	Jerk:= , 
-//	BufferMode:= , 
-//	Options:= , 
-//	InGear=> , 
-//	Busy=> , 
-//	Active=> , 
-//	CommandAborted=> , 
-//	Error=> , 
-//	ErrorID=> );
-
-
-count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="CommunicationReady" Id="{8590d5ed-42e3-4ce6-b3e6-b01dc7d93a0c}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommunicationReady : BOOL
@@ -261,19 +218,13 @@ END_VAR
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
-//	Master				: itfAxis;
-//	Master				: Tc2_MC2.AXIS_REF;
-//	Slave				: Tc2_MC2.AXIS_REF;		
-//	Ratio				: REAL;
-//	MasterValueSource	: INT;
 	RatioNumerator		: LREAL;
 	RatioDenominator	: UINT;
-	Acceleration		: REAL;
-	Deceleration		: REAL;
-	Jerk				: REAL;
-	BufferMode			: MC_BUFFER_MODE;
-//	BufferMode			: Tc2_MC2.MC_BufferMode;
-//	Options             : Tc2_MC2.ST_GearInOptions;
+	Acceleration		: LREAL;
+	Deceleration		: LREAL;
+	Jerk				: LREAL;
+//	BufferMode			: Tc2_MC2.MC_BufferMode; //Currently not implemented
+//	Options             : Tc2_MC2.ST_GearInOptions; //Currently not implemented
 END_VAR
 VAR_IN_OUT 
 	Slave				: Tc2_MC2.AXIS_REF;	
@@ -291,11 +242,11 @@ MC.GearIn(
 	Execute:= TRUE, 
 	RatioNumerator:= RatioNumerator, 
 	RatioDenominator:= RatioDenominator, 
-	Acceleration:= ,//Acceleration, 
-	Deceleration:= ,//Deceleration, 
-	Jerk:= ,//Jerk, 
-	BufferMode:= ,//BufferMode,//BufferMode, 
-	Options:= ,//Options, 
+	Acceleration:= Acceleration,
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= , //BufferMode,
+	Options:= , //Options, 
 	InGear=> ,//Geared , 
 	Busy=> , 
 	Active=> , 
@@ -309,6 +260,67 @@ MC.GearIn(
 	Execute:= FALSE);
 	
 count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GearInDyn" Id="{34f00123-93c7-4112-97a2-6bdb32b75f1f}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD GearInDyn 		: itfSynchronizedAxisCommand
+VAR_INPUT
+    GearRatio			: LREAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+//	BufferMode			: Tc2_MC2.MC_BufferMode;
+//	Options             : Tc2_MC2.ST_GearInDynOptions;
+END_VAR
+
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GearInMultimaster" Id="{e4118677-a979-4510-8b94-478ec510771a}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD GearInMultimaster 	: itfSynchronizedAxisCommand
+VAR_INPUT
+	GearRatio1				: LREAL;
+	GearRatio2				: LREAL;
+	GearRatio3				: LREAL;	
+	GearRatio4				: LREAL;	
+	Acceleration			: LREAL;
+	Deceleration			: LREAL;
+	Jerk					: LREAL;
+	BufferMode				: Tc2_MC2.MC_BufferMode;
+	Options             	: Tc2_MC2.ST_GearInMultiMasterOptions;	
+END_VAR
+
+VAR_IN_OUT
+	Master1					: Tc2_MC2.AXIS_REF;	
+	Master2					: Tc2_MC2.AXIS_REF;	
+	Master3					: Tc2_MC2.AXIS_REF;	
+	Master4					: Tc2_MC2.AXIS_REF;	
+	Slave					: Tc2_MC2.AXIS_REF;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GearOut" Id="{b80af787-0897-496c-b2c3-680f811a2c90}" FolderPath="MultiAxesMotion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD GearOut 			: itfSynchronizedAxisCommand
+VAR_INPUT
+	Options             : Tc2_MC2.ST_GearInDynOptions;
+END_VAR
+
+VAR_IN_OUT 
+	Slave				: Tc2_MC2.AXIS_REF;	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="SingleAxisMotion\">

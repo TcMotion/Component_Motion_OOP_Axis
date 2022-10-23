@@ -115,8 +115,8 @@ CASE stateOOP OF
 		END_IF
 	11 : 
 	//GearIn
-		Axis_X1.GearIn(Slave:= AXIS_REF_X2_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
-		Axis_X1.GearIn(Slave:= AXIS_REF_X3_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0,BufferMode:= MC_BUFFER_MODE.mcAborting);
+		Axis_X1.GearIn(Slave:= AXIS_REF_X2_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0);
+		Axis_X1.GearIn(Slave:= AXIS_REF_X3_Slave, RatioNumerator:= 1,RatioDenominator:= 1, Acceleration:= 0,Deceleration:= 0, Jerk:= 0);
 //		stateOOP := 12;						
 
 	// Geared
