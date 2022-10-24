@@ -9,6 +9,18 @@
     <Folder Name="SingleAxisMotion" Id="{abafcda8-9d6d-45cf-afd2-2c702b3f6ac0}" />
     <Folder Name="Status" Id="{023fc74a-643f-4641-afcf-b66559b00ebc}" />
     <Folder Name="Touch Probe" Id="{88a0a759-a042-40a5-9f66-3353ee0d1693}" />
+    <Method Name="AbortSuperposition" Id="{a5852250-5072-458c-9ec9-8bd9c0307377}" FolderPath="SingleAxisMotion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD AbortSuperposition : itfAxisCommand
+VAR_INPUT
+	Distance			: REAL;
+	VelocityDiff		: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="AbortTrigger" Id="{39b56d76-08fa-4a19-bfca-878a60803512}" FolderPath="Touch Probe\">
       <Declaration><![CDATA[METHOD AbortTrigger : itfCommand
 VAR_INPUT
@@ -58,6 +70,13 @@ PROPERTY AxisWarning : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="BacklashCompensation" Id="{2e3f4a9b-1bd0-4759-ada3-c47e4697c1ff}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD BacklashCompensation : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="CommunicationReady" Id="{db527b3d-8967-4407-9224-84b327558cc1}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommunicationReady : BOOL
@@ -94,6 +113,20 @@ PROPERTY ErrorId : WORD
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="ExtSetPointGenDisable" Id="{0ce991f7-21ee-452f-a6e3-d513789459c1}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ExtSetPointGenDisable : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ExtSetPointGenEnable" Id="{9e6f3ed8-8241-4a3e-8a15-ac1fdf177b8e}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ExtSetPointGenEnable : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="Geared" Id="{c8ab79e2-22f2-4c0b-ab80-2b08fcd8d983}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
       <Get Name="Get" Id="{23cf5cc3-0a54-486a-9302-6865f9e9426d}">
@@ -363,6 +396,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="OverrideFilter" Id="{f6928029-1081-47c5-a91a-ca5b849cd496}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD OverrideFilter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="PhasingAbsolute" Id="{83de4694-0ed4-470c-8084-9521fb186863}" FolderPath="MultiAxesMotion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
@@ -392,6 +432,13 @@ VAR_INPUT
 	Deceleration		: REAL;
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="PositionCorrectionLimiter" Id="{c0de3f5a-59ec-4548-a4c7-858325fa9441}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PositionCorrectionLimiter : MC_Error
+VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
@@ -425,6 +472,48 @@ PROPERTY PowerOn : BOOL
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="PowerStepper" Id="{d985d4ec-4421-41cf-a82f-d821bb1fc121}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PowerStepper : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadActualPosition" Id="{b93fc7ee-ef21-4ffe-a936-ea1ae10e1a5d}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadActualPosition : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadActualVelocity" Id="{a0bf7197-3ed6-4297-bbe9-af90c8ce114e}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadActualVelocity : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadApplicationRequest" Id="{a110cec0-634b-417b-b69b-a70f66e86544}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadApplicationRequest : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadAxisComponents" Id="{296c59d7-4821-4e69-86fa-63a5797f594b}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadAxisComponents : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadAxisError" Id="{e61c0524-e6bd-433d-938e-e941f8a1659c}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadAxisError : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="ReadBoolParameter" Id="{13dfcb7a-9fca-42a9-9019-a3f4052bfe8c}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadBoolParameter 	: MC_Error
@@ -436,6 +525,27 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="ReadDriveAddress" Id="{e6f6ceae-eb95-47f1-892c-6af02a02f4cd}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadDriveAddress : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadDriveOperationMode" Id="{877ece7a-bf0f-413a-b9f6-422d45676d14}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadDriveOperationMode : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadLargeParameter" Id="{d82d9ea3-127a-45de-8016-a822e5c3d9f8}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadLargeParameter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="ReadParameter" Id="{c5b548c4-a9c4-44cb-b222-a03f23b47bcb}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadParameter 	: MC_Error
@@ -444,6 +554,27 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	Value				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadParameterSet" Id="{3c11d0f8-930c-4033-b6e8-76cd9a772b71}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadParameterSet : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadStatus" Id="{21a3a44d-cdac-4d76-9e74-7070e196111f}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadStatus : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadStopInfo" Id="{5e0fd958-93b7-49b5-bc52-c2703046edd9}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadStopInfo : MC_Error
+VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
@@ -463,6 +594,20 @@ METHOD Release : MC_Error
     <Method Name="Reset" Id="{e890dd0a-f2c8-4af3-b70c-e29a653734d4}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Reset : itfCommand
+]]></Declaration>
+    </Method>
+    <Method Name="SelectControlLoop" Id="{7ef69c43-6a03-4907-ba77-0a0e8ea889ac}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SelectControlLoop : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetEncoderScalingFactor" Id="{0c8a07a8-953d-4916-a61c-8700f722aad3}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SetEncoderScalingFactor : MC_Error
+VAR_INPUT
+END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="SetOverride" Id="{1c09732f-7e62-4d8f-b8f9-e500a69291f3}" FolderPath="Control\">
@@ -509,6 +654,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="TableBasedPositionCompensation" Id="{0acb26f1-253e-485a-a2e3-e7ac13933625}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD TableBasedPositionCompensation : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="TorqueControl" Id="{e40b1b18-f414-42ef-ad98-67224ac9a31a}" FolderPath="SingleAxisMotion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD TorqueControl	: itfAxisCommand
@@ -550,12 +702,54 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="WriteBoolParameterPersistent" Id="{70fafc00-48c8-464c-8ed3-1d3de5a17769}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteBoolParameterPersistent : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteDriveOperationMode" Id="{7d96ff05-4d29-4491-84b2-26965469b1f7}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteDriveOperationMode : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteLargeParameter" Id="{78f0193f-b11a-4849-9341-14452dbdca25}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteLargeParameter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteLargeParameterPersistent" Id="{abb04783-90e3-4997-9aaa-c2a7887d046c}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteLargeParameterPersistent : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteNcIoOutput" Id="{6a70347e-dcb6-415a-9f36-c0f2747a80f6}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteNcIoOutput : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="WriteParameter" Id="{97fcd37b-6856-4802-a866-95a897e19fed}" FolderPath="Control\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD WriteParameter 	: MC_Error
 VAR_INPUT
 	ParameterNumber		: INT;
 	Value				: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteParameterPersistent" Id="{9b348f14-1b56-44fb-9490-50e686e45315}" FolderPath="Control\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteParameterPersistent : MC_Error
+VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
