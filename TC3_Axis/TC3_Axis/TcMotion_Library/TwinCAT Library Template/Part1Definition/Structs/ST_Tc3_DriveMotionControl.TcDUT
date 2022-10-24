@@ -3,9 +3,28 @@
   <DUT Name="ST_Tc3_DriveMotionControl" Id="{ccd99ec4-8598-47d9-b767-49a90359aee2}">
     <Declaration><![CDATA[TYPE ST_Tc3_DriveMotionControl :
 STRUCT
-	Power 			: Tc3_DriveMotionControl.MC_POWER;
-	MoveAbsolute 	: Tc3_DriveMotionControl.MC_MoveAbsolute;	
+	//Administrative/Axis Functions:
+	Power 			: Tc3_DriveMotionControl.MC_Power;
+	Reset           : Tc3_DriveMotionControl.MC_Reset;
+	SetPosition     : Tc3_DriveMotionControl.MC_SetPosition;
+	
+	//Administrative/Touch Probe:
+	AbortTrigger    : Tc3_DriveMotionControl.MC_AbortTrigger;
+	TouchProbe      : Tc3_DriveMotionControl.MC_TouchProbe;
+	
+	//Motion/Homming:
+	Home            : Tc3_DriveMotionControl.MC_Home;
+	
+	//Motion/Manual Motion:
+	Jog             : Tc3_DriveMotionControl.MC_Jog;
+	
+	//Motion/Point to Point Motion:
+	Halt            : Tc3_DriveMotionControl.MC_Halt;
+	MoveAbsolute 	: Tc3_DriveMotionControl.MC_MoveAbsolute;
+	MoveModulo      : Tc3_DriveMotionControl.MC_MoveModulo;
 	MoveRelative 	: Tc3_DriveMotionControl.MC_MoveRelative;
+	MoveVelocity    : Tc3_DriveMotionControl.MC_MoveVelocity;
+	Stop            : Tc3_DriveMotionControl.MC_Stop;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
