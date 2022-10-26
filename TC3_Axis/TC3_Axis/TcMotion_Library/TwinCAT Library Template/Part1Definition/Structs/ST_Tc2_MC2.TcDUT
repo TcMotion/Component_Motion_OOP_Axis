@@ -63,7 +63,7 @@ STRUCT
 	Jog								: Tc2_MC2.MC_Jog;
 
 //Motion/Phasing:	
-//	HaltPhasing						: Tc2_MC2.MC_HaltPhasing;
+	HaltPhasing						: Tc2_MC2.MC_HaltPhasing;
 	PhasingAbsolute					: Tc2_MC2.MC_PhasingAbsolute;
 	PhasingRelative					: Tc2_MC2.MC_PhasingRelative;
 
@@ -88,7 +88,11 @@ STRUCT
 //[internal]/Beta Function Blocks/Position Correction:	
 	TableBasedPositionCompensation  : Tc2_MC2.MC_TableBasedPositionCompensation;
 
-//[internal]/Beta Function Blocks/Sinus motion:	
+//[internal]/Beta Function Blocks/Sinus motion:
+	SinusOscillation                : Tc2_MC2.MC_SinusOscillation;
+	SinusSequence                   : Tc2_MC2.MC_SinusSequence;
+	
+//[internal]/Beta Function Blocks	
 	ReadApplicationRequest			: Tc2_MC2.MC_ReadApplicationRequest;
 	ReadStopInfo					: Tc2_MC2.MC_ReadStopInfo;
 	

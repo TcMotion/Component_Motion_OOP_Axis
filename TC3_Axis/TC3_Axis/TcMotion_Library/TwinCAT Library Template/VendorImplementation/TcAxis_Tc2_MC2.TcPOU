@@ -32,7 +32,7 @@ count_delete : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[ ACT_Cyclic_Update();
+      <ST><![CDATA[// ACT_Cyclic_Update();
  ]]></ST>
     </Implementation>
     <Folder Name="ActualValues" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
@@ -66,12 +66,6 @@ END_VAR]]></Declaration>
         <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Action Name="ACT_Cyclic_Update" Id="{5de5cd23-c71a-4817-8d0e-2b699f35e45d}">
-      <Implementation>
-        <ST><![CDATA[//update local variables from hardware
-Axis.ReadStatus();]]></ST>
-      </Implementation>
-    </Action>
     <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
@@ -1014,6 +1008,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="Read_Status" Id="{3db3a851-8870-4021-b37b-f7193e565524}" FolderPath="ActualValues\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD Read_Status
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//update local variables from hardware
+Axis.ReadStatus();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ReadBoolParameter" Id="{fc75e571-fa59-4330-8562-ad247d6d290f}" FolderPath="Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD ReadBoolParameter 	: MC_Error
