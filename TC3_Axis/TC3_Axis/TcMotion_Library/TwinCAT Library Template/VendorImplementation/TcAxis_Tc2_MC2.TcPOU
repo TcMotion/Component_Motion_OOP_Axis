@@ -35,35 +35,40 @@ END_VAR
       <ST><![CDATA[// ACT_Cyclic_Update();
  ]]></ST>
     </Implementation>
+    <Folder Name="[Internal]" Id="{00c423f8-b718-450b-90f8-c0bb367d276f}">
+      <Folder Name="Beta Functions Blocks" Id="{b43320bb-582a-4be0-94a8-8c736ed6f9ad}">
+        <Folder Name="Position Correction" Id="{3a966d93-da76-4ab9-916f-0a2ee7c92a8e}" />
+        <Folder Name="Sinus Motion" Id="{07d5e521-7775-48c5-807a-a00072b0ff9d}" />
+      </Folder>
+    </Folder>
     <Folder Name="ActualValues" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
+    <Folder Name="Administrative" Id="{846cf884-e007-491c-9e2c-42e0fb572616}">
+      <Folder Name="Axis Functions" Id="{f97f4d08-ef02-4277-a5a9-940fcbeb16ba}" />
+      <Folder Name="Extensions" Id="{776de8b6-2376-4dd5-b84d-f6fcceba39c7}">
+        <Folder Name="DriveOperationMode" Id="{8f53d975-1a8e-4711-93ba-cea61f2e47db}" />
+      </Folder>
+      <Folder Name="External Set Point Generator" Id="{9a00ee3c-ba57-4bda-8b8d-585d903b2668}" />
+      <Folder Name="Status and Parameter" Id="{93a75216-5535-4e29-a765-2097ee9bd048}" />
+      <Folder Name="Touch Probe" Id="{a5f81912-eef1-4913-a787-44651389cb63}" />
+    </Folder>
     <Folder Name="Control" Id="{1f231ae8-3c7d-437f-95f0-04b859b8036f}" />
-    <Folder Name="MultiAxesMotion" Id="{44c4f412-6645-404f-9d81-e01de0858822}" />
-    <Folder Name="SingleAxisMotion" Id="{773962eb-b74d-45a8-b24d-288626989ff0}" />
+    <Folder Name="Motion" Id="{d2832646-43db-4ae9-81e0-102356ac94c8}">
+      <Folder Name="Gearing" Id="{3bb9bb54-a986-458c-8f69-3b224397b873}" />
+      <Folder Name="Homing" Id="{dc24918e-a0ae-450d-adf7-2c67cabb6402}" />
+      <Folder Name="Manual Motion" Id="{920cbf61-84af-465e-9a86-5463c5ef40c6}" />
+      <Folder Name="Phasing" Id="{bb2f98b6-726f-4497-a39c-019a14562f1d}" />
+      <Folder Name="Point To Point Motion" Id="{db0b241d-dfad-4df8-9d9e-a3bb1a16c149}" />
+      <Folder Name="Superposition" Id="{f814806c-aeb2-4962-9763-de1575556462}" />
+      <Folder Name="Torque Control" Id="{1e25a18a-168c-444e-a28b-4bbd0ccb6cf8}" />
+    </Folder>
     <Folder Name="Status" Id="{03058b18-c49a-4761-8ec3-e8bf4e5aa1d1}" />
-    <Folder Name="Touch Probe" Id="{a5f81912-eef1-4913-a787-44651389cb63}" />
-    <Method Name="AbortTrigger" Id="{7e7b714c-aa2c-4a74-95f0-6833e466216b}" FolderPath="Touch Probe\">
+    <Method Name="AbortTrigger" Id="{7e7b714c-aa2c-4a74-95f0-6833e466216b}" FolderPath="Administrative\Touch Probe\">
       <Declaration><![CDATA[METHOD AbortTrigger : itfCommand
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="AccelerationProfile" Id="{2d031de7-aa1e-4760-a585-3c08e8401237}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD AccelerationProfile 	: itfCommand
-VAR_INPUT
-	TimeScale				: REAL;
-	AccelerationScale		: REAL;
-	Offset					: REAL;
-	BufferMode				: MC_BUFFER_MODE;
-END_VAR
-VAR
-	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
@@ -208,7 +213,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="GearIn" Id="{6cbcc261-b3fb-4547-98ae-75e372afb64e}" FolderPath="MultiAxesMotion\">
+    <Method Name="GearIn" Id="{6cbcc261-b3fb-4547-98ae-75e372afb64e}" FolderPath="Motion\Gearing\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -256,7 +261,7 @@ MC.GearIn(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GearInDyn" Id="{34f00123-93c7-4112-97a2-6bdb32b75f1f}" FolderPath="MultiAxesMotion\">
+    <Method Name="GearInDyn" Id="{34f00123-93c7-4112-97a2-6bdb32b75f1f}" FolderPath="Motion\Gearing\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearInDyn 		: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -276,7 +281,7 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GearInMultimaster" Id="{e4118677-a979-4510-8b94-478ec510771a}" FolderPath="MultiAxesMotion\">
+    <Method Name="GearInMultimaster" Id="{e4118677-a979-4510-8b94-478ec510771a}" FolderPath="Motion\Gearing\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearInMultimaster 	: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -302,7 +307,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GearOut" Id="{b80af787-0897-496c-b2c3-680f811a2c90}" FolderPath="MultiAxesMotion\">
+    <Method Name="GearOut" Id="{b80af787-0897-496c-b2c3-680f811a2c90}" FolderPath="Motion\Gearing\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD GearOut 			: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -317,7 +322,7 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="SingleAxisMotion\">
+    <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Halt 		: itfAxisCommand
 VAR_INPUT
@@ -347,21 +352,7 @@ MC.Halt(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HaltSuperimposed" Id="{8e24962f-1f8b-45e3-9fd9-5cdc51b672a3}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD HaltSuperimposed : itfAxisCommand
-VAR_INPUT
-	Deceleration		: REAL;
-	Jerk				: REAL;
-END_VAR
-VAR
-	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Home" Id="{af023316-0daa-480a-9620-216f87d5a5f0}" FolderPath="SingleAxisMotion\">
+    <Method Name="Home" Id="{af023316-0daa-480a-9620-216f87d5a5f0}" FolderPath="Motion\Homing\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Home 		: itfAxisCommand
 VAR_INPUT
@@ -425,7 +416,7 @@ IsHomed := Axis.Status.Homed;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Jog" Id="{b217b8a0-5ed3-4962-b3d8-ab876323bb77}" FolderPath="SingleAxisMotion\">
+    <Method Name="Jog" Id="{b217b8a0-5ed3-4962-b3d8-ab876323bb77}" FolderPath="Motion\Manual Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Jog 			: itfAxisCommand
 VAR_INPUT
@@ -511,7 +502,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="MoveAbsolute" Id="{75c5779f-04ff-4069-95d9-d7a1de4e344e}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveAbsolute" Id="{75c5779f-04ff-4069-95d9-d7a1de4e344e}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveAbsolute : itfAxisCommand
 VAR_INPUT
@@ -565,7 +556,7 @@ itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
 MoveAbsolute := itfAxisCommand;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD MoveAdditive : itfAxisCommand
 VAR_INPUT
@@ -604,7 +595,7 @@ count_delete  := count_delete + 1;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveContinuousAbsolute" Id="{33e3848e-94a8-499f-bd0e-8a5c066a1f3c}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveContinuousAbsolute" Id="{33e3848e-94a8-499f-bd0e-8a5c066a1f3c}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD MoveContinuousAbsolute 	: itfContinuousAxisCommand
 VAR_INPUT
@@ -644,7 +635,7 @@ MC.MoveContinuousAbsolute(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveContinuousRelative" Id="{bcd4836b-509a-4705-81e4-3c0e0c808801}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveContinuousRelative" Id="{bcd4836b-509a-4705-81e4-3c0e0c808801}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD MoveContinuousRelative 	: itfContinuousAxisCommand
 VAR_INPUT
@@ -685,7 +676,7 @@ MC.MoveContinuousRelative(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveModulo" Id="{e498b0d0-5eab-4e87-b643-9fc1e9a96f1d}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveModulo" Id="{e498b0d0-5eab-4e87-b643-9fc1e9a96f1d}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[METHOD MoveModulo : itfAxisCommand
 VAR_INPUT
 END_VAR
@@ -711,7 +702,7 @@ MC.MoveModulo(
 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveRelative" Id="{fddf74c6-fdb2-4e7c-a07f-3af72833d590}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveRelative 	: itfAxisCommand
 VAR_INPUT
@@ -762,7 +753,7 @@ MoveRelative := itfAxisCommand;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveSuperimposed" Id="{64695090-d2ac-4903-bbe7-a60c98f2edf6}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveSuperimposed" Id="{64695090-d2ac-4903-bbe7-a60c98f2edf6}" FolderPath="Motion\Superposition\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD MoveSuperimposed 	: itfAxisCommand
 VAR_INPUT
@@ -806,7 +797,7 @@ MC.MoveSuperimposed(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveVelocity" Id="{c0d6a530-ab89-47b6-a229-25b41e577faa}" FolderPath="SingleAxisMotion\">
+    <Method Name="MoveVelocity" Id="{c0d6a530-ab89-47b6-a229-25b41e577faa}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD MoveVelocity 	: itfContinuousAxisCommand
 VAR_INPUT
@@ -842,7 +833,7 @@ MC.MoveVelocity(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="PhasingAbsolute" Id="{6636a02f-2e18-4d37-a884-ab23bb4c93d0}" FolderPath="MultiAxesMotion\">
+    <Method Name="PhasingAbsolute" Id="{6636a02f-2e18-4d37-a884-ab23bb4c93d0}" FolderPath="Motion\Phasing\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -885,7 +876,7 @@ MC.PhasingAbsolute(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="PhasingRelative" Id="{7ec8289a-3b22-4471-a355-5030111af3bc}" FolderPath="MultiAxesMotion\">
+    <Method Name="PhasingRelative" Id="{7ec8289a-3b22-4471-a355-5030111af3bc}" FolderPath="Motion\Phasing\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingRelative 	: itfSynchronizedAxisCommand
 VAR_INPUT
@@ -924,28 +915,6 @@ MC.PhasingRelative(
 	Error=> , 
 	ErrorID=> , 
 	CoveredPhaseShift=> );
-
-count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="PositionProfile" Id="{a2b258ae-89cc-4e69-a9bd-78deefeaefb9}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD PositionProfile 	: itfCommand
-VAR_INPUT
-	TimeScale			: REAL;
-	PositionScale		: REAL;
-	Offset				: REAL;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-VAR
-//	fbPositionProfile	 	: Tc2_MC2.;	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-
-
-
-
 
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
@@ -1240,7 +1209,7 @@ Status := Axis.Status.MotionState;
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Stop" Id="{c7df0714-0c83-44e1-9182-81c8a840aa7d}" FolderPath="SingleAxisMotion\">
+    <Method Name="Stop" Id="{c7df0714-0c83-44e1-9182-81c8a840aa7d}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Stop 		: itfAxisCommand
 VAR_INPUT
@@ -1268,7 +1237,7 @@ MC.Stop(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TorqueControl" Id="{6e3ef885-3d26-42b8-9949-5a5da1bc6ad2}" FolderPath="SingleAxisMotion\">
+    <Method Name="TorqueControl" Id="{6e3ef885-3d26-42b8-9949-5a5da1bc6ad2}" FolderPath="Motion\Torque Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD TorqueControl 	: itfAxisCommand
 VAR_INPUT
@@ -1307,29 +1276,13 @@ MC.TorqueControl(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TouchProbe" Id="{9724a4d0-7f15-4489-9615-ca6b57fe446e}" FolderPath="Touch Probe\">
+    <Method Name="TouchProbe" Id="{9724a4d0-7f15-4489-9615-ca6b57fe446e}" FolderPath="Administrative\Touch Probe\">
       <Declaration><![CDATA[METHOD TouchProbe : itfCommand
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="VelocityProfile" Id="{ae47a6cf-f02b-4ff4-9871-0cd776202783}" FolderPath="SingleAxisMotion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD VelocityProfile 	: itfCommand
-VAR_INPUT
-	TimeScale			: REAL;
-	VelocityScale		: REAL;
-	Offset				: REAL;
-	BufferMode			: MC_BUFFER_MODE;
-END_VAR
-VAR
-	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WriteBoolParameter" Id="{3378c903-7622-4419-977d-9abca44ccb6f}" FolderPath="Control\">
