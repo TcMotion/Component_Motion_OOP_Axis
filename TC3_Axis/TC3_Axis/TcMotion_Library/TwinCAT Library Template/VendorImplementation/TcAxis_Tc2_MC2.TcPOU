@@ -1237,6 +1237,36 @@ MC.Stop(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TableBasedPositionCompensation" Id="{85f274d5-a90d-45c2-982f-c5b5ced034db}" FolderPath="[Internal]\Beta Functions Blocks\Position Correction\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD TableBasedPositionCompensation 	: itfCommand
+VAR_INPUT
+	pTable 								: POINTER TO Tc2_MC2.ST_PositionCompensationTableElement;
+	TableSize							: UDINT;
+	TableParameter						: Tc2_MC2.ST_PositionCompensationTableParameter;
+	Ramp								: LREAL;
+	DisableMode							: Tc2_MC2.E_DisableMode;
+	Options								: Tc2_MC2.ST_PositionCompensationOptions;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.TableBasedPositionCompensation(
+	Axis:= AXis, 
+	Enable:= TRUE, 
+	pTable:= pTable, 
+	TableSize:= TableSize, 
+	TableParameter:= TableParameter, 
+	Ramp:= Ramp, 
+	DisableMode:= DisableMode, 
+	Options:= Options, 
+	Enabled=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	CurrentCorrection=> , 
+	Limiting=> );]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TorqueControl" Id="{6e3ef885-3d26-42b8-9949-5a5da1bc6ad2}" FolderPath="Motion\Torque Control\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD TorqueControl 	: itfAxisCommand
