@@ -496,10 +496,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="ReadApplicationRequest" Id="{a110cec0-634b-417b-b69b-a70f66e86544}" FolderPath="[Internal]\">
+    <Method Name="ReadApplicationRequest" Id="{a110cec0-634b-417b-b69b-a70f66e86544}" FolderPath="[Internal]\Beta Functions Blocks\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD ReadApplicationRequest : MC_Error
+METHOD ReadApplicationRequest 	: MC_Error
 VAR_INPUT
+	ApplicationRequest			: Tc2_MC2.ST_NcApplicationRequest;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -537,8 +538,9 @@ END_VAR
     </Method>
     <Method Name="ReadDriveOperationMode" Id="{877ece7a-bf0f-413a-b9f6-422d45676d14}" FolderPath="Administrative\Extensions\DriveOperationMode\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD ReadDriveOperationMode : MC_Error
+METHOD ReadDriveOperationMode 	: itfCommand
 VAR_INPUT
+	Options						: Tc2_MC2.ST_DriveOperationModeOptions;	
 END_VAR
 ]]></Declaration>
     </Method>
@@ -574,10 +576,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="ReadStopInfo" Id="{5e0fd958-93b7-49b5-bc52-c2703046edd9}" FolderPath="[Internal]\">
+    <Method Name="ReadStopInfo" Id="{5e0fd958-93b7-49b5-bc52-c2703046edd9}" FolderPath="[Internal]\Beta Functions Blocks\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD ReadStopInfo : MC_Error
+METHOD ReadStopInfo : itfCommand
 VAR_INPUT
+	Deceleration	: LREAL;
+	Jerk			: LREAL;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -639,15 +643,26 @@ PROPERTY Simulation : BOOL
     </Property>
     <Method Name="SinusOscillation" Id="{6d96cc45-0177-466f-bf57-d4dce206c46a}" FolderPath="[Internal]\Beta Functions Blocks\Sinus Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD SinusOscillation : itfCommand
+METHOD SinusOscillation 	: itfCommand
 VAR_INPUT
+	VeloAmplitude			: LREAL;
+	Frequency				: LREAL;
+	DrivingTime				: TIME;
+
 END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="SinusSequence" Id="{f139513a-b20e-40d5-91c9-65f0dc4e24da}" FolderPath="[Internal]\Beta Functions Blocks\Sinus Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD SinusSequence : itfCommand
+METHOD SinusSequence 	: itfCommand
 VAR_INPUT
+	StartFrequency		: LREAL;
+	StopFrequency		: LREAL;
+	BaseFrequency		: LREAL;
+	FrequencySteps      : UINT;
+	SinusBaseVelocity   : LREAL;
+	StepDuration        : TIME;
+	FeedConstantMotor   : LREAL;	
 END_VAR
 ]]></Declaration>
     </Method>
@@ -718,8 +733,10 @@ END_VAR
     </Method>
     <Method Name="WriteDriveOperationMode" Id="{7d96ff05-4d29-4491-84b2-26965469b1f7}" FolderPath="Administrative\Extensions\DriveOperationMode\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD WriteDriveOperationMode : MC_Error
+METHOD WriteDriveOperationMode 	: MC_Error
 VAR_INPUT
+	DriveOperationMode			: Tc2_MC2.E_DriveOperationMode;
+	Options						: Tc2_MC2.ST_DriveOperationModeOptions;	
 END_VAR
 ]]></Declaration>
     </Method>

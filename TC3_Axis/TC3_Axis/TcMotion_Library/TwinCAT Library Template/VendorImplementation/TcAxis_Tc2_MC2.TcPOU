@@ -51,7 +51,6 @@ END_VAR
       <Folder Name="Status and Parameter" Id="{93a75216-5535-4e29-a765-2097ee9bd048}" />
       <Folder Name="Touch Probe" Id="{a5f81912-eef1-4913-a787-44651389cb63}" />
     </Folder>
-    <Folder Name="Control" Id="{1f231ae8-3c7d-437f-95f0-04b859b8036f}" />
     <Folder Name="Motion" Id="{d2832646-43db-4ae9-81e0-102356ac94c8}">
       <Folder Name="Gearing" Id="{3bb9bb54-a986-458c-8f69-3b224397b873}" />
       <Folder Name="Homing" Id="{dc24918e-a0ae-450d-adf7-2c67cabb6402}" />
@@ -919,7 +918,7 @@ MC.PhasingRelative(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Control\">
+    <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Power 		: itfCommand
 VAR_INPUT
@@ -988,7 +987,27 @@ END_VAR
 Axis.ReadStatus();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ReadBoolParameter" Id="{fc75e571-fa59-4330-8562-ad247d6d290f}" FolderPath="Control\">
+    <Method Name="ReadApplicationRequest" Id="{26a2d0bd-9d0c-465b-895b-b2d88c815ede}" FolderPath="[Internal]\Beta Functions Blocks\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadApplicationRequest 	: itfCommand
+VAR_INPUT
+	ApplicationRequest			: Tc2_MC2.ST_NcApplicationRequest;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.ReadApplicationRequest(
+	ApplicationRequest:= ApplicationRequest, 
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Request=> , 
+	RequestType=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadBoolParameter" Id="{fc75e571-fa59-4330-8562-ad247d6d290f}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD ReadBoolParameter 	: MC_Error
 VAR_INPUT
@@ -1018,7 +1037,26 @@ MC.ReadBoolParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ReadParameter" Id="{cddb6be3-68c2-4b4d-9c14-6a1de51eb2c5}" FolderPath="Control\">
+    <Method Name="ReadDriveOperationMode" Id="{5b3b7ce3-b335-41d0-9eb3-2dd5b1603462}" FolderPath="Administrative\Extensions\DriveOperationMode\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadDriveOperationMode 	: itfCommand
+VAR_INPUT
+	Options						: Tc2_MC2.ST_DriveOperationModeOptions;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.ReadDriveOperationMode(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Options:= Options, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	DriveOperationMode=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadParameter" Id="{cddb6be3-68c2-4b4d-9c14-6a1de51eb2c5}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD ReadParameter 	: MC_Error
 VAR_INPUT
@@ -1048,6 +1086,28 @@ MC.ReadParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ReadStopInfo" Id="{9ac89add-5501-4fb1-96f7-d17a38dc4f80}" FolderPath="[Internal]\Beta Functions Blocks\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadStopInfo : itfCommand
+VAR_INPUT
+	Deceleration	: LREAL;
+	Jerk			: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.ReadStopInfo(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	StopDistance=> , 
+	StopTime=> );]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="ReadyForPowerOn" Id="{7edfc666-a58e-4cdd-b6d9-ce309d3dbb55}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ReadyForPowerOn : BOOL
@@ -1061,19 +1121,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Release" Id="{8b47a037-d6fc-4c76-8724-440d9cebf9dd}" FolderPath="Control\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Release : MC_Error
-
-VAR
-	
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[count_delete  := count_delete + 1;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Control\">
+    <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Reset 		: itfCommand
 
@@ -1095,7 +1143,7 @@ MC.Reset(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetOverride" Id="{159befbb-0e58-4754-96a4-765c9befbe12}" FolderPath="Control\">
+    <Method Name="SetOverride" Id="{159befbb-0e58-4754-96a4-765c9befbe12}" FolderPath="Administrative\Extensions\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD SetOverride 	: MC_Error
 VAR_INPUT
@@ -1124,7 +1172,7 @@ MC.SetOverride(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetPosition" Id="{841fdfbb-6ac2-4c9c-b9c9-a0bf821b2be7}" FolderPath="Control\">
+    <Method Name="SetPosition" Id="{841fdfbb-6ac2-4c9c-b9c9-a0bf821b2be7}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD SetPosition 	: itfCommand
 VAR_INPUT
@@ -1169,6 +1217,60 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="SinusOscillation" Id="{c5323034-291d-4fa7-969f-a18e6034b40e}" FolderPath="[Internal]\Beta Functions Blocks\Sinus Motion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SinusOscillation 	: itfCommand
+VAR_INPUT
+	VeloAmplitude			: LREAL;
+	Frequency				: LREAL;
+	DrivingTime				: TIME;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.SinusOscillation(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	VeloAmplitude:= VeloAmplitude, 
+	Frequency:= Frequency, 
+	DrivingTime:= DrivingTime, 
+	Busy=> , 
+	Active=> , 
+	Done=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SinusSequence" Id="{c54e85b8-3f78-47ec-a940-9d2f999b5d48}" FolderPath="[Internal]\Beta Functions Blocks\Sinus Motion\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SinusSequence 	: itfCommand
+VAR_INPUT
+	StartFrequency		: LREAL;
+	StopFrequency		: LREAL;
+	BaseFrequency		: LREAL;
+	FrequencySteps      : UINT;
+	SinusBaseVelocity   : LREAL;
+	StepDuration        : TIME;
+	FeedConstantMotor   : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.SinusSequence(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	StartFrequency:= StartFrequency, 
+	StopFrequency:= StopFrequency, 
+	BaseFrequency:= BaseFrequency, 
+	FrequencySteps:= FrequencySteps, 
+	SinusBaseVelocity:= SinusBaseVelocity, 
+	StepDuration:= StepDuration, 
+	FeedConstantMotor:= FeedConstantMotor, 
+	Busy=> , 
+	Active=> , 
+	Done=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="Status" Id="{899ae5c5-cb0d-4a4d-9f83-26636f1764e2}" FolderPath="Status\">
       <Declaration><![CDATA[{attribute ‘monitoring’ := ‘call’}
 PROPERTY Status : Tc2_MC2.MC_AxisStates
@@ -1251,7 +1353,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[MC.TableBasedPositionCompensation(
-	Axis:= AXis, 
+	Axis:= Axis, 
 	Enable:= TRUE, 
 	pTable:= pTable, 
 	TableSize:= TableSize, 
@@ -1315,7 +1417,7 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="WriteBoolParameter" Id="{3378c903-7622-4419-977d-9abca44ccb6f}" FolderPath="Control\">
+    <Method Name="WriteBoolParameter" Id="{3378c903-7622-4419-977d-9abca44ccb6f}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD WriteBoolParameter 	: MC_Error
 VAR_INPUT
@@ -1341,7 +1443,27 @@ MC.WriteBoolParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="WriteParameter" Id="{45c39499-1570-46c6-aa44-5d04439c023a}" FolderPath="Control\">
+    <Method Name="WriteDriveOperationMode" Id="{ecddd624-f4e5-4b0c-a818-a26b52aeee6c}" FolderPath="Administrative\Extensions\DriveOperationMode\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteDriveOperationMode 	: itfCommand
+VAR_INPUT
+	DriveOperationMode			: Tc2_MC2.E_DriveOperationMode;
+	Options						: Tc2_MC2.ST_DriveOperationModeOptions;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MC.WriteDriveOperationMode(
+	Axis:= Axis, 
+	Execute:= TRUE, 
+	DriveOperationMode:= DriveOperationMode, 
+	Options:= Options, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteParameter" Id="{45c39499-1570-46c6-aa44-5d04439c023a}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD WriteParameter 	: MC_Error
 VAR_INPUT
