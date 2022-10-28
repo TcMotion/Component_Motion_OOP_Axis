@@ -42,7 +42,6 @@ END_VAR
         <Folder Name="Sinus Motion" Id="{07d5e521-7775-48c5-807a-a00072b0ff9d}" />
       </Folder>
     </Folder>
-    <Folder Name="ActualValues" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
     <Folder Name="Administrative" Id="{846cf884-e007-491c-9e2c-42e0fb572616}">
       <Folder Name="Axis Functions" Id="{f97f4d08-ef02-4277-a5a9-940fcbeb16ba}" />
       <Folder Name="Extensions" Id="{776de8b6-2376-4dd5-b84d-f6fcceba39c7}">
@@ -52,6 +51,7 @@ END_VAR
       <Folder Name="Status and Parameter" Id="{93a75216-5535-4e29-a765-2097ee9bd048}" />
       <Folder Name="Touch Probe" Id="{a5f81912-eef1-4913-a787-44651389cb63}" />
     </Folder>
+    <Folder Name="FeedBack" Id="{1a660d81-33e9-4cb9-b03a-13d277bb9b98}" />
     <Folder Name="Motion" Id="{d2832646-43db-4ae9-81e0-102356ac94c8}">
       <Folder Name="Gearing" Id="{3bb9bb54-a986-458c-8f69-3b224397b873}" />
       <Folder Name="Homing" Id="{dc24918e-a0ae-450d-adf7-2c67cabb6402}" />
@@ -91,7 +91,18 @@ END_VAR
         <ST><![CDATA[Read_Status();]]></ST>
       </Implementation>
     </Action>
-    <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
+    <Property Name="ActualAcceleration" Id="{16687151-6395-4102-b955-93a32114a2a5}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY ActualAcceleration : LREAL]]></Declaration>
+      <Get Name="Get" Id="{9b3f679c-9c5d-4462-be76-6d20b250a46e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualAcceleration := Axis.NcToPlc.ActAcc;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="FeedBack\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
 ]]></Declaration>
@@ -101,11 +112,11 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[//Actual Position
-IF Axis.Status.OpMode.Modulo THEN
-    ActualPosition := Axis.NcToPlc.ModuloActPos;
-ELSE
+//IF Axis.Status.OpMode.Modulo THEN
+//    ActualPosition := Axis.NcToPlc.ModuloActPos;
+//ELSE
     ActualPosition := Axis.NcToPlc.ActPos;
-END_IF
+//END_IF
 
 count_delete  := count_delete + 1;
 
@@ -113,9 +124,20 @@ count_delete  := count_delete + 1;
         </Implementation>
       </Get>
     </Property>
-    <Property Name="ActualTorque" Id="{47f1f1a8-2481-48da-95ea-96476db64d77}" FolderPath="ActualValues\">
+    <Property Name="ActualPositionModulo" Id="{2693ca0a-7a4c-4b11-8b1d-234422bbc67c}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY ActualPositionModulo : LREAL]]></Declaration>
+      <Get Name="Get" Id="{b90f42e6-edba-47bd-a4c9-d2f0ccb20099}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualPositionModulo := Axis.NcToPlc.ModuloActPos;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualTorque" Id="{47f1f1a8-2481-48da-95ea-96476db64d77}" FolderPath="FeedBack\">
       <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY ActualTorque : REAL
+PROPERTY ActualTorque : LREAL
 ]]></Declaration>
       <Get Name="Get" Id="{d6e8535c-3af3-4c34-9d6d-c19c9f0a01f9}">
         <Declaration><![CDATA[VAR
@@ -128,9 +150,9 @@ count_delete  := count_delete + 1;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Property Name="ActualVelocity" Id="{e88b58fe-48b9-430f-bfde-dfb33c3bd932}" FolderPath="ActualValues\">
+    <Property Name="ActualVelocity" Id="{e88b58fe-48b9-430f-bfde-dfb33c3bd932}" FolderPath="FeedBack\">
       <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY ActualVelocity : REAL
+PROPERTY ActualVelocity : LREAL
 ]]></Declaration>
       <Get Name="Get" Id="{7dc6c552-9454-4328-bbea-4a267ff83920}">
         <Declaration><![CDATA[VAR
@@ -1048,6 +1070,17 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Property Name="PositionLag" Id="{9963bbcd-2fe4-4c5f-b604-94d2250dd712}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY PositionLag : LREAL]]></Declaration>
+      <Get Name="Get" Id="{dfd611bc-3213-4000-a06a-77af682a0779}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PositionLag := Axis.NcToPlc.PosDiff;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Power 		: itfCommand
@@ -1120,7 +1153,7 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Read_Status" Id="{3db3a851-8870-4021-b37b-f7193e565524}" FolderPath="ActualValues\">
+    <Method Name="Read_Status" Id="{3db3a851-8870-4021-b37b-f7193e565524}" FolderPath="FeedBack\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Read_Status
 VAR_INPUT
@@ -1385,6 +1418,28 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Set_Position" Id="{fae400ee-a6d4-4b7b-a05c-64c15b6ea368}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY Set_Position : LREAL]]></Declaration>
+      <Get Name="Get" Id="{1c9aa515-53ce-407b-bb21-3b5f24c3219a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Set_Position := Axis.NcToPlc.SetPos;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="SetAcceleration" Id="{0f63dc6a-bcf9-40a1-9566-5310ab2f6a32}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY SetAcceleration : LREAL]]></Declaration>
+      <Get Name="Get" Id="{6a3b7c68-2d3d-42b9-97e6-56ebc968cb14}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SetAcceleration := Axis.NcToPlc.SetAcc;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="SetEncoderScalingFactor" Id="{2f3479cd-a048-451d-8ebc-84f5a650535f}" FolderPath="Administrative\Extensions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD SetEncoderScalingFactor : MC_Error
@@ -1453,6 +1508,28 @@ count_delete  := count_delete + 1;
  ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="SetPositionModulo" Id="{68189d6c-5819-453b-bbd7-53231416615a}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY SetPositionModulo : LREAL]]></Declaration>
+      <Get Name="Get" Id="{3bab5881-e913-4e8c-90d2-5e79705378d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SetPositionModulo := Axis.NcToPlc.ModuloSetPos;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="SetVelocity" Id="{6544f9e8-ae6c-4607-992e-117d17910771}" FolderPath="FeedBack\">
+      <Declaration><![CDATA[PROPERTY SetVelocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{6969464e-934c-42a1-8fa1-6e2ea3485158}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SetVelocity := Axis.NcToPlc.SetVelo;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Simulation" Id="{8db6e099-f6ba-4ea8-96dc-469ed58bba45}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Simulation : BOOL

@@ -152,6 +152,7 @@ CASE stateOOP OF
 			stateOOP := stateOOP + 10;					
 	  		Done_X1  := FALSE;
 			Done_Y   := FALSE;
+			stepOn := FALSE;		
 		END_IF		
 
 	30:
@@ -209,6 +210,9 @@ CASE stateOOP OF
 		END_IF
 	80: 
 	// ready
+		IF stepOn THEN
+			stateOOP := 20;	
+		END_IF
 	;
 END_CASE]]></ST>
     </Implementation>
