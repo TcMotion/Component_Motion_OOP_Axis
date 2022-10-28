@@ -43,7 +43,10 @@
     </SelectedLibraryCategories>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClassDiagram.TcCD">
+    <Compile Include="ClassDiagram\ClassDiagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassDiagram\TcAxis_Tc2_MC2.TcCD">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Component_Axis\FB_TcAxis_Codesys.TcPOU">
@@ -202,6 +205,7 @@
     <Folder Include="Component_Axis" />
     <Folder Include="Examples\Tc3_DriveMotionControl" />
     <Folder Include="Examples\Tc2_MC2" />
+    <Folder Include="ClassDiagram" />
     <Folder Include="Project Information" />
     <Folder Include="TwinCAT Library Template" />
     <Folder Include="TwinCAT Library Template\VendorImplementation" />

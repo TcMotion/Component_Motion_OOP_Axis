@@ -26,13 +26,14 @@ VAR
 //_Command         : ST_Command;
 	
 
-MC : ST_Tc2_MC2;	
+//MC : ST_Tc2_MC2;	
 
 count_delete : INT;	
+//	ACT_Cyclic_Update: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// ACT_Cyclic_Update();
+      <ST><![CDATA[ACT_Cyclic_Update();
  ]]></ST>
     </Implementation>
     <Folder Name="[Internal]" Id="{00c423f8-b718-450b-90f8-c0bb367d276f}">
@@ -61,6 +62,21 @@ END_VAR
       <Folder Name="Torque Control" Id="{1e25a18a-168c-444e-a28b-4bbd0ccb6cf8}" />
     </Folder>
     <Folder Name="Status" Id="{03058b18-c49a-4761-8ec3-e8bf4e5aa1d1}" />
+    <Method Name="AbortSuperposition" Id="{a43edade-073a-41af-bb29-31239da69db7}" FolderPath="Motion\Superposition\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD AbortSuperposition : itfAxisCommand
+VAR_INPUT
+	Distance			: REAL;
+	VelocityDiff		: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="AbortTrigger" Id="{7e7b714c-aa2c-4a74-95f0-6833e466216b}" FolderPath="Administrative\Touch Probe\">
       <Declaration><![CDATA[METHOD AbortTrigger : itfCommand
 VAR_INPUT
@@ -70,6 +86,11 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Action Name="ACT_Cyclic_Update" Id="{ea69ea2f-5184-4bb2-95c7-ef9b972f91f7}">
+      <Implementation>
+        <ST><![CDATA[Read_Status();]]></ST>
+      </Implementation>
+    </Action>
     <Property Name="ActualPosition" Id="{b2230e07-cc2f-43f9-96fa-b3df5126c4b7}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY ActualPosition : REAL
@@ -135,6 +156,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="BacklashCompensation" Id="{470c9e20-21c5-4677-917e-c0f1a9310f79}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD BacklashCompensation : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="CommunicationReady" Id="{8590d5ed-42e3-4ce6-b3e6-b01dc7d93a0c}" FolderPath="Status\">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY CommunicationReady : BOOL
@@ -199,6 +230,26 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="ExtSetPointGenDisable" Id="{754e604c-a00b-417b-8ae6-8bfda8964e7f}" FolderPath="Administrative\External Set Point Generator\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ExtSetPointGenDisable : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ExtSetPointGenEnable" Id="{06409a70-74e9-4bcd-8785-01fda000e417}" FolderPath="Administrative\External Set Point Generator\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ExtSetPointGenEnable : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="Geared" Id="{cad8364b-d06c-481a-9940-549f97d5ccbb}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY Geared : BOOL]]></Declaration>
       <Get Name="Get" Id="{a3b3f0fb-2772-49f7-8dbb-75c9f3fa0511}">
@@ -227,14 +278,14 @@ END_VAR
 VAR_IN_OUT 
 	Slave				: Tc2_MC2.AXIS_REF;	
 END_VAR
-VAR
-//	fbGearIn			: Tc2_MC2.MC_GearIn;	
+VAR_INST
+	_MC_GearIn 			: Tc2_MC2.MC_GearIn;	
 END_VAR
 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[	
-MC.GearIn(
+_MC_GearIn(
 	Master:= Axis, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
@@ -252,7 +303,7 @@ MC.GearIn(
 	Error=> , 
 	ErrorID=> );
 	
-MC.GearIn(
+_MC_GearIn(
 	Master:= Axis, 
 	Slave:= Slave, 
 	Execute:= FALSE);
@@ -322,21 +373,21 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="Halt" Id="{b5e61c76-4253-4650-9c4d-72d7a3b44126}" FolderPath="Motion\Point To Point Motion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Halt 		: itfAxisCommand
 VAR_INPUT
 	Deceleration	: REAL;
 	Jerk			: REAL;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbHalt			: Tc2_MC2.MC_HALT;
+VAR_INST
+	_MC_Halt		: Tc2_MC2.MC_HALT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.Halt(
+_MC_Halt(
 	Axis:= Axis, 
-	Execute:= , 
+	Execute:= TRUE, 
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= , //BufferMode, 
@@ -349,6 +400,16 @@ MC.Halt(
 	ErrorID=> );
 
 count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HaltPhasing" Id="{3f071661-fe7c-456d-883e-c3cce9986bf1}" FolderPath="Motion\Phasing\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD HaltPhasing : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="Home" Id="{af023316-0daa-480a-9620-216f87d5a5f0}" FolderPath="Motion\Homing\">
@@ -365,12 +426,12 @@ VAR_INPUT
 	HomingMode		: INT;
 	BufferMode		: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbHome			: Tc2_MC2.MC_HOME;
+VAR_INST
+	_MC_Home		: Tc2_MC2.MC_HOME;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.Home(
+_MC_Home(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
@@ -428,12 +489,12 @@ VAR_INPUT
     Deceleration 	: LREAL;
     Jerk     		: LREAL;
 END_VAR
-VAR
-//	fbJog			: Tc2_MC2.MC_JOG;
+VAR_INST
+	_MC_Jog			: Tc2_MC2.MC_JOG;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.Jog(
+_MC_Jog(
 	Axis:= Axis, 
 	JogForward:= JogForward, 
 	JogBackwards:= JogBackwards, 
@@ -503,28 +564,45 @@ END_VAR
     </Property>
     <Method Name="MoveAbsolute" Id="{75c5779f-04ff-4069-95d9-d7a1de4e344e}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD MoveAbsolute : itfAxisCommand
+METHOD MoveAbsolute 	: itfAxisCommand
 VAR_INPUT
-	Position		: REAL;
-	Velocity		: REAL;
-	Acceleration	: REAL;
-	Deceleration	: REAL;
-	Jerk			: REAL;
-//	Direction		: MC_Direction;
-	BufferMode		: MC_BUFFER_MODE;
-//	Options         : Tc2_MC2.ST_MoveOptions;
-	Options         : Tc2_Mc2.ST_MoveOptions;
+	Position			: LREAL;
+	Velocity			: LREAL;
+	Acceleration		: LREAL;
+	Deceleration		: LREAL;
+	Jerk				: LREAL;
+	BufferMode			: MC_BUFFER_MODE;
+	Options         	: Tc2_Mc2.ST_MoveOptions;
 END_VAR
-
 VAR
-	itfAxisCommand   : itfAxisCommand;
-    _Command         : ST_Command;
+	itfAxisCommand   	: itfAxisCommand;
+    _Command         	: ST_Command;
+END_VAR	
+VAR_INST
+	_MC_MoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
 	
-MC.MoveAbsolute(
+//MC.MoveAbsolute(
+//	Axis:= Axis, 
+//	Execute:= TRUE ,//Execute, //
+//	Position:= Position, 
+//	Velocity:= Velocity, 
+//	Acceleration:= Acceleration, 
+//	Deceleration:= Deceleration, 
+//	Jerk:= Jerk, 
+//	BufferMode:= BufferMode,//BufferMode, 
+//	Options:= Options, //Options, 
+//	Done=> _Command.Done, 
+//	Busy=> _Command.Busy, 
+//	Active=>_Command.Active, 
+//	CommandAborted=> _Command.CommandAborted, 
+//	Error=> _Command.Error, 
+//	ErrorID=> _Command.ErrorID_Udint);
+	
+_MC_MoveAbsolute(
 	Axis:= Axis, 
 	Execute:= TRUE ,//Execute, //
 	Position:= Position, 
@@ -539,11 +617,16 @@ MC.MoveAbsolute(
 	Active=>_Command.Active, 
 	CommandAborted=> _Command.CommandAborted, 
 	Error=> _Command.Error, 
-	ErrorID=> _Command.ErrorID_Udint);
+	ErrorID=> _Command.ErrorID_Udint);	
 	
-MC.MoveAbsolute(
+//MC.MoveAbsolute(
+//	Axis:= Axis, 
+//	Execute:= FALSE);	
+	
+_MC_MoveAbsolute(
 	Axis:= Axis, 
 	Execute:= FALSE);	
+	
 
 itfAxisCommand.Done 				:=  _Command.Done AND ActualPosition = Position;             
 itfAxisCommand.Busy   				:=	_Command.Busy;
@@ -556,22 +639,22 @@ MoveAbsolute := itfAxisCommand;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveAdditive" Id="{41ab44ec-7746-4f1c-885f-94c8dd766d4e}" FolderPath="Motion\Point To Point Motion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD MoveAdditive : itfAxisCommand
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD MoveAdditive 	: itfAxisCommand
 VAR_INPUT
-	Distance		: REAL;
-	Velocity		: REAL;
-	Acceleration	: REAL;
-	Deceleration	: REAL;
-	Jerk			: REAL;
-	BufferMode		: MC_BUFFER_MODE;
+	Distance			: REAL;
+	Velocity			: REAL;
+	Acceleration		: REAL;
+	Deceleration		: REAL;
+	Jerk				: REAL;
+	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbMoveAdditive 	: Tc2_MC2.MC_MoveAdditive;	
+VAR_INST
+	_MC_MoveAdditive	: Tc2_MC2.MC_MoveAdditive;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveAdditive(
+_MC_MoveAdditive(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -607,12 +690,12 @@ VAR_INPUT
 	Direction					: MC_DIRECTION;
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbMoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
+VAR_INST
+	_MC_MoveContinuousAbsolute 	: Tc2_MC2.MC_MoveContinuousAbsolute;		
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveContinuousAbsolute(
+_MC_MoveContinuousAbsolute(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
@@ -647,12 +730,12 @@ VAR_INPUT
 	Direction					: MC_DIRECTION;
 	BufferMode					: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbMoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
+VAR_INST
+	_MC_MoveContinuousRelative 	: Tc2_MC2.MC_MoveContinuousRelative;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveContinuousRelative(
+_MC_MoveContinuousRelative(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -679,10 +762,13 @@ count_delete  := count_delete + 1;]]></ST>
       <Declaration><![CDATA[METHOD MoveModulo : itfAxisCommand
 VAR_INPUT
 END_VAR
+VAR_INST
+	_MC_MoveModulo 	: Tc2_MC2.MC_MoveModulo;	
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveModulo(
+_MC_MoveModulo(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= , 
@@ -716,11 +802,31 @@ END_VAR
 VAR
 	itfAxisCommand   : itfAxisCommand;
 	_Command         : ST_Command;
+END_VAR
+VAR_INST
+	_MC_MoveRelative 	: Tc2_MC2.MC_MoveRelative;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[itfAxisCommand := _fbAxisCommand;
 
-MC.MoveRelative(
+//MC.MoveRelative(
+//	Axis:= Axis, 
+//	Execute:= TRUE, 
+//	Distance:= Distance, 
+//	Velocity:= Velocity, 
+//	Acceleration:= Acceleration, 
+//	Deceleration:= Deceleration, 
+//	Jerk:= Jerk, 
+//	BufferMode:= ,//BufferMode, 
+//	Options:= Options, 
+//	Done=> _Command.Done, 
+//	Busy=> _Command.Busy, 
+//	Active=> _Command.Active, 
+//	CommandAborted=> _Command.CommandAborted, 
+//	Error=> _Command.Error, 
+//	ErrorID=> _Command.ErrorID_Udint);
+	
+_MC_MoveRelative(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Distance:= Distance, 
@@ -735,9 +841,13 @@ MC.MoveRelative(
 	Active=> _Command.Active, 
 	CommandAborted=> _Command.CommandAborted, 
 	Error=> _Command.Error, 
-	ErrorID=> _Command.ErrorID_Udint);
+	ErrorID=> _Command.ErrorID_Udint);	
 	
-MC.MoveRelative(
+//MC.MoveRelative(
+//	Axis:= Axis, 
+//	Execute:= FALSE);	
+
+_MC_MoveRelative(
 	Axis:= Axis, 
 	Execute:= FALSE);		
 	
@@ -762,12 +872,12 @@ VAR_INPUT
 	Deceleration			: REAL;
 	Jerk					: REAL;
 END_VAR
-VAR
-//	fbMoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
+VAR_INST
+	_MC_MoveSuperimposed	 	: Tc2_MC2.MC_MoveSuperimposed;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveSuperimposed(
+_MC_MoveSuperimposed(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Mode:= , 
@@ -797,7 +907,7 @@ count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{c0d6a530-ab89-47b6-a229-25b41e577faa}" FolderPath="Motion\Point To Point Motion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveVelocity 	: itfContinuousAxisCommand
 VAR_INPUT
 	Velocity			: REAL;
@@ -807,12 +917,12 @@ VAR_INPUT
 	Direction			: MC_Direction;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbMoveVelocity	 	: Tc2_MC2.MC_MoveVelocity;	
+VAR_INST
+	_MC_MoveVelocity	: Tc2_MC2.MC_MoveVelocity;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.MoveVelocity(
+_MC_MoveVelocity(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Velocity:= Velocity, 
@@ -832,6 +942,16 @@ MC.MoveVelocity(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="OverrideFilter" Id="{64a2874d-cd59-46bd-8162-94b54e29223e}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD OverrideFilter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="PhasingAbsolute" Id="{6636a02f-2e18-4d37-a884-ab23bb4c93d0}" FolderPath="Motion\Phasing\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD PhasingAbsolute 	: itfSynchronizedAxisCommand
@@ -846,13 +966,13 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbPhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
+VAR_INST
+	_MC_PhasingAbsolute	: Tc2_MC2.MC_PhasingAbsolute;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.PhasingAbsolute(
+_MC_PhasingAbsolute(
 	Master:= Master, 
 	Slave:= Slave, 
 	Execute:= TRUE, 
@@ -889,13 +1009,13 @@ VAR_INPUT
 	Jerk				: REAL;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbPhasingRelative	: Tc2_MC2.MC_PhasingRelative;
+VAR_INST
+	_MC_PhasingRelative	: Tc2_MC2.MC_PhasingRelative;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.PhasingRelative(
+_MC_PhasingRelative(
 	Master:= Master, 
 	Slave:= Slave, 
 	Execute:= , 
@@ -918,6 +1038,16 @@ MC.PhasingRelative(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="PositionCorrectionLimiter" Id="{c47c4525-7967-433a-8210-35cacb455ea4}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PositionCorrectionLimiter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Power" Id="{f479a0c0-c959-4273-841a-a53ca6e59e8b}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Power 		: itfCommand
@@ -930,12 +1060,15 @@ VAR
 	_fbCommand      : TcCommand;
 	itfCommand      : itfCommand;
 	Command         : ST_Command;
+END_VAR
+VAR_INST
+	_MC_Power 		: Tc2_MC2.MC_Power;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
 itfCommand := _fbCommand;
 
-MC.Power(
+_MC_Power(
 	Axis:= Axis, 
 	Enable:= Enable, 
 	Enable_Positive:= EnablePositive, 
@@ -957,7 +1090,8 @@ itfCommand.ErrorID_Udint :=	Command.ErrorID_Udint;
 	
 Power := itfCommand;
 
-_PowerOn := MC.Power.Enable;
+//_PowerOn := _MC.Power.Enable;
+_PowerOn := Command.Active;
 
 
 ]]></ST>
@@ -976,6 +1110,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="PowerStepper" Id="{2c0bcc90-310b-44e7-8e35-ebb6b9652edb}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PowerStepper : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Read_Status" Id="{3db3a851-8870-4021-b37b-f7193e565524}" FolderPath="ActualValues\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Read_Status
@@ -987,15 +1131,38 @@ END_VAR
 Axis.ReadStatus();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ReadActualPosition" Id="{56254441-fbde-41a0-8a2e-873cb0ffa0e7}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadActualPosition : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadActualVelocity" Id="{30082ab3-7ba1-4e90-ac2f-4f721cd58c4f}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadActualVelocity : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ReadApplicationRequest" Id="{26a2d0bd-9d0c-465b-895b-b2d88c815ede}" FolderPath="[Internal]\Beta Functions Blocks\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadApplicationRequest 	: itfCommand
 VAR_INPUT
 	ApplicationRequest			: Tc2_MC2.ST_NcApplicationRequest;
 END_VAR
+VAR_INST
+	_MC_ReadApplicationRequest	: Tc2_MC2.MC_ReadApplicationRequest;
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.ReadApplicationRequest(
+        <ST><![CDATA[_MC_ReadApplicationRequest(
 	ApplicationRequest:= ApplicationRequest, 
 	Axis:= Axis, 
 	Execute:= TRUE, 
@@ -1007,6 +1174,26 @@ END_VAR
 	RequestType=> );]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ReadAxisComponents" Id="{b87a57ec-4f89-480c-8817-2da9d3b1f602}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadAxisComponents : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadAxisError" Id="{7351fcfd-ae42-4208-9a94-ab4509d80d64}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadAxisError : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ReadBoolParameter" Id="{fc75e571-fa59-4330-8562-ad247d6d290f}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD ReadBoolParameter 	: MC_Error
@@ -1016,13 +1203,13 @@ END_VAR
 VAR_OUTPUT
 	Value					: BOOL;
 END_VAR
-VAR
-//	fbReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
+VAR_INST
+	_MC_ReadBoolParameter 	: Tc2_MC2.MC_ReadBoolParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.ReadBoolParameter(
+_MC_ReadBoolParameter(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1037,15 +1224,28 @@ MC.ReadBoolParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ReadDriveAddress" Id="{54753954-d2bf-4b82-bf77-ed210dc5d990}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadDriveAddress : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ReadDriveOperationMode" Id="{5b3b7ce3-b335-41d0-9eb3-2dd5b1603462}" FolderPath="Administrative\Extensions\DriveOperationMode\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD ReadDriveOperationMode 	: itfCommand
 VAR_INPUT
 	Options						: Tc2_MC2.ST_DriveOperationModeOptions;
 END_VAR
+VAR_INST
+	_MC_ReadDriveOperationMode	: Tc2_MC2.MC_ReadDriveOperationMode;
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.ReadDriveOperationMode(
+        <ST><![CDATA[_MC_ReadDriveOperationMode(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Options:= Options, 
@@ -1054,6 +1254,16 @@ END_VAR
 	Error=> , 
 	ErrorID=> , 
 	DriveOperationMode=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadLargeParameter" Id="{dfb6ca3c-bd23-4bd7-804f-b251829346f9}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadLargeParameter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReadParameter" Id="{cddb6be3-68c2-4b4d-9c14-6a1de51eb2c5}" FolderPath="Administrative\Status and Parameter\">
@@ -1065,13 +1275,13 @@ END_VAR
 VAR_OUTPUT
 	Value				: REAL;
 END_VAR
-VAR
-//	fbReadParameter		: Tc2_MC2.MC_ReadParameter;
+VAR_INST
+	_MC_ReadParameter	: Tc2_MC2.MC_ReadParameter;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.ReadParameter(
+_MC_ReadParameter(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1086,16 +1296,39 @@ MC.ReadParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ReadStopInfo" Id="{9ac89add-5501-4fb1-96f7-d17a38dc4f80}" FolderPath="[Internal]\Beta Functions Blocks\">
+    <Method Name="ReadParameterSet" Id="{885682a8-0deb-45c8-90d2-c451022a480f}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD ReadStopInfo : itfCommand
+METHOD ReadParameterSet : MC_Error
 VAR_INPUT
-	Deceleration	: LREAL;
-	Jerk			: LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.ReadStopInfo(
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadStatus" Id="{9b3dc2be-985a-46de-b423-370f8f68cb68}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadStatus : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadStopInfo" Id="{9ac89add-5501-4fb1-96f7-d17a38dc4f80}" FolderPath="[Internal]\Beta Functions Blocks\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadStopInfo 	: itfCommand
+VAR_INPUT
+	Deceleration		: LREAL;
+	Jerk				: LREAL;
+END_VAR
+VAR_INST
+	_MC_ReadStopInfo	: Tc2_MC2.MC_ReadStopInfo;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MC_ReadStopInfo(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Deceleration:= Deceleration, 
@@ -1124,14 +1357,13 @@ END_VAR
     <Method Name="Reset" Id="{14e50d85-e296-43cf-afd5-3cba42896a29}" FolderPath="Administrative\Axis Functions\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Reset 		: itfCommand
-
-VAR
-//	fbReset 		: Tc2_MC2.MC_RESET;
+VAR_INST
+	_MC_Reset 		: Tc2_MC2.MC_RESET;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.Reset(
+_MC_Reset(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Done=> , 
@@ -1143,6 +1375,26 @@ MC.Reset(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SelectControlLoop" Id="{9e94e21d-dbe1-4204-82bd-aa3f62758985}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SelectControlLoop : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetEncoderScalingFactor" Id="{2f3479cd-a048-451d-8ebc-84f5a650535f}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SetEncoderScalingFactor : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetOverride" Id="{159befbb-0e58-4754-96a4-765c9befbe12}" FolderPath="Administrative\Extensions\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD SetOverride 	: MC_Error
@@ -1151,14 +1403,13 @@ VAR_INPUT
 	AccFactor		: REAL;
 	JerkFactor		: REAL;
 END_VAR
-
-VAR
-//	fbSetOverride 	: Tc2_MC2.MC_SetOverride;
+VAR_INST
+	_MC_SetOverride : Tc2_MC2.MC_SetOverride;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.SetOverride(
+_MC_SetOverride(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	VelFactor:= VelFactor, 
@@ -1178,22 +1429,20 @@ METHOD SetPosition 	: itfCommand
 VAR_INPUT
 	Position		: REAL;
 	Relative		: BOOL; (* RELATIVE=True, ABSOLUTE=False (Default)*)
-//	ExecutionMode	: MC_ExecutionMode;
-    ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
+    Options			: Tc2_MC2.ST_SetPositionOptions;
 END_VAR
-
-VAR
-//	fbSetPosition 	: Tc2_MC2.MC_SetPosition;
+VAR_INST
+	_MC_SetPosition : Tc2_MC2.MC_SetPosition;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.SetPosition(
+_MC_SetPosition(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Position:= Position, 
 	Mode:= Relative, 
-	Options:= ExecutionMode, 
+	Options:= Options, 
 	Done=> , 
 	Busy=> , 
 	Error=> , 
@@ -1225,9 +1474,12 @@ VAR_INPUT
 	Frequency				: LREAL;
 	DrivingTime				: TIME;
 END_VAR
+VAR_INST
+	_MC_SinusOscillation 	: Tc2_MC2.MC_SinusOscillation;	
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.SinusOscillation(
+        <ST><![CDATA[_MC_SinusOscillation(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	VeloAmplitude:= VeloAmplitude, 
@@ -1252,9 +1504,13 @@ VAR_INPUT
 	StepDuration        : TIME;
 	FeedConstantMotor   : LREAL;
 END_VAR
+VAR_INST
+	_MC_SinusSequence	: Tc2_MC2.MC_SinusSequence;
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.SinusSequence(
+        <ST><![CDATA[
+_MC_SinusSequence(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	StartFrequency:= StartFrequency, 
@@ -1312,18 +1568,18 @@ Status := Axis.Status.MotionState;
       </Get>
     </Property>
     <Method Name="Stop" Id="{c7df0714-0c83-44e1-9182-81c8a840aa7d}" FolderPath="Motion\Point To Point Motion\">
-      <Declaration><![CDATA[{warning 'add method implementation '}
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD Stop 		: itfAxisCommand
 VAR_INPUT
 	Deceleration	: REAL;
 	Jerk			: REAL;
 END_VAR
-VAR
-//	fbStop			: Tc2_MC2.MC_STOP;
+VAR_INST
+	_MC_Stop		: Tc2_MC2.MC_STOP;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.Stop(
+_MC_Stop(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	Deceleration:= Deceleration, 
@@ -1350,9 +1606,13 @@ VAR_INPUT
 	DisableMode							: Tc2_MC2.E_DisableMode;
 	Options								: Tc2_MC2.ST_PositionCompensationOptions;
 END_VAR
+VAR_INST
+	_MC_TableBasedPositionCompensation	: Tc2_MC2.MC_TableBasedPositionCompensation;
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.TableBasedPositionCompensation(
+        <ST><![CDATA[
+_MC_TableBasedPositionCompensation(
 	Axis:= Axis, 
 	Enable:= TRUE, 
 	pTable:= pTable, 
@@ -1382,12 +1642,12 @@ VAR_INPUT
 	Direction			: MC_DIRECTION;
 	BufferMode			: MC_BUFFER_MODE;
 END_VAR
-VAR
-//	fbTorqueControl		: Tc2_MC2.MC_TorqueControl;
+VAR_INST
+	_MC_TorqueControl	: Tc2_MC2.MC_TorqueControl;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.TorqueControl(
+_MC_TorqueControl(
 	Axis:= Axis, 
 	Execute:= , 
 	ContinuousUpdate:= , 
@@ -1424,13 +1684,15 @@ VAR_INPUT
 	ParameterNumber			: INT;
 	Value					: BOOL;
 END_VAR
-
 VAR
-//	fbWriteBoolParameter 	: Tc2_MC2.MC_WriteBoolParameter;	
+	
+END_VAR
+VAR_INST
+	_MC_WriteBoolParameter	: Tc2_MC2.MC_WriteBoolParameter;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.WriteBoolParameter(
+_MC_WriteBoolParameter(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1443,6 +1705,16 @@ MC.WriteBoolParameter(
 count_delete  := count_delete + 1;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="WriteBoolParameterPersistent" Id="{5ac463f5-0186-4f64-bd79-1f726926d5fe}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteBoolParameterPersistent : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="WriteDriveOperationMode" Id="{ecddd624-f4e5-4b0c-a818-a26b52aeee6c}" FolderPath="Administrative\Extensions\DriveOperationMode\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD WriteDriveOperationMode 	: itfCommand
@@ -1450,9 +1722,12 @@ VAR_INPUT
 	DriveOperationMode			: Tc2_MC2.E_DriveOperationMode;
 	Options						: Tc2_MC2.ST_DriveOperationModeOptions;
 END_VAR
-]]></Declaration>
+VAR_INST
+	_MC_WriteDriveOperationMode	: Tc2_MC2.MC_WriteDriveOperationMode;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MC.WriteDriveOperationMode(
+        <ST><![CDATA[
+_MC_WriteDriveOperationMode(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	DriveOperationMode:= DriveOperationMode, 
@@ -1463,6 +1738,36 @@ END_VAR
 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
+    <Method Name="WriteLargeParameter" Id="{e96912b6-ade0-4f87-a5bd-4de978db261a}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteLargeParameter : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteLargeParameterPersistent" Id="{b94c43d1-35e5-484a-866a-1646886c4ba0}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteLargeParameterPersistent : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteNcIoOutput" Id="{c6d98faf-724c-4edd-b7aa-a565dbef8b92}" FolderPath="Administrative\Extensions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteNcIoOutput : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="WriteParameter" Id="{45c39499-1570-46c6-aa44-5d04439c023a}" FolderPath="Administrative\Status and Parameter\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD WriteParameter 	: MC_Error
@@ -1471,12 +1776,12 @@ VAR_INPUT
 	Value				: REAL;
 END_VAR
 
-VAR
-//	fbWriteParameter 	: Tc2_MC2.MC_WriteParameter;	
+VAR_INST
+	_MC_WriteParameter 	: Tc2_MC2.MC_WriteParameter;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-MC.WriteParameter(
+_MC_WriteParameter(
 	Axis:= Axis, 
 	Execute:= TRUE, 
 	ParameterNumber:= ParameterNumber, 
@@ -1487,6 +1792,16 @@ MC.WriteParameter(
 	ErrorID=> );
 
 count_delete  := count_delete + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteParameterPersistent" Id="{bb9d6a05-6f00-4681-8e52-b1d586a0e210}" FolderPath="Administrative\Status and Parameter\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteParameterPersistent : MC_Error
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>

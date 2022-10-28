@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE ST_Tc2_MC2 :
 STRUCT
 // Administrative/Axis Functions:	
-	Power 							: Tc2_MC2.MC_Power;
+//	Power 							: Tc2_MC2.MC_Power;
 	Reset 							: Tc2_MC2.MC_Reset;
 	SetPosition     				: Tc2_MC2.MC_SetPosition;
 	
@@ -51,7 +51,7 @@ STRUCT
 	TouchProbe						: Tc2_MC2.MC_TouchProbe;
 
 //Motion/Gearing:	
-	GearIn							: Tc2_MC2.MC_GearIn;
+//	GearIn							: Tc2_MC2.MC_GearIn;
 	GearInDyn						: Tc2_MC2.MC_GearInDyn;
 	GearInMultimaster				: Tc2_MC2.MC_GearInMultimaster;
 	GearOut							: Tc2_MC2.MC_GearOut;
@@ -69,12 +69,12 @@ STRUCT
 
 //Motion/Point To Point Motion:
 	Halt							: Tc2_MC2.MC_Halt;
-	MoveAbsolute 					: Tc2_MC2.MC_MoveAbsolute;	
+//	MoveAbsolute 					: Tc2_MC2.MC_MoveAbsolute;	
 	MoveAdditive					: Tc2_MC2.MC_MoveAdditive;
 	MoveContinuousAbsolute			: Tc2_MC2.MC_MoveContinuousAbsolute;
 	MoveContinuousRelative			: Tc2_MC2.MC_MoveContinuousRelative;
 	MoveModulo						: Tc2_MC2.MC_MoveModulo;
-	MoveRelative 					: Tc2_MC2.MC_MoveRelative;
+//	MoveRelative 					: Tc2_MC2.MC_MoveRelative;
 	MoveVelocity					: Tc2_MC2.MC_MoveVelocity;
 	Stop							: Tc2_MC2.MC_Stop;
 

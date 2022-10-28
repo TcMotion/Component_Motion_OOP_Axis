@@ -301,17 +301,16 @@ PROPERTY MotionStatus : MOTION_STATUS
     <Method Name="MoveAbsolute" Id="{603952a0-b0c9-4314-be40-2176144ec08d}" FolderPath="Motion\Point To Point Motion\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD MoveAbsolute : itfAxisCommand
-//METHOD ABSTRACT MoveAbsolute : itfAxisCommand
 VAR_INPUT
-	Position		: REAL;
-	Velocity		: REAL;
-	Acceleration	: REAL;
-	Deceleration	: REAL;
-	Jerk			: REAL;
-//	Direction		: MC_Direction;
+	Position		: LREAL;
+	Velocity		: LREAL;
+	Acceleration	: LREAL;
+	Deceleration	: LREAL;
+	Jerk			: LREAL;
 	BufferMode		: MC_BUFFER_MODE;
 	Options         : Tc2_MC2.ST_MoveOptions;
 END_VAR
+
 ]]></Declaration>
     </Method>
     <Method Name="MoveAdditive" Id="{82801e35-f9f5-4d17-9c52-2ad8fb992b71}" FolderPath="Motion\Point To Point Motion\">
@@ -375,18 +374,6 @@ VAR_INPUT
 	Jerk			: REAL;
 	BufferMode		: MC_BUFFER_MODE;
 	Options         : Tc2_MC2.ST_MoveOptions;
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="MoveSuperimposed" Id="{e6ebe6d8-b482-4321-acf9-4b22df4a9581}" FolderPath="Motion\Superposition\">
-      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD MoveSuperimposed : itfAxisCommand
-VAR_INPUT
-	Distance			: REAL;
-	VelocityDiff		: REAL;
-	Acceleration		: REAL;
-	Deceleration		: REAL;
-	Jerk				: REAL;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -498,7 +485,7 @@ END_VAR
     </Method>
     <Method Name="ReadApplicationRequest" Id="{a110cec0-634b-417b-b69b-a70f66e86544}" FolderPath="[Internal]\Beta Functions Blocks\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD ReadApplicationRequest 	: MC_Error
+METHOD ReadApplicationRequest 	: itfCommand
 VAR_INPUT
 	ApplicationRequest			: Tc2_MC2.ST_NcApplicationRequest;
 END_VAR
@@ -628,8 +615,7 @@ METHOD SetPosition 	: itfCommand
 VAR_INPUT
 	Position		: REAL;
 	Relative		: BOOL;
-//	ExecutionMode	: MC_ExecutionMode;
-	ExecutionMode	: Tc2_MC2.ST_SetPositionOptions;
+	Options			: Tc2_MC2.ST_SetPositionOptions;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -733,7 +719,7 @@ END_VAR
     </Method>
     <Method Name="WriteDriveOperationMode" Id="{7d96ff05-4d29-4491-84b2-26965469b1f7}" FolderPath="Administrative\Extensions\DriveOperationMode\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD WriteDriveOperationMode 	: MC_Error
+METHOD WriteDriveOperationMode 	: itfCommand
 VAR_INPUT
 	DriveOperationMode			: Tc2_MC2.E_DriveOperationMode;
 	Options						: Tc2_MC2.ST_DriveOperationModeOptions;	

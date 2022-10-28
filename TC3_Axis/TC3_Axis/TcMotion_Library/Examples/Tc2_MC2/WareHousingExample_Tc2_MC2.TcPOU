@@ -74,11 +74,11 @@ Axis_X2_Slave := fbAxis_X2_Slave;
 Axis_X3_Slave := fbAxis_X3_Slave;
 
 
-Axis_X1.Read_Status();
-Axis_Y.Read_Status();
-Axis_X2_Slave.Read_Status();
-Axis_X2_Slave.Read_Status();
-Axis_X3_Slave.Read_Status();
+//Axis_X1.Read_Status();
+//Axis_Y.Read_Status();
+//Axis_X2_Slave.Read_Status();
+//Axis_X2_Slave.Read_Status();
+//Axis_X3_Slave.Read_Status();
 
 ActualPosition_X1 		:= Axis_X1.ActualPosition;
 ActualPosition_Y 		:= Axis_Y.ActualPosition;
