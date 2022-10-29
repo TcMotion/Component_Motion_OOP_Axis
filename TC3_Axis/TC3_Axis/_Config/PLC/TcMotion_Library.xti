@@ -1747,7 +1747,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="TcMotion_Library" PrjFilePath="..\..\TcMotion_Library\TcMotion_Library.plcproj" TmcFilePath="..\..\TcMotion_Library\TcMotion_Library.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TcMotion_Library\TcMotion_Library.tmc" TmcHash="{C9171579-12A9-0ED7-28F6-21377A0ABFB1}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TcMotion_Library\TcMotion_Library.tmc" TmcHash="{9AA906CE-5BB6-38B9-EBF0-CAF0E3C7A6B1}">
 			<Name>TcMotion_Library Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1765,11 +1765,11 @@ External Setpoint Generation:
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X3_Slave.NcToPlc</Name>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X2_Slave.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
@@ -1812,15 +1812,15 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X1.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
 					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Y.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_Z.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>WareHousingExample_Tc2_MC2.AXIS_REF_X1.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>

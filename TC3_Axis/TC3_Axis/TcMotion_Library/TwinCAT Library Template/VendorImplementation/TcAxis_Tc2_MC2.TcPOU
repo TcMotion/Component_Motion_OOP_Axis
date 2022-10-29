@@ -6,14 +6,14 @@
 FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc2_MC2
 //FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
 
-//VAR_INPUT
-//	Axis 				: Tc2_MC2.AXIS_REF;
-//END_VAR
+VAR_INPUT
+	Axis 				: REFERENCE TO Tc2_MC2.AXIS_REF;
+END_VAR
 //VAR_OUTPUT
 //END_VAR
-VAR_IN_OUT 
-	Axis 				: Tc2_MC2.AXIS_REF;
-END_VAR
+//VAR_IN_OUT 
+//	Axis 				: Tc2_MC2.AXIS_REF;
+//END_VAR
 VAR	
 	_PowerOn : BOOL;
 //	itfCommand      : itfCommand;
