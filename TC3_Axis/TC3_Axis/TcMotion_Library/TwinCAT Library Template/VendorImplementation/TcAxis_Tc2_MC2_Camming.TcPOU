@@ -12,7 +12,11 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="CamIn" Id="{b6930e2a-eb2e-455a-99ba-8a81a8331f07}">
+    <Folder Name="General" Id="{5e7413fc-bd4f-48a8-a86c-81fbe9abe62b}" />
+    <Folder Name="Motion Functions" Id="{16aab2e5-7973-4f78-901c-a81ef604d433}" />
+    <Folder Name="MultiCam" Id="{0f418900-9b70-4c59-817a-845a0f0f8bd9}" />
+    <Folder Name="Status" Id="{5e5eee56-26cc-4afc-961a-996e7820b9cb}" />
+    <Method Name="CamIn" Id="{b6930e2a-eb2e-455a-99ba-8a81a8331f07}" FolderPath="General\">
       <Declaration><![CDATA[{error 'Agregar implementación de método o eliminar método para utilizar la implementación básica.'}
 (*
 !!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:

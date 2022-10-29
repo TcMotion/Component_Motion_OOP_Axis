@@ -3,12 +3,30 @@
   <Itf Name="itfAxis_Tc2_MC2_Camming" Id="{72492760-3ab6-4bbc-84e1-1034d9b6c83f}">
     <Declaration><![CDATA[INTERFACE itfAxis_Tc2_MC2_Camming
 ]]></Declaration>
-    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}">
+    <Folder Name="General" Id="{8225a7e5-4a1d-4c16-b140-3516e21aadc8}" />
+    <Folder Name="Motion Functions" Id="{272b7640-e4c9-428e-be42-b54665c41242}" />
+    <Folder Name="MultiCam" Id="{44932f51-7ec3-431e-b4bf-df5eb8f58989}" />
+    <Folder Name="Status" Id="{f9a40c7b-f100-401b-bab1-ea9beb0d946c}" />
+    <Method Name="CamAdd" Id="{96bb7302-880e-4b22-8166-37b625a54eb8}" FolderPath="MultiCam\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamAdd : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamExchange" Id="{c041aa43-569d-474d-b421-d48aa6c8f367}" FolderPath="MultiCam\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamExchange : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamIn" Id="{b500c0f5-8d0d-457a-9c44-d6f09daccc88}" FolderPath="General\">
       <Declaration><![CDATA[(*
 !!!! It would have to be another library with this new extension for the Axis, because if not in TwinCAT this new license is added:
 !!!! TF5050 TC3 NC Camming !!!!!!*)
 
-{warning 'add method implementation '}
+{attribute 'TcRpcEnable'}
 METHOD CamIn 			: itfSynchronizedAxisCommand
 VAR_INPUT
 //	Master				: itfAxis;
@@ -25,6 +43,125 @@ VAR_INPUT
 //	CamTable			: itfCamTable;
 	CamTableID			: Tc2_MC2_Camming.MC_CAM_ID;
 	BufferMode			: MC_BUFFER_MODE;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamIn_V2" Id="{42ad5ebd-1350-447d-805f-e5d442038640}" FolderPath="MultiCam\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamIn_V2 : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamInfo" Id="{947522b5-ddc7-42a8-a4f4-7463c4e4895b}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamInfo : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamInfo_V2" Id="{4b9b5819-b04e-4344-996f-b35022cd0bfe}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamInfo_V2 : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamOut" Id="{dc965e3a-ef0c-4fd9-a21c-c9208726db0e}" FolderPath="General\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamOut : : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamRemove" Id="{72dc3018-f9a9-4446-9668-518076c63f84}" FolderPath="MultiCam\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamRemove : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamScaling" Id="{eaa67a5c-2d32-4cef-9e2d-2f0d96fbcb08}" FolderPath="General\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamScaling : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamScaling_V2" Id="{678820d5-fb9d-41d3-8e2f-28f1e439600f}" FolderPath="MultiCam\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamScaling_V2 : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="CamTableSelect" Id="{871528df-d2da-4753-9257-2def6550bb65}" FolderPath="General\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD CamTableSelect  : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadCamTableCharacteristics" Id="{7e4a5579-cb40-4921-94b1-ab068e2ceb18}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadCamTableCharacteristics : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadCamTableMasterPosition" Id="{e18b91fd-8d77-4fb3-bc95-eeda71e83af4}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadCamTableMasterPosition : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadCamTableSlaveDynamics" Id="{ee76e50b-35ba-4c7b-ab6b-c10e9e19d384}" FolderPath="Status\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadCamTableSlaveDynamics : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadMotionFunction" Id="{1d317b9d-ac5e-40b7-a494-912989224583}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadMotionFunction : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadMotionFunctionPoint" Id="{c127c5a5-c3af-44a7-bd34-246e9fd6838d}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadMotionFunctionPoint : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ReadMotionFunctionValues" Id="{3401917c-e548-457d-b1f3-fbdd093a9968}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD ReadMotionFunctionValues : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetCamOnlineChangeMode" Id="{1fe4544a-3c8a-4bbf-9c24-f93cf0e78768}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD SetCamOnlineChangeMode : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteMotionFunction" Id="{a72bf8e2-90b5-4c03-b7a0-f5f0b503c3be}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteMotionFunction : itfSynchronizedAxisCommand
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WriteMotionFunctionPoint" Id="{e497f321-5a04-47f9-8d02-81b85ab85a9d}" FolderPath="Motion Functions\">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD WriteMotionFunctionPoint : itfSynchronizedAxisCommand
+VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
