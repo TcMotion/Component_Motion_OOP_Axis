@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="TcAxis_Tc2_MC2" Id="{ede46f14-de41-4cbf-bc63-b5cbbe198a41}" SpecialFunc="None">
-    <Declaration><![CDATA[//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc2_MC2
-//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_DMC_Tc3_Direct_Motion_Control IMPLEMENTS itfAxis_Tc2_MC2
-FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc2_MC2
-//FUNCTION_BLOCK TcAxis_Tc2_MC2 EXTENDS TcAxis_Base IMPLEMENTS itfAxis_Tc3_DriveMotionControl, itfAxis_Tc2_MC2
-
+    <Declaration><![CDATA[FUNCTION_BLOCK TcAxis_Tc2_MC2 IMPLEMENTS itfAxis_Tc2_MC2
 VAR_INPUT
 	Axis 				: REFERENCE TO Tc2_MC2.AXIS_REF;
 END_VAR
@@ -602,6 +598,7 @@ VAR
 END_VAR	
 VAR_INST
 	_MC_MoveAbsolute 	: Tc2_MC2.MC_MoveAbsolute;	
+//	Execute             : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -626,29 +623,25 @@ END_VAR
 	
 _MC_MoveAbsolute(
 	Axis:= Axis, 
-	Execute:= TRUE ,//Execute, //
+	Execute:= TRUE, //Execute := NOT Execute, //TRUE ,//Execute, //
 	Position:= Position, 
 	Velocity:= Velocity, 
 	Acceleration:= Acceleration, 
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= BufferMode,//BufferMode, 
-	Options:= Options, //Options, 
+	Options:= Options, //, //Options, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=>_Command.Active, 
 	CommandAborted=> _Command.CommandAborted, 
 	Error=> _Command.Error, 
-	ErrorID=> _Command.ErrorID_Udint);	
-	
-//MC.MoveAbsolute(
-//	Axis:= Axis, 
-//	Execute:= FALSE);	
+	ErrorID=> _Command.ErrorID_Udint
+	);	
 	
 _MC_MoveAbsolute(
 	Axis:= Axis, 
-	Execute:= FALSE);	
-	
+	Execute:= FALSE);		
 
 itfAxisCommand.Done 				:=  _Command.Done AND ActualPosition = Position;             
 itfAxisCommand.Busy   				:=	_Command.Busy;
@@ -656,6 +649,13 @@ itfAxisCommand.Active 				:=	_Command.Active;
 itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
 itfAxisCommand.Error 				:=	_Command.Error;
 itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+//itfAxisCommand.Done 				:=  _MC_MoveAbsolute.Done AND ActualPosition = Position;             
+//itfAxisCommand.Busy   				:=	_MC_MoveAbsolute.Busy;
+//itfAxisCommand.Active 				:=	_MC_MoveAbsolute.Active;
+//itfAxisCommand.CommandAborted		:=	_MC_MoveAbsolute.CommandAborted;
+//itfAxisCommand.Error 				:=	_MC_MoveAbsolute.Error;
+//itfAxisCommand.ErrorID_Udint 		:=	_MC_MoveAbsolute.ErrorID;
 
 MoveAbsolute := itfAxisCommand;]]></ST>
       </Implementation>
@@ -857,17 +857,14 @@ _MC_MoveRelative(
 	Deceleration:= Deceleration, 
 	Jerk:= Jerk, 
 	BufferMode:= ,//BufferMode, 
-	Options:= Options, 
+	Options:= Options, //, 
 	Done=> _Command.Done, 
 	Busy=> _Command.Busy, 
 	Active=> _Command.Active, 
 	CommandAborted=> _Command.CommandAborted, 
 	Error=> _Command.Error, 
-	ErrorID=> _Command.ErrorID_Udint);	
-	
-//MC.MoveRelative(
-//	Axis:= Axis, 
-//	Execute:= FALSE);	
+	ErrorID=> _Command.ErrorID_Udint
+);	
 
 _MC_MoveRelative(
 	Axis:= Axis, 
@@ -879,6 +876,13 @@ itfAxisCommand.Active 				:=	_Command.Active;
 itfAxisCommand.CommandAborted		:=	_Command.CommandAborted;
 itfAxisCommand.Error 				:=	_Command.Error;
 itfAxisCommand.ErrorID_Udint 		:=	_Command.ErrorID_Udint;
+
+//itfAxisCommand.Done 				:=  _MC_MoveRelative.Done; //AND ActualPosition = ActualPosition + Distance;             
+//itfAxisCommand.Busy   				:=	_MC_MoveRelative.Busy;
+//itfAxisCommand.Active 				:=	_MC_MoveRelative.Active;
+//itfAxisCommand.CommandAborted		:=	_MC_MoveRelative.CommandAborted;
+//itfAxisCommand.Error 				:=	_MC_MoveRelative.Error;
+//itfAxisCommand.ErrorID_Udint 		:=	_MC_MoveRelative.ErrorID;
 
 MoveRelative := itfAxisCommand;
 ]]></ST>
