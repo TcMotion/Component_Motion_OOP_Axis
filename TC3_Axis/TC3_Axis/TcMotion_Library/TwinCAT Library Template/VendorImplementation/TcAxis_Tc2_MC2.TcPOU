@@ -351,28 +351,62 @@ END_VAR
     </Method>
     <Method Name="GearInMultimaster" Id="{e4118677-a979-4510-8b94-478ec510771a}" FolderPath="Motion\Gearing\">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD GearInMultimaster 	: itfSynchronizedAxisCommand
-VAR_INPUT
-	GearRatio1				: LREAL;
-	GearRatio2				: LREAL;
-	GearRatio3				: LREAL;	
-	GearRatio4				: LREAL;	
-	Acceleration			: LREAL;
-	Deceleration			: LREAL;
-	Jerk					: LREAL;
-	BufferMode				: Tc2_MC2.MC_BufferMode;
-	Options             	: Tc2_MC2.ST_GearInMultiMasterOptions;	
+METHOD GearInMultimaster 		: itfSynchronizedAxisCommand
+VAR_INPUT                   	
+	GearRatio1					: LREAL;
+	GearRatio2					: LREAL;
+	GearRatio3					: LREAL;	
+	GearRatio4					: LREAL;	
+	Acceleration				: LREAL;
+	Deceleration				: LREAL;
+	Jerk						: LREAL;
+	BufferMode					: Tc2_MC2.MC_BufferMode;
+	Options             		: Tc2_MC2.ST_GearInMultiMasterOptions;	
+END_VAR                     	
+                            	
+VAR_IN_OUT                  	
+	Master1						: Tc2_MC2.AXIS_REF;	
+	Master2						: Tc2_MC2.AXIS_REF;	
+	Master3						: Tc2_MC2.AXIS_REF;	
+	Master4						: Tc2_MC2.AXIS_REF;	
+	Slave						: Tc2_MC2.AXIS_REF;	
 END_VAR
 
-VAR_IN_OUT
-	Master1					: Tc2_MC2.AXIS_REF;	
-	Master2					: Tc2_MC2.AXIS_REF;	
-	Master3					: Tc2_MC2.AXIS_REF;	
-	Master4					: Tc2_MC2.AXIS_REF;	
-	Slave					: Tc2_MC2.AXIS_REF;	
+VAR
+	itfSynchronizedAxisCommand 	: itfSynchronizedAxisCommand;
+END_VAR
+
+VAR_INST
+	_MC_GearInMultiMaster 		: Tc2_MC2.MC_GearInMultiMaster;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[// https://www.linkedin.com/posts/piotr-szyszka-b1669074_nc-ptp-flyingsaw-activity-7015664592584368129-FESs/?utm_source=share&utm_medium=member_android
+
+_MC_GearInMultiMaster(
+	Master1:= Master1, 
+	Master2:= Master2, 
+	Master3:= Master3, 
+	Master4:= Master4, 
+	Slave:= Slave, 
+	Enable:= , 
+	GearRatio1:= GearRatio1, 
+	GearRatio2:= GearRatio2, 
+	GearRatio3:= GearRatio3, 
+	GearRatio4:= GearRatio4, 
+	Acceleration:= Acceleration, 
+	Deceleration:= Deceleration, 
+	Jerk:= Jerk, 
+	BufferMode:= BufferMode, 
+	Options:= Options, 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+GearInMultimaster := itfSynchronizedAxisCommand;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GearOut" Id="{b80af787-0897-496c-b2c3-680f811a2c90}" FolderPath="Motion\Gearing\">

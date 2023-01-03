@@ -1747,7 +1747,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{29D121CA-31FE-40C8-B472-2E4C2C799F0F}" Name="TcMotion_Library" PrjFilePath="..\..\TcMotion_Library\TcMotion_Library.plcproj" TmcFilePath="..\..\TcMotion_Library\TcMotion_Library.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TcMotion_Library\TcMotion_Library.tmc" TmcHash="{D77798E1-9214-3891-A0F0-3A5569FE75EF}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TcMotion_Library\TcMotion_Library.tmc" TmcHash="{07B1FA2A-EA94-2733-3627-BD77DDD955DA}">
 			<Name>TcMotion_Library Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
