@@ -1126,6 +1126,7 @@ VAR_INPUT
 	Enable			: BOOL;
 	EnablePositive	: BOOL;
 	EnableNegative	: BOOL;
+	Override        : LREAL;
 END_VAR
 VAR
 	_fbCommand      : TcCommand;
@@ -1144,7 +1145,7 @@ _MC_Power(
 	Enable:= Enable, 
 	Enable_Positive:= EnablePositive, 
 	Enable_Negative:= EnableNegative, 
-	Override:= 100, 
+	Override:= Override, 
 	BufferMode:= , 
 	Options:= , 
 	Status=> Command.Status, 
@@ -1492,6 +1493,7 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD SetOverride 	: MC_Error
 VAR_INPUT
+//	Enable          : BOOL; //!!!se podria quitar este bit!!!!
 	VelFactor		: REAL;
 	AccFactor		: REAL;
 	JerkFactor		: REAL;
@@ -1504,7 +1506,7 @@ END_VAR
         <ST><![CDATA[
 _MC_SetOverride(
 	Axis:= Axis, 
-	Enable:= TRUE, 
+	Enable:= TRUE, //Enable, //TRUE, 
 	VelFactor:= VelFactor, 
 	AccFactor:= AccFactor, 
 	JerkFactor:= JerkFactor, 

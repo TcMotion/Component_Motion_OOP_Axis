@@ -462,6 +462,7 @@ VAR_INPUT
 	Enable				: BOOL;
 	EnablePositive		: BOOL;
 	EnableNegative		: BOOL;
+	Override        : LREAL;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -633,6 +634,7 @@ END_VAR
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD SetOverride 	: MC_Error
 VAR_INPUT
+//	Enable          : BOOL; //!!!se podria quitar este bit!!!!
 	VelFactor		: REAL;
 	AccFactor		: REAL;
 	JerkFactor		: REAL;
