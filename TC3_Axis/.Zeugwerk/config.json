@@ -1,0 +1,58 @@
+{
+  "fileversion": 1,
+  "solution": "E:\\BECKHOFF\\_TcMotion\\Component_Motion_OOP_Axis\\TC3_Axis\\Tc_Motion.sln",
+  "projects": [
+    {
+      "name": "TcMotion_Axis",
+      "plcs": [
+        {
+          "version": "1.0.0.9",
+          "distributor-name": "TcMotion",
+          "name": "TcMotion_Library",
+          "title": "TcMotion_Component",
+          "type": "Application",
+          "frameworks": {
+            "zeugwerk": {
+              "version": "",
+              "references": [],
+              "repositories": [
+                "https://framework.zeugwerk.dev/Distribution"
+              ],
+              "hide": false,
+              "qualified-only": true
+            }
+          },
+          "packages": [],
+          "references": {
+            "*": [
+              "Tc2_MC2=*",
+              "Tc2_MC2_Camming=*",
+              "Tc2_MC2_FlyingSaw=*",
+              "Tc2_Standard=*",
+              "Tc2_System=*",
+              "Tc3_DriveMotionControl=*",
+              "Tc3_Module=*",
+              "CoDeSys Library Template Interfaces=newest"
+            ]
+          },
+          "repositories": [],
+          "bindings": {},
+          "patches": {
+            "platform": {},
+            "argument": {},
+            "license": {}
+          },
+          "description": "Component Motion OOP Axis",
+          "icon-file": "",
+          "project-url": "https://github.com/TcMotion/Component_Motion_OOP_Axis",
+          "display-name": "TcMotion_Component",
+          "authors": "victorduranm@hotmail.com",
+          "entitlement": "",
+          "license": "MIT License",
+          "license-file": null,
+          "license-tmc-file": null
+        }
+      ]
+    }
+  ]
+}
