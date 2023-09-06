@@ -104,11 +104,11 @@ CASE stateOOP OF
 		END_IF
 	10: 
 	// init
-		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X2_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
-		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE);
+		Axis_X1.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE, Override:=100.0);
+		Axis_Y.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE, Override:=100.0);
+		Axis_Z.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE, Override:=100.0);
+		Axis_X2_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE, Override:=100.0);
+		Axis_X3_Slave.Power(Enable:=TRUE, EnablePositive:=TRUE, EnableNegative:=TRUE, Override:=100.0);
 			
        IF Axis_X1.PowerOn AND Axis_Y.PowerOn AND Axis_Z.PowerOn AND Axis_X2_Slave.PowerOn AND Axis_X3_Slave.PowerOn THEN  	
 			IF Axis_X1.Status = MC_AXISSTATE_STANDSTILL AND Axis_Y.Status = MC_AXISSTATE_STANDSTILL AND
